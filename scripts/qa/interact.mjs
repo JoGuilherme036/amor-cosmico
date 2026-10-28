@@ -42,7 +42,8 @@ const log = []; const errs = [];
 const ok = (n, v) => log.push((v ? 'OK   ' : 'FALHA') + ' ' + n);
 const skip = (n) => log.push('PULO  ' + n);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const url = mode === 'file' ? 'file:///' + ROOT.split(path.sep).join('/') + '/index.html' : `${ORIGIN}/index.html`;
+// modos: http (servidor local + banco simulado) · file (duplo clique) · remote (site publicado em AC_URL, sem banco)
+const url = mode === 'file' ? 'file:///' + ROOT.split(path.sep).join('/') + '/index.html' : mode === 'remote' ? process.env.AC_URL : `${ORIGIN}/index.html`;
 
 async function newPage(ctx) {
   const p = await ctx.newPage(); await p.setViewport({ width: W, height: H, isMobile: W < 700, hasTouch: W < 700 });
@@ -58,7 +59,8 @@ async function enter(p) {
   const needs = await p.evaluate(() => AC.vault.required);
   if (needs && !SENHA) return false;
   if (needs) {
-    await p.type('#gate-code', 'senha-errada'); await p.click('#gate-open'); await sleep(2500);
+    await p.type('#gate-code', 'senha-errada'); await p.click('#gate-open');
+    await p.waitForFunction(() => /não é a nossa/.test(document.querySelector('#gate-err').textContent), { timeout: 20000 }).catch(() => {});
     ok('cofre: senha errada mantém o portão', await p.evaluate(() => !!document.querySelector('#gate') && !document.querySelector('#gate').classList.contains('is-out')));
     await p.evaluate(() => { document.querySelector('#gate-code').value = ''; });
     await p.type('#gate-code', SENHA);
@@ -76,7 +78,7 @@ if (!entered) { skip('cofre (defina AC_SENHA)'); await p.goto(url + '?portao=0',
 else {
   ok('portão saiu', await ev(() => { const g = document.querySelector('#gate'); return !g || g.classList.contains('is-out'); }));
   ok('música tocando', await ev(() => AC.audio.state.playing));
-  if (mode === 'http') ok('cofre: música decifrada (Blob)', await ev(() => (AC.audio.tracks.principal.el.src || '').startsWith('blob:')));
+  if (mode !== 'file') ok('cofre: música decifrada (Blob)', await ev(() => (AC.audio.tracks.principal.el.src || '').startsWith('blob:')));
 }
 
 // 3D
@@ -107,8 +109,8 @@ await shot('final-coracao');
 // galáxia de memórias
 await ev(() => document.querySelector('#galeria').scrollIntoView()); await sleep(800);
 await ev(() => document.querySelector('#g-starwall').click()); await sleep(2500); await shot('memorias');
-const memOk = mode === 'http' ? await ev(() => !!document.querySelector('.mg.is-on')) : await ev(() => !!document.querySelector('.sw.is-on'));
-ok(mode === 'http' ? 'Galáxia de Memórias 3D abre' : 'Parede de Estrelas 2D abre (file://)', memOk);
+const memOk = mode !== 'file' ? await ev(() => !!document.querySelector('.mg.is-on')) : await ev(() => !!document.querySelector('.sw.is-on'));
+ok(mode !== 'file' ? 'Galáxia de Memórias 3D abre' : 'Parede de Estrelas 2D abre (file://)', memOk);
 await p.keyboard.press('Escape'); await sleep(700);
 
 // layout

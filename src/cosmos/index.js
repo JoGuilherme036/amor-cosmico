@@ -30,12 +30,14 @@ function init() {
     if (AC.reduced()) g.renderOnce(); else on3d();
   } catch (e) { warn('galáxia', e); }
 
-  // 2) alianças no capítulo do pedido
-  document.querySelectorAll('[data-rings]').forEach((st) => { try { mountRings(st, Q); } catch (e) { warn('alianças', e); } });
-
-  // 3) partículas do final
+  // 2) e 3) alianças e partículas do final: só montam quando chegam perto da tela (economiza CPU/bateria no início)
+  const lazy = (el, mount, what) => {
+    const io = new IntersectionObserver(([e]) => { if (!e.isIntersecting) return; io.disconnect(); try { mount(el, Q); } catch (err) { warn(what, err); } }, { rootMargin: '900px 0px' });
+    io.observe(el);
+  };
+  document.querySelectorAll('[data-rings]').forEach((st) => lazy(st, mountRings, 'alianças'));
   const fin = document.getElementById('finale3d');
-  if (fin) { try { mountFinale(fin, Q); } catch (e) { warn('final', e); } }
+  if (fin) lazy(fin, mountFinale, 'final');
 
   // 4) Galáxia de Memórias (só http/https — veja memories.js)
   if (!AC.isFile && AC.starwall) {

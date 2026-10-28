@@ -33,7 +33,9 @@
 
   function heroRotation(rot) {
     const frame = $('#hero-frame'), badge = $('#hero-badge'); let cur = 0;
-    frame.dataset.open = '1'; frame.tabIndex = 0; frame.setAttribute('role', 'button'); frame.setAttribute('aria-label', 'Abrir retrato do casal');
+    frame.dataset.open = '1'; frame.tabIndex = 0; frame.setAttribute('role', 'button');
+    const label = () => frame.setAttribute('aria-label', `Abrir retrato do casal: ${badge.textContent}`); // inclui o texto visível do selo
+    label();
     const open = () => AC.lightbox.open(rot, cur);
     frame.addEventListener('click', open);
     frame.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
@@ -47,7 +49,7 @@
       const old = $$('.ph', frame).filter((p) => p !== layer);
       requestAnimationFrame(() => requestAnimationFrame(() => { layer.style.opacity = 1; }));
       setTimeout(() => old.forEach((o) => o.remove()), 1400);
-      badge.textContent = badgeText(m);
+      badge.textContent = badgeText(m); label();
     };
     setInterval(() => { if (!document.hidden && !AC.lightbox.isOpen) swap((cur + 1) % rot.length); }, 7500);
   }

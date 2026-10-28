@@ -221,7 +221,10 @@
     // blur-up (LQIP) chega depois da 1ª pintura
     AC.afterLoad(() => { const s = document.createElement('script'); s.src = 'js/data/lqip.js' + (window.AC_BUILD ? '?v=' + window.AC_BUILD : ''); document.head.appendChild(s); }, 0);
     // Primeiro o que aparece na tela (portão, nav, hero); o resto entra em fatias para não travar o 1º desenho.
-    safe('portão', () => gate().then(() => { AC.startShooters(); }));
+    // o 3D só carrega quando (a) a página terminou de montar e (b) o portão foi aberto — e num momento ocioso
+    let gateOpen = false, built = false;
+    const maybeCosmos = () => { if (gateOpen && built) (window.requestIdleCallback || ((f) => setTimeout(f, 300)))(() => safe('3D', loadCosmos), { timeout: 2500 }); };
+    safe('portão', () => gate().then(() => { AC.startShooters(); gateOpen = true; maybeCosmos(); }));
     safe('nav', nav);
     safe('hero', AC.initHero);
     safe('gavetas', prefsUi);
@@ -243,7 +246,7 @@
       AC.hydrate(document);
       safe('céu', skyWatch);
       safe('zonas da música', AC.songZones);
-      safe('3D', loadCosmos);
+      built = true; maybeCosmos();
       document.documentElement.dataset.ready = '1';
       AC.emit('ready');
     })();
