@@ -1,0 +1,63 @@
+/* ============================================================
+   MOBILE — refinamentos para celular em pé (≤ 640 px) e toque
+   ============================================================ */
+
+/* Alvos de toque confortáveis em qualquer tela com toque */
+@media (pointer: coarse) {
+  .chip { min-height: 42px; }
+  .btn--sm { min-height: 42px; }
+  .tile__fav { width: 40px; height: 40px; }
+}
+
+@media (max-width: 640px) {
+  /* ---------- Galeria: filtros numa linha que rola (antes ocupavam 4 linhas) ---------- */
+  .gallery-tools { gap: 10px; margin-inline: calc(var(--gutter) * -1); }
+  .gallery-tools > .chips, .gallery-tools .chips#g-types {
+    flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding: 2px var(--gutter); scrollbar-width: none;
+    scroll-snap-type: x proximity; -webkit-mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 24px), transparent);
+  }
+  .gallery-tools .chips::-webkit-scrollbar { display: none; }
+  .gallery-tools .chip { scroll-snap-align: start; flex: none; }
+  .gallery-tools__row { padding: 0 var(--gutter); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .gallery-tools__row .search { grid-column: 1 / -1; max-width: none; order: -2; }
+  .gallery-tools__row #g-types { grid-column: 1 / -1; order: -1; padding: 0; margin: 0; -webkit-mask-image: none; mask-image: none; }
+  .gallery-tools__row .select { grid-column: 1 / -1; width: 100%; }
+  .gallery-tools__row .btn { padding: 0 8px; min-height: 44px; }
+  .gallery-tools__row .btn .lbl { display: none; }
+  .gallery-tools__row .btn .lbl-s { display: inline; }
+  .masonry { column-gap: 8px; }
+  .tile { margin-bottom: 8px; border-radius: 14px; }
+
+  /* ---------- Tipografia e respiro ---------- */
+  .section-head { margin-bottom: 32px; }
+  .section-head p.lead { font-size: 1.02rem; }
+  .prose p { font-size: 1.06rem; line-height: 1.78; }
+  .pull p { font-size: 1.32rem; }
+  .chapter__title h3 { font-size: clamp(2.1rem, 9.5vw, 2.8rem); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-bottom: 120px; }
+  .hero__cta .btn { flex: 1 1 100%; }
+  .hero__cta .btn--sm { flex: 0 1 auto; }
+  .clock { gap: 8px; }
+
+  /* ---------- Linha do tempo: carrossel de ponta a ponta ---------- */
+  .tl-item { padding-left: 50px; }
+  .tl-card { padding: 18px 16px; }
+
+  /* ---------- Player ---------- */
+  .player__controls { flex-wrap: wrap; }
+  .player__vol { width: 100%; margin-left: 0; }
+
+  /* ---------- Rodapé acima da barra e do mini player ---------- */
+  .footer { padding-bottom: calc(190px + var(--sa-b)); }
+}
+
+/* ---------- Barra inferior: indicador animado ---------- */
+.bottom-nav a, .bottom-nav button { position: relative; }
+.bottom-nav a::after { content: ""; position: absolute; bottom: 6px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--c-gold); transform: scale(0); transition: transform var(--d-base) var(--ease); }
+.bottom-nav a.is-current::after { transform: scale(1); }
+.bottom-nav a:active, .bottom-nav button:active { transform: scale(0.94); }
+
+/* rótulos curtos só aparecem no celular */
+.lbl-s { display: none; }

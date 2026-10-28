@@ -1,0 +1,17 @@
+{
+  "name": "Amor Cósmico • João Guilherme & Maria Cândida",
+  "short_name": "Amor Cósmico",
+  "description": "O nosso álbum de amor: história, fotos e vídeos.",
+  "lang": "pt-BR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05050a",
+  "theme_color": "#05050a",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

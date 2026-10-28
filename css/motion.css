@@ -1,0 +1,67 @@
+/* ============================================================
+   MOTION — curto, suave, com propósito.
+   Tudo aqui é desligado por "intensidade de movimento: reduzida"
+   ou pela preferência do sistema (prefers-reduced-motion).
+   ============================================================ */
+
+@keyframes kenburns {
+  from { transform: scale(1.02) translate3d(0, 0, 0); }
+  to { transform: scale(1.13) translate3d(-1.5%, -1.2%, 0); }
+}
+
+/* Revelação de blocos (só se JS está ativo; senão o conteúdo aparece normal) */
+/* usa a propriedade `translate` para não brigar com `transform` (tilt, hover etc.) */
+html.js .reveal { opacity: 0; translate: 0 28px; transition: opacity 1s var(--ease), translate 1.1s var(--ease); transition-delay: var(--rd, 0ms); }
+html.js .reveal.is-in { opacity: 1; translate: 0 0; }
+
+/* Revelação mascarada de títulos (linha a linha) */
+html.js .mask-line { display: block; overflow: hidden; }
+html.js .mask-line > span { display: block; transform: translateY(105%); transition: transform 1.1s var(--ease); transition-delay: var(--rd, 0ms); }
+html.js .is-in .mask-line > span, html.js .mask-line.is-in > span { transform: none; }
+
+/* Imagens: clip-path reveal + leve zoom */
+html.js .clip-reveal { clip-path: inset(12% 8% 12% 8% round var(--r-lg)); transition: clip-path 1.4s var(--ease); }
+html.js .clip-reveal.is-in { clip-path: inset(0 0 0 0 round var(--r-lg)); }
+html.js .clip-reveal .ph img, html.js .clip-reveal .ph video { transform: scale(1.18); }
+html.js .clip-reveal.is-in .ph img, html.js .clip-reveal.is-in .ph video { transform: scale(1.04); }
+
+/* Scroll-driven (progressivo): enquadramento suave ao entrar na viewport */
+@supports (animation-timeline: view()) {
+  .sd-fade { animation: sdFade linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+  @keyframes sdFade { from { opacity: 0.2; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+}
+
+/* Parallax em camadas: JS define --py por elemento (fundo/meio/frente) */
+[data-parallax] { will-change: transform; }
+
+/* hover magnético: JS define --mx/--my */
+.magnetic { transition: transform 0.4s var(--ease); transform: translate3d(var(--mx, 0), var(--my, 0), 0); }
+
+/* confete / partículas (criados via JS) */
+.confetti { position: fixed; z-index: var(--z-cursor); pointer-events: none; width: 10px; height: 10px; left: 0; top: 0; will-change: transform, opacity; }
+.confetti svg { width: 100%; height: 100%; fill: currentColor; }
+
+/* ---------- Movimento reduzido ---------- */
+html[data-motion="reduced"] *, html[data-motion="reduced"] *::before, html[data-motion="reduced"] *::after {
+  animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important;
+  transition-duration: 0.001ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important;
+}
+html[data-motion="reduced"] .marquee__track { animation: none !important; transform: none; }
+html[data-motion="reduced"] .marquee { overflow-x: auto; }
+html[data-motion="reduced"] .orbit__ring, html[data-motion="reduced"] .orbit__btn { animation: none !important; }
+html[data-motion="reduced"] .hero__title .ch { opacity: 1; transform: none; filter: none; }
+html[data-motion="reduced"].js .reveal { opacity: 1; translate: none; }
+html[data-motion="reduced"].js .mask-line > span { transform: none; }
+html[data-motion="reduced"].js .clip-reveal { clip-path: none; }
+html[data-motion="reduced"] .cursor { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  .marquee__track { animation: none !important; }
+  .marquee { overflow-x: auto; }
+  .orbit__ring, .orbit__btn { animation: none !important; }
+  .hero__title .ch { opacity: 1; transform: none; filter: none; }
+  html.js .reveal { opacity: 1; translate: none; }
+  html.js .mask-line > span { transform: none; }
+  html.js .clip-reveal { clip-path: none; }
+  .cursor { display: none; }
+}

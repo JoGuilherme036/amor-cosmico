@@ -1,0 +1,23 @@
+# --- fotos/vídeos originais (pesados; o site usa as versões otimizadas em assets/img e assets/video) ---
+assets/originais/
+*.zip
+
+# --- música em claro: no repositório público só vai a versão CRIPTOGRAFADA (assets/audio/*.enc) ---
+assets/audio/*.mp3
+!assets/audio/narracao.mp3
+assets/audio-local/
+YTDown*.mp3
+
+# --- banco de dados: SQL com o token do casal (gerado localmente, nunca público) ---
+supabase/*.local.sql
+
+# --- ferramentas / gerados ---
+node_modules/
+scripts/node_modules/
+dist/
+_backup/
+qa-prints/
+.codegraph/
+*.log
+.DS_Store
+Thumbs.db

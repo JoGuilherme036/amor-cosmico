@@ -1,0 +1,497 @@
+<!doctype html>
+<!-- MODELO DE DESENVOLVIMENTO: carrega css/ e js/ separados. O index.html (produção) é gerado daqui por scripts/bundle.mjs -->
+<html lang="pt-BR" data-motion="full">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amor Cósmico • João Guilherme &amp; Maria Cândida</title>
+<meta name="description" content="Um álbum cósmico de amor: a história, as fotos e os vídeos de João Guilherme e Maria Cândida — de 26.04.2026 ao pedido de casamento em Fortaleza.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#05050a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amor Cósmico • João Guilherme &amp; Maria Cândida">
+<meta property="og:description" content="“Em todos os universos, eu escolheria você.” Nossa história, em fotos e vídeos.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="assets/og.jpg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="preload" as="image" type="image/avif" href="assets/img/p-img-3842-480.avif" imagesrcset="assets/img/p-img-3842-480.avif 480w, assets/img/p-img-3842-960.avif 960w, assets/img/p-img-3842-1600.avif 1600w" imagesizes="(min-width:900px) 34vw, 62vw" fetchpriority="high">
+<link rel="preload" href="assets/fonts/CormorantGaramond-500-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/cosmos.css">
+<link rel="stylesheet" href="css/mobile.css">
+<link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ============ ATMOSFERA ============ -->
+<div class="sky" aria-hidden="true" id="sky">
+  <div class="sky__layer is-on" data-sky="default"></div>
+  <div class="sky__layer" data-sky="origem"></div>
+  <div class="sky__layer" data-sky="namoro"></div>
+  <div class="sky__layer" data-sky="jeri"></div>
+  <div class="sky__layer" data-sky="pedido"></div>
+  <div class="sky__layer" data-sky="infinito"></div>
+</div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<!-- ============ PORTÃO DE ENTRADA ============ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <canvas id="gate-stars" aria-hidden="true"></canvas>
+  <div class="gate__inner">
+    <div class="gate__ring" aria-hidden="true"><svg class="ico ico--fill" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 5 6 5c2 0 3.3 1 4.3 2.4h3.4C14.7 6 16 5 18 5c3.3 0 5.1 3.4 3.6 6.8C19.500 16.400 12 21 12 21z"/></svg></div>
+    <span class="eyebrow eyebrow--plain">Amor Cósmico</span>
+    <h1 id="gate-title">João Guilherme <span class="script text-gold">&amp;</span> Maria Cândida</h1>
+    <p>Uma história que o universo já conhecia.</p>
+    <form id="gate-form" class="gate__form" autocomplete="off" style="display:contents">
+      <input id="gate-code" type="password" autocomplete="current-password" autocapitalize="none" spellcheck="false" placeholder="Senha" aria-label="Senha do nosso universo" hidden>
+      <label class="gate__remember" id="gate-remember-wrap" hidden><input type="checkbox" id="gate-remember" checked> Lembrar neste aparelho</label>
+      <div class="err" id="gate-err" role="alert"></div>
+      <button type="submit" class="btn btn--primary" id="gate-open">Abrir nossa história</button>
+    </form>
+    <button type="button" class="btn btn--ghost btn--sm" id="gate-silent">Entrar sem som</button>
+  </div>
+</div>
+
+<!-- ============ NAVEGAÇÃO ============ -->
+<header class="header" id="header">
+  <a href="#inicio" class="logo" id="logo" aria-label="JG & MC, Amor Cósmico: ir ao início">JG <i>&amp;</i> MC</a>
+  <div class="header__actions">
+    <button type="button" class="btn btn--sm btn--ghost" id="btn-celebrate" aria-label="Celebrar com estrelas"><svg class="ico" viewBox="0 0 24 24"><use href="#i-sparkles"/></svg><span class="hide-sm">Celebrar</span></button>
+    <button type="button" class="btn btn--sm btn--ghost" id="btn-cinema-top" aria-label="Assistir nosso filme"><svg class="ico" viewBox="0 0 24 24"><use href="#i-film"/></svg><span class="hide-sm">Filme</span></button>
+    <button type="button" class="btn btn--sm btn--ghost now-playing" id="btn-music-top" aria-pressed="false" aria-label="Tocar ou pausar a música"><span class="eq" aria-hidden="true"><span></span><span></span><span></span></span><span id="np-text">Música</span></button>
+    <button type="button" class="btn btn--sm btn--icon btn--ghost" id="btn-prefs" aria-label="Preferências"><svg class="ico" viewBox="0 0 24 24"><use href="#i-sliders"/></svg></button>
+  </div>
+</header>
+
+<nav class="dock glass" id="dock" aria-label="Seções da página"></nav>
+<nav class="bottom-nav" id="bottom-nav" aria-label="Navegação principal"></nav>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer-more" role="dialog" aria-modal="true" aria-label="Mais seções" aria-hidden="true">
+  <div class="drawer__grip"></div>
+  <div class="drawer__title"><h2>Mais do nosso universo</h2><button type="button" class="btn btn--icon btn--ghost" data-close-drawer aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
+  <div class="more-links" id="more-links"></div>
+  <div class="drawer__group"><h3>Experiências</h3>
+    <div class="more-links">
+      <button type="button" class="glass" style="display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:var(--r-md);font-size:var(--fs-sm);font-weight:500" data-act="cinema"><svg class="ico" viewBox="0 0 24 24" style="color:var(--c-gold)"><use href="#i-film"/></svg>Nosso filme</button>
+      <button type="button" class="glass" style="display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:var(--r-md);font-size:var(--fs-sm);font-weight:500" data-act="starwall"><svg class="ico" viewBox="0 0 24 24" style="color:var(--c-gold)"><use href="#i-star"/></svg>Galáxia de Memórias</button>
+      <button type="button" class="glass" style="display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:var(--r-md);font-size:var(--fs-sm);font-weight:500" data-act="share"><svg class="ico" viewBox="0 0 24 24" style="color:var(--c-gold)"><use href="#i-share"/></svg>Compartilhar</button>
+      <button type="button" class="glass" style="display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:var(--r-md);font-size:var(--fs-sm);font-weight:500" data-act="prefs"><svg class="ico" viewBox="0 0 24 24" style="color:var(--c-gold)"><use href="#i-sliders"/></svg>Preferências</button>
+    </div>
+  </div>
+</aside>
+
+<aside class="drawer" id="drawer-prefs" role="dialog" aria-modal="true" aria-label="Preferências" aria-hidden="true">
+  <div class="drawer__grip"></div>
+  <div class="drawer__title"><h2>Preferências</h2><button type="button" class="btn btn--icon btn--ghost" data-close-drawer aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
+  <div class="drawer__group"><h3>Som</h3>
+    <div class="pref"><span class="lbl">Música ao abrir<small>Começa no primeiro toque em “Abrir nossa história”.</small></span><button class="switch" role="switch" aria-checked="true" data-pref="soundOnEntry" aria-label="Música ao abrir"></button></div>
+    <div class="pref"><span class="lbl">Efeitos sonoros<small>Brilhos suaves ao tocar.</small></span><button class="switch" role="switch" aria-checked="true" data-pref="sfxEnabled" aria-label="Efeitos sonoros"></button></div>
+    <div class="pref" style="flex-direction:column;align-items:stretch;gap:10px"><label for="pref-volume" class="lbl">Volume da música</label><input type="range" id="pref-volume" min="0" max="100" value="85" data-pref-range="musicVolume"></div>
+  </div>
+  <div class="drawer__group"><h3>Movimento e céu</h3>
+    <div class="pref"><span class="lbl">Intensidade de movimento<small>“Reduzida” desliga parallax, zoom lento e partículas.</small></span><span class="seg" data-pref-seg="motionIntensity"><button type="button" data-v="full" aria-pressed="true">Completa</button><button type="button" data-v="reduced" aria-pressed="false">Reduzida</button></span></div>
+    <div class="pref"><span class="lbl">Densidade de estrelas</span><span class="seg" data-pref-seg="starDensity"><button type="button" data-v="low" aria-pressed="false">Poucas</button><button type="button" data-v="medium" aria-pressed="true">Média</button><button type="button" data-v="high" aria-pressed="false">Muitas</button></span></div>
+    <div class="pref"><span class="lbl">Modo foco<small>Acalma o fundo para ler e ver as fotos.</small></span><button class="switch" role="switch" aria-checked="false" data-pref="focusMode" aria-label="Modo foco"></button></div>
+  </div>
+  <div class="drawer__group"><h3>Minhas memórias</h3>
+    <p style="color:var(--t-soft);font-size:var(--fs-sm);margin-bottom:12px">Adicione fotos ou vídeos novos só neste aparelho. Para entrarem de vez no site, jogue na pasta <b>assets/originais</b> e rode o script (veja o LEIA-ME).</p>
+    <label class="btn btn--sm" style="cursor:pointer"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plus"/></svg>Adicionar memórias<input type="file" id="studio-input" accept="image/*,video/*" multiple hidden></label>
+    <div id="studio-list" style="margin-top:14px;display:grid;gap:8px"></div>
+  </div>
+</aside>
+
+<!-- ============ CONTEÚDO ============ -->
+<main id="conteudo">
+
+<!-- HERO -->
+<section id="inicio" class="hero" aria-labelledby="hero-title" data-sky="default" data-nav="Início">
+  <div class="wrap hero__grid">
+    <div class="hero__stage" id="hero-stage">
+      <div class="orbit" id="orbit">
+        <div class="orbit__halo" aria-hidden="true"></div>
+        <div class="orbit__ring" id="orbit-ring"></div>
+        <figure class="hero__frame frame" id="hero-frame">
+          <div class="ph ph--static" id="hero-ph" style="--ph:#6d8fbf">
+            <picture id="hero-picture">
+              <source type="image/avif" srcset="assets/img/p-img-3842-480.avif 480w, assets/img/p-img-3842-960.avif 960w, assets/img/p-img-3842-1600.avif 1600w" sizes="(min-width:900px) 34vw, 62vw">
+              <source type="image/webp" srcset="assets/img/p-img-3842-480.webp 480w, assets/img/p-img-3842-960.webp 960w, assets/img/p-img-3842-1600.webp 1600w" sizes="(min-width:900px) 34vw, 62vw">
+              <img src="assets/img/p-img-3842-960.jpg" srcset="assets/img/p-img-3842-480.jpg 480w, assets/img/p-img-3842-960.jpg 960w, assets/img/p-img-3842-1600.jpg 1600w" sizes="(min-width:900px) 34vw, 62vw" width="1600" height="2400" alt="João Guilherme e Maria Cândida dentro de uma grande moldura de coração vermelho, com a lagoa de Jericoacoara ao fundo" fetchpriority="high" decoding="async">
+            </picture>
+          </div>
+          <figcaption class="badge hero__badge" id="hero-badge" aria-hidden="true">Jericoacoara • 28.07.2026</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="hero__copy">
+      <p class="eyebrow" id="hero-eyebrow">Desde 26 de abril de 2026</p>
+      <h1 id="hero-title" class="display hero__title" aria-label="João Guilherme e Maria Cândida">
+        <span class="hero__line" data-split>João Guilherme</span>
+        <span class="hero__amp script text-gold" aria-hidden="true">&amp;</span>
+        <span class="hero__line" data-split>Maria Cândida</span>
+      </h1>
+      <p class="hero__phrase" id="hero-phrase" aria-live="polite">“Uma história que o universo já conhecia.”</p>
+      <div class="clock" id="clock" role="timer" aria-label="Tempo de história juntos">
+        <div class="clock__card"><b id="ck-d">0</b><span>dias</span></div>
+        <div class="clock__card"><b id="ck-h">00</b><span>horas</span></div>
+        <div class="clock__card"><b id="ck-m">00</b><span>minutos</span></div>
+        <div class="clock__card"><b id="ck-s">00</b><span>segundos</span></div>
+      </div>
+      <p class="hero__next" id="hero-next"></p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#historia" id="cta-story"><svg class="ico" viewBox="0 0 24 24"><use href="#i-book"/></svg>Abrir nossa história</a>
+        <button type="button" class="btn" id="cta-cinema"><svg class="ico" viewBox="0 0 24 24"><use href="#i-film"/></svg>Assistir nosso filme</button>
+        <button type="button" class="btn btn--ghost btn--sm" id="btn-warp" title="Segure para acelerar pelas estrelas"><svg class="ico" viewBox="0 0 24 24"><use href="#i-rocket"/></svg>Segure: viagem estelar</button>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#universo" aria-label="Role para o nosso universo"><span>Role</span><i></i></a>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- UNIVERSO -->
+<section id="universo" class="section section--below" data-sky="default" data-nav="Universo">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">O nosso universo</span>
+      <h2 class="display">Três fragmentos de constelação</h2>
+      <p class="lead">Toque em cada constelação para virar o cartão e descobrir o que alinhou os nossos caminhos.</p>
+    </header>
+    <div class="cards3d" id="universe-cards"></div>
+  </div>
+  <div class="marquee" id="universe-marquee" aria-label="Faixa de fotos do casal"></div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- HISTÓRIA -->
+<section id="historia" class="story" data-nav="História">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">Nossa história</span>
+      <h2 class="display">Seis capítulos de um só amor</h2>
+      <p class="lead">Leia no seu ritmo — ou deixe a narração contar para você.</p>
+      <div class="story__tools">
+        <button type="button" class="btn btn--primary btn--sm" id="btn-narrate" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24"><use href="#i-play"/></svg><span>Ouvir a narração</span></button>
+      </div>
+    </header>
+  </div>
+  <div id="chapters"></div>
+</section>
+
+<!-- Legenda fixa da narração + progresso -->
+<div class="story-hud" id="story-hud" aria-live="off">
+  <button type="button" class="btn btn--icon btn--primary" id="hud-play" aria-label="Tocar ou pausar a narração"><svg class="ico" viewBox="0 0 24 24"><use href="#i-play"/></svg></button>
+  <p class="story-hud__line" id="hud-line"></p>
+  <div class="story-hud__bar"><i id="hud-bar"></i></div>
+</div>
+<nav class="story-index" id="story-index" aria-label="Capítulos"></nav>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- LINHA DO TEMPO -->
+<section id="linha-do-tempo" class="section section--below" data-sky="namoro" data-nav="Linha do tempo">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">Nossa trajetória</span>
+      <h2 class="display">Linha do tempo</h2>
+      <p class="lead">Cada data que transformou a nossa história — com as fotos e os vídeos de cada momento.</p>
+    </header>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- NÚMEROS + MAPA -->
+<section id="numeros" class="section section--below" data-sky="default" data-nav="Números">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">Em números</span>
+      <h2 class="display">O que já vivemos</h2>
+    </header>
+    <div class="numbers" id="numbers"></div>
+    <div class="map reveal" id="map"></div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- GALERIA -->
+<section id="galeria" class="section" data-sky="default" data-nav="Galeria">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">Memórias em HD</span>
+      <h2 class="display">Galeria</h2>
+      <p class="lead" id="gallery-lead">Fotos e vídeos de cada momento.</p>
+    </header>
+    <div class="gallery-tools" id="gallery-tools">
+      <div class="chips" id="g-milestones" role="group" aria-label="Filtrar por marco"></div>
+      <div class="gallery-tools__row">
+        <div class="chips" id="g-types" role="group" aria-label="Filtrar por tipo"></div>
+        <select class="select" id="g-month" aria-label="Filtrar por mês"></select>
+        <label class="search"><svg class="ico" viewBox="0 0 24 24"><use href="#i-search"/></svg><input type="search" id="g-search" class="input" placeholder="Buscar legenda ou lugar…" aria-label="Buscar nas memórias"></label>
+        <button type="button" class="btn btn--sm" id="g-shuffle" aria-label="Embaralhar universo"><svg class="ico" viewBox="0 0 24 24"><use href="#i-shuffle"/></svg><span class="lbl">Embaralhar universo</span><span class="lbl-s">Embaralhar</span></button>
+        <button type="button" class="btn btn--sm" id="g-starwall" aria-label="Galáxia de Memórias"><svg class="ico" viewBox="0 0 24 24"><use href="#i-star"/></svg><span class="lbl">Galáxia de Memórias</span><span class="lbl-s">Galáxia</span></button>
+        <button type="button" class="btn btn--sm btn--primary" id="g-slideshow" aria-label="Slideshow"><svg class="ico" viewBox="0 0 24 24"><use href="#i-play"/></svg><span class="lbl">Slideshow</span><span class="lbl-s">Slides</span></button>
+      </div>
+      <p class="gallery-count" id="g-count" aria-live="polite"></p>
+    </div>
+    <div class="masonry" id="masonry"></div>
+    <div class="masonry__sentinel" id="masonry-sentinel"></div>
+    <p class="gallery-empty" id="g-empty" hidden>Nenhuma memória com esses filtros. Que tal limpar a busca? ✨</p>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- MÚSICA -->
+<section id="musica" class="section section--below" data-sky="pedido" data-nav="Música">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">Nossa trilha</span>
+      <h2 class="display">As nossas músicas</h2>
+      <p class="lead">“Dia, Lugar e Hora”, a nossa trilha — e “Chuva de Arroz”, que toca sozinha quando a história chega ao pedido.</p>
+    </header>
+    <div class="player glass glass--2 reveal" id="player">
+      <div class="player__disc" id="player-disc" aria-hidden="true">
+        <div class="player__vinyl"></div>
+        <div class="player__cover ph ph--static" id="player-cover"></div>
+        <i class="player__hole"></i>
+      </div>
+      <div class="player__body">
+        <p class="eyebrow eyebrow--plain" id="player-status">Pausada</p>
+        <h3 class="display player__title" id="player-title">Dia, Lugar e Hora</h3>
+        <p class="player__artist" id="player-artist">Luan Santana • a nossa trilha</p>
+        <div class="tracks" id="tracks" role="radiogroup" aria-label="Escolher a faixa"></div>
+        <canvas id="wave" class="player__wave" width="640" height="90" aria-hidden="true"></canvas>
+        <div class="player__seek">
+          <span id="p-cur">0:00</span>
+          <input type="range" id="p-seek" min="0" max="1000" value="0" aria-label="Posição da música">
+          <span id="p-dur">0:00</span>
+        </div>
+        <div class="player__controls">
+          <button type="button" class="btn btn--icon btn--primary" id="p-play" aria-label="Tocar"><svg class="ico ico--fill" viewBox="0 0 24 24"><use href="#i-play"/></svg></button>
+          <button type="button" class="btn btn--icon btn--ghost" id="p-loop" aria-pressed="true" aria-label="Repetir"><svg class="ico" viewBox="0 0 24 24"><use href="#i-repeat"/></svg></button>
+          <label class="player__vol"><svg class="ico" viewBox="0 0 24 24"><use href="#i-volume"/></svg><input type="range" id="p-vol" min="0" max="100" value="85" aria-label="Volume"></label>
+        </div>
+      </div>
+    </div>
+    <p class="music-note reveal">A noite do pedido, em imagens</p>
+    <div class="music-strip" id="music-strip"></div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- SURPRESA -->
+<section id="surpresa" class="section section--below" data-sky="pedido" data-song="pedido" data-nav="Surpresa">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">Segredo guardado</span>
+      <h2 class="display">Nossa surpresa</h2>
+      <p class="lead">Deslize o dedo sobre a poeira estelar para descobrir a memória escondida.</p>
+    </header>
+    <div class="scratch reveal">
+      <div class="scratch__meter"><span>Revelação das estrelas</span><b id="sc-pct">0%</b><i><u id="sc-bar"></u></i></div>
+      <div class="scratch__stage" id="sc-stage">
+        <div class="scratch__photo ph ph--static" id="sc-photo"></div>
+        <div class="scratch__veil"></div>
+        <div class="scratch__card" id="sc-card">
+          <span class="badge">28.05.2026 &amp; 15.08.2026</span>
+          <h3 class="script text-gold">Ela disse sim!</h3>
+          <p>Do pedido de namoro no carro ao pedido de casamento em Fortaleza.</p>
+          <button type="button" class="btn btn--primary btn--sm" id="sc-album"><svg class="ico" viewBox="0 0 24 24"><use href="#i-heart"/></svg>Ver essa memória</button>
+        </div>
+        <canvas id="sc-canvas" aria-label="Área de raspadinha: deslize para revelar a foto"></canvas>
+      </div>
+      <div class="scratch__actions">
+        <button type="button" class="btn btn--sm" id="sc-reveal">Revelar agora ✨</button>
+        <button type="button" class="btn btn--sm btn--ghost" id="sc-reset">Cobrir com estrelas de novo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- FUTURO -->
+<section id="futuro" class="section section--below" data-sky="infinito" data-nav="Futuro">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">Olhando para o céu</span>
+      <h2 class="display">Os próximos capítulos</h2>
+      <p class="lead">O nosso casamento, a nossa casa, nossos sonhos, nossas vitórias e todos os capítulos que ainda vamos escrever juntos.</p>
+    </header>
+    <div class="starmap reveal" id="starmap"></div>
+    <div class="dreams" id="dreams"></div>
+
+    <div class="vows" id="vows">
+      <header class="section-head reveal" style="margin-top:clamp(56px,9vw,120px)">
+        <span class="eyebrow">Mural de promessas</span>
+        <h2 class="display" style="font-size:var(--fs-xl)">Palavras para guardar</h2>
+        <p class="lead">Escreva uma promessa, um recado ou um sonho. Ela fica guardada neste aparelho.</p>
+      </header>
+      <div class="vows__grid">
+        <form class="vows__form glass glass--2" id="vow-form" autocomplete="off">
+          <div class="field"><label for="vow-author">De</label><input class="input" id="vow-author" maxlength="40" placeholder="Seu nome" required></div>
+          <div class="field"><label for="vow-text">Promessa</label><textarea class="textarea" id="vow-text" maxlength="400" placeholder="Em todos os universos…" required></textarea></div>
+          <div class="vows__form-actions">
+            <button class="btn btn--primary" type="submit"><svg class="ico" viewBox="0 0 24 24"><use href="#i-heart"/></svg>Guardar no mural</button>
+            <button class="btn btn--ghost btn--sm" type="button" id="vow-export"><svg class="ico" viewBox="0 0 24 24"><use href="#i-download"/></svg>Baixar</button>
+          </div>
+        </form>
+        <div class="vows__col"><p class="vows__status" id="vow-status" aria-live="polite"></p><div class="vows__list" id="vow-list" aria-live="polite"></div></div>
+      </div>
+      <div class="capsule glass reveal" id="capsule"></div>
+    </div>
+
+    <div class="quiz glass reveal" id="quiz"></div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ENCERRAMENTO -->
+<section id="encerramento" class="finale" data-sky="infinito" data-nav="Para sempre">
+  <div class="wrap finale__wrap">
+    <span class="eyebrow reveal">Para todo o sempre</span>
+  </div>
+  <div class="finale3d" id="finale3d" aria-label="Partículas que formam as nossas iniciais e um coração">
+    <div class="finale3d__sticky">
+      <canvas class="finale3d__canvas" aria-hidden="true"></canvas>
+      <p class="finale3d__line" data-at="0">De um universo inteiro de estrelas…</p>
+      <p class="finale3d__line" data-at="1">…o destino escreveu as nossas iniciais…</p>
+      <p class="finale3d__line" data-at="2">…e desenhou um só coração.</p>
+    </div>
+  </div>
+  <div class="wrap finale__wrap">
+    <div class="heart-mosaic reveal" id="heart-mosaic" aria-hidden="true"></div>
+    <h2 class="finale__quote reveal">“Em todos os universos, <span class="script text-gold">eu escolheria você.</span>”</h2>
+    <p class="finale__text reveal">Maria Cândida, eu amo você e amo a vida que estamos construindo. E o mais bonito de tudo é saber que isso é só o começo da nossa vida juntos.</p>
+    <div class="finale__dates reveal" id="finale-dates"></div>
+    <div class="finale__cta reveal">
+      <button type="button" class="btn btn--primary" id="btn-proposal"><svg class="ico" viewBox="0 0 24 24"><use href="#i-ring"/></svg>Relembrar o nosso sim</button>
+      <button type="button" class="btn" id="btn-cinema-end"><svg class="ico" viewBox="0 0 24 24"><use href="#i-film"/></svg>Rever nosso filme</button>
+      <button type="button" class="btn btn--ghost" id="btn-top"><svg class="ico" viewBox="0 0 24 24"><use href="#i-up"/></svg>Voltar às estrelas</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <p class="display footer__names">João Guilherme <span class="script text-gold">&amp;</span> Maria Cândida</p>
+  <div class="footer__dates" id="footer-dates"></div>
+  <p class="footer__quote">“A nossa história é especial porque é verdadeira, porque é nossa e porque todos os dias escolhemos caminhar lado a lado.”</p>
+</footer>
+
+<!-- ============ MODAIS ============ -->
+<div class="modal" id="proposal-modal" role="dialog" aria-modal="true" aria-labelledby="proposal-title" aria-hidden="true">
+  <div class="modal__panel">
+    <button type="button" class="btn btn--icon btn--ghost modal__close" data-close-modal aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button>
+    <span class="badge">28.05.2026 &amp; 15.08.2026</span>
+    <h3 id="proposal-title">Os dias em que você disse sim</h3>
+    <p>No dia <b>28 de maio de 2026</b>, dentro do carro, entre flores e aliança, oficializamos o nosso namoro e escolhemos dividir a rotina e os sonhos.</p>
+    <p>E no dia <b>15 de agosto de 2026</b>, em Fortaleza, durante o show do Luan Santana, veio a confirmação de tudo o que meu coração já sabia: eu te pedi em casamento para viver a minha vida inteira com você.</p>
+    <p class="quote">“Maria Cândida, eu amo você e amo a vida que estamos construindo.”</p>
+    <p>“Vai ser o maior privilégio, a maior alegria e a melhor escolha da minha vida poder compartilhar o nosso casamento, a nossa casa, cada conquista, cada sorriso e cada momento ao seu lado.”</p>
+    <p>Porque isso é só o começo da nossa vida juntos. 🤍</p>
+  </div>
+</div>
+
+<div class="mini" id="mini" hidden>
+  <button type="button" class="mini__play" id="mini-play" aria-label="Tocar a música"><svg class="ico ico--fill" viewBox="0 0 24 24"><use href="#i-play"/></svg></button>
+  <div class="mini__txt"><b id="mini-title">Dia, Lugar e Hora</b><small id="mini-note">a nossa trilha</small></div>
+  <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
+  <button type="button" class="mini__x" id="mini-x" aria-label="Esconder o mini player"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button>
+</div>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<!-- sprite de ícones (substitui Font Awesome) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="divGrad" x1="0" x2="1"><stop offset="0" stop-color="#00cfff"/><stop offset=".5" stop-color="#b983ff"/><stop offset="1" stop-color="#ff5a9d"/></linearGradient>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7.500-4.600-9.600-9.200C.9 8.400 2.700 5 6 5c2 0 3.300 1 4.300 2.400h3.400C14.700 6 16 5 18 5c3.300 0 5.100 3.400 3.600 6.800C19.500 16.400 12 21 12 21z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.500v15l13-7.500z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="3.200"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.800 5.200L19 10l-5.200 1.800L12 17l-1.800-5.200L5 10l5.200-1.800zM19 16l.8 2.200L22 19l-2.200.8L19 22l-.8-2.200L16 19l2.200-.8z"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.500C4 4.700 4.700 4 5.500 4H11v16H5.500C4.700 20 4 19.300 4 18.500zM20 5.500c0-.8-.7-1.500-1.500-1.500H13v16h5.500c.8 0 1.500-.7 1.500-1.500z"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 3c3 2 5 5.500 5 9l-2 4H9l-2-4c0-3.500 2-7 5-9zM9 16l-2 4 3-1.500M15 16l2 4-3-1.500"/><circle cx="12" cy="10" r="1.500"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.700 5.800 6.300.8-4.600 4.400 1.200 6.300L12 17.300 6.400 20.300l1.200-6.300L3 9.600l6.300-.8z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.500"/><circle cx="18" cy="6" r="2.500"/><circle cx="18" cy="18" r="2.500"/><path d="M8.200 10.800l7.600-3.600M8.200 13.200l7.600 3.600"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.500"/><path d="M16 16l4.500 4.500"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3c4 0 5 10 9 10h3M3 17h3c1.500 0 2.500-1 3.500-2.500M15 7h3c-1.500 0-2.500 1-3.500 2.500M18 4l3 3-3 3M18 14l3 3-3 3"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 11V9a3 3 0 013-3h12l-3-3M20 13v2a3 3 0 01-3 3H5l3 3"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9.500h3.500L12 5.500v13l-4.500-4H4zM16 9c1.300 1.500 1.300 4.500 0 6M18.500 6.500c2.700 3 2.700 8 0 11"/></symbol>
+    <symbol id="i-volume-off" viewBox="0 0 24 24"><path d="M4 9.500h3.500L12 5.500v13l-4.500-4H4zM17 9l5 6M22 9l-5 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="14.500" r="6"/><path d="M9 6.500L12 3l3 3.500-3 2.500z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.800"/><path d="M21 16l-5-5-9 9"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6.500" cy="18" r="2.500"/><circle cx="17.500" cy="16" r="2.500"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.500" height="6.500" rx="1.500"/><rect x="13.500" y="4" width="6.500" height="6.500" rx="1.500"/><rect x="4" y="13.500" width="6.500" height="6.500" rx="1.500"/><rect x="13.500" y="13.500" width="6.500" height="6.500" rx="1.500"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.100 7-11.500a7 7 0 10-14 0C5 14.900 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="11" rx="1.500"/><path d="M12 9v11M3 13h18M12 9c-3 0-4.500-1-4.500-2.500S9 4 10.500 5 12 9 12 9zM12 9c3 0 4.500-1 4.500-2.500S15 4 13.500 5 12 9 12 9z"/></symbol>
+    <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-3-3.500-4-5.500-4a4 4 0 000 8c2 0 3.500-1 5.500-4zm0 0c2 3 3.500 4 5.500 4a4 4 0 000-8c-2 0-3.500 1-5.500 4z"/></symbol>
+    <symbol id="i-home2" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.500"/><path d="M8.500 13.500L7 21l5-3 5 3-1.500-7.500"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><path d="M8 3h8l-1 9a3 3 0 01-6 0zM12 15v6M8.500 21h7"/></symbol>
+    <symbol id="i-umbrella" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0118 0zM12 12v7a2 2 0 004 0"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.500-2.500h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.500"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  </defs>
+</svg>
+
+<script src="js/config.js"></script>
+<script src="js/data/media.js"></script>
+<script src="js/data/vault.js"></script>
+<script src="js/data/story.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/store.js"></script>
+<script src="js/core/fx.js"></script>
+<script src="js/core/vault.js"></script>
+<script src="js/core/audio.js"></script>
+<script src="js/core/db.js"></script>
+<script src="js/core/lightbox.js"></script>
+<script src="js/sections/hero.js"></script>
+<script src="js/sections/universe.js"></script>
+<script src="js/sections/story.js"></script>
+<script src="js/sections/timeline.js"></script>
+<script src="js/sections/numbers.js"></script>
+<script src="js/sections/gallery.js"></script>
+<script src="js/sections/music.js"></script>
+<script src="js/sections/scratch.js"></script>
+<script src="js/sections/future.js"></script>
+<script src="js/sections/finale.js"></script>
+<script src="js/sections/cinema.js"></script>
+<script src="js/sections/starwall.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

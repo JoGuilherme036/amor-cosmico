@@ -1,0 +1,89 @@
+/* ============================================================
+   COSMOS — cenas 3D, trilha dupla, mini player, portão com senha
+   ============================================================ */
+
+/* ---------- Galáxia 3D de fundo ---------- */
+#cosmos-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: var(--z-sky); pointer-events: none; opacity: 0; transition: opacity 1.6s ease; }
+#cosmos-bg.is-on { opacity: 1; }
+html[data-focus="on"] #cosmos-bg { opacity: 0.3; }
+
+/* ---------- Alianças 3D (capítulo do pedido) ---------- */
+.rings3d {
+  position: relative; max-width: 760px; margin: 0 auto clamp(36px, 6vw, 72px); height: clamp(340px, 62vw, 520px);
+  border-radius: var(--r-xl); overflow: hidden; isolation: isolate;
+  background: radial-gradient(60% 55% at 50% 45%, rgba(232, 201, 135, 0.22), transparent 70%), radial-gradient(80% 70% at 50% 100%, rgba(255, 90, 157, 0.16), transparent 70%), rgba(10, 8, 22, 0.55);
+  border: 1px solid rgba(232, 201, 135, 0.28); box-shadow: var(--sh-2), 0 0 90px -30px rgba(232, 201, 135, 0.6);
+}
+@media (max-width: 760px) { .rings3d { margin-inline: var(--gutter); } }
+.rings3d__fallback { position: absolute; inset: 12% 18% 30%; width: 64%; height: 58%; filter: drop-shadow(0 0 24px rgba(232, 201, 135, 0.6)); transition: opacity 1s ease; }
+.rings3d__canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; touch-action: pan-y; cursor: grab; }
+.rings3d.is-3d .rings3d__canvas { opacity: 1; }
+.rings3d.is-3d .rings3d__fallback { opacity: 0; }
+.rings3d__cap { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 2; text-align: center; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.rings3d__cap .script { font-size: clamp(2.2rem, 7vw, 3.2rem); line-height: 1; text-shadow: 0 0 30px rgba(232, 201, 135, 0.6); }
+.rings3d__cap small { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--t-faint); }
+
+/* ---------- Final: palco "grudado" (galáxia → JG ♥ MC → coração) ---------- */
+.finale3d { position: relative; height: 280vh; margin-top: 8px; }
+.finale3d__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.finale3d__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.finale3d__line { position: absolute; left: 0; right: 0; top: calc(var(--header-h) + var(--sa-t) + 6vh); padding: 0 var(--gutter); text-align: center; font-family: var(--f-display); font-style: italic; font-size: var(--fs-lg); color: var(--t-strong); text-shadow: 0 2px 30px rgba(0, 0, 0, 0.8); opacity: 0; transform: translateY(14px); transition: opacity 0.9s ease, transform 0.9s var(--ease); }
+.finale3d__line.is-on { opacity: 1; transform: none; }
+/* sem 3D (WebGL indisponível ou movimento reduzido): vira um bloco simples com as 3 frases */
+html:not([data-cosmos="on"]) .finale3d { height: auto; }
+html:not([data-cosmos="on"]) .finale3d__sticky { position: static; height: auto; padding: 24px 0; display: flex; flex-direction: column; gap: 10px; }
+html:not([data-cosmos="on"]) .finale3d__line { position: static; opacity: 1; transform: none; }
+html:not([data-cosmos="on"]) .finale3d__canvas { display: none; }
+
+/* ---------- Galáxia de Memórias (overlay 3D) ---------- */
+.mg { position: fixed; inset: 0; z-index: var(--z-modal); background: radial-gradient(70% 60% at 50% 45%, #15114f, #03030a 75%); opacity: 0; transition: opacity 0.5s ease; touch-action: none; }
+.mg.is-on { opacity: 1; }
+.mg__canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; }
+.mg__top { position: absolute; left: 0; right: 0; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: calc(12px + var(--sa-t)) max(16px, var(--sa-r)) 0 max(16px, var(--sa-l)); pointer-events: none; }
+.mg__top > * { pointer-events: auto; }
+.mg__hint { margin-top: 4px; font-size: var(--fs-xs); color: var(--t-soft); text-shadow: 0 0 12px #000; }
+.mg__cap { position: absolute; left: 0; right: 0; bottom: calc(26px + var(--sa-b)); text-align: center; font-family: var(--f-read); font-style: italic; color: var(--t-strong); text-shadow: 0 2px 18px #000; pointer-events: none; padding: 0 var(--gutter); }
+
+/* ---------- Lista de faixas do player ---------- */
+.tracks { display: grid; gap: 8px; margin-top: 18px; }
+.track { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 12px; padding: 10px 14px; border-radius: var(--r-md); border: 1px solid var(--glass-line); background: var(--glass-1); text-align: left; transition: all var(--d-base) var(--ease); min-height: 52px; }
+.track:hover { border-color: var(--glass-line-strong); }
+.track[aria-checked="true"] { border-color: rgba(232, 201, 135, 0.6); background: rgba(232, 201, 135, 0.1); }
+.track__n { font-family: var(--f-display); font-size: 1.3rem; color: var(--c-gold); text-align: center; }
+.track__t b { display: block; font-weight: 600; font-size: var(--fs-sm); color: var(--t-strong); }
+.track__t small { display: block; font-size: var(--fs-xs); color: var(--t-faint); }
+.track .eq { opacity: 0; }
+.is-music-on .track[aria-checked="true"] .eq { opacity: 1; }
+
+/* ---------- Mini player (celular) ---------- */
+.mini {
+  position: fixed; z-index: var(--z-nav); left: max(14px, var(--sa-l)); right: max(14px, var(--sa-r)); bottom: calc(86px + var(--sa-b));
+  display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 12px; padding: 8px 8px 8px 8px;
+  border-radius: var(--r-pill); background: rgba(16, 12, 36, 0.86); border: 1px solid rgba(232, 201, 135, 0.3);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); box-shadow: var(--sh-2);
+  transform: translateY(20px); opacity: 0; transition: transform 0.5s var(--ease), opacity 0.4s ease;
+}
+.mini.is-on { transform: none; opacity: 1; }
+.mini.is-swap { animation: miniSwap 1.2s var(--ease); }
+@keyframes miniSwap { 30% { box-shadow: 0 0 0 2px rgba(232, 201, 135, 0.8), 0 0 50px rgba(232, 201, 135, 0.6); transform: scale(1.03); } }
+.mini__play { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(120deg, #fff1cf, var(--c-gold)); color: #1a1208; }
+.mini__txt { min-width: 0; }
+.mini__txt b { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--t-strong); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini__txt small { display: block; font-size: 11px; color: var(--c-gold); }
+.mini__x { width: 36px; height: 36px; display: grid; place-items: center; color: var(--t-faint); border-radius: 50%; }
+@media (min-width: 1100px) { .mini { display: none; } }
+/* a legenda da narração e os toasts sobem quando o mini player está na tela */
+body:has(.mini.is-on) .story-hud { bottom: calc(150px + var(--sa-b)); }
+body:has(.mini.is-on) .toasts { bottom: calc(158px + var(--sa-b)); }
+@media (min-width: 1100px) { body:has(.mini.is-on) .story-hud { bottom: 28px; } body:has(.mini.is-on) .toasts { bottom: 32px; } }
+
+/* ---------- Portão: lembrar ---------- */
+.gate__remember { display: inline-flex; align-items: center; gap: 8px; font-size: var(--fs-sm); color: var(--t-soft); cursor: pointer; }
+.gate__remember input { width: 18px; height: 18px; accent-color: var(--c-gold); }
+.gate input[type="password"] { letter-spacing: 0.08em; }
+
+/* ---------- Curtida (duplo toque no lightbox) ---------- */
+.lb__like { position: absolute; left: 50%; top: 50%; z-index: 6; width: 120px; height: 120px; margin: -60px 0 0 -60px; color: var(--c-pink); pointer-events: none; filter: drop-shadow(0 0 30px rgba(255, 90, 157, 0.8)); animation: likePop 0.9s var(--ease) forwards; }
+.lb__like svg { width: 100%; height: 100%; fill: currentColor; }
+@keyframes likePop { 0% { transform: scale(0.2); opacity: 0; } 25% { transform: scale(1.15); opacity: 1; } 60% { transform: scale(0.95); opacity: 1; } 100% { transform: scale(1.4) translateY(-30px); opacity: 0; } }
+.lb__hearts { display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; color: var(--c-pink); font-weight: 600; }

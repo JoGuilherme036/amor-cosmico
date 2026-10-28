@@ -1,0 +1,128 @@
+/* ============================================================
+   AMOR CÓSMICO — TOKENS
+   Fonte única da verdade para cor, tipografia, espaço, raio,
+   sombra, vidro, z-index e movimento.
+   ============================================================ */
+:root {
+  /* ---- Cor (marca) ---- */
+  --c-bg: #05050a;
+  --c-surface: #0b0c16;
+  --c-surface-2: #12132a;
+  --c-blue: #00cfff;
+  --c-violet: #7a28cb;
+  --c-violet-soft: #b983ff;
+  --c-pink: #ff5a9d;
+  --c-warm: #f8f6f2;
+  --c-muted: #b8bccb;
+  --c-gold: #e8c987; /* alianças, noivado, detalhes finos */
+  --c-gold-deep: #c9a45a;
+
+  /* ---- Nebulosas (atmosfera de fundo) ---- */
+  --neb-1: rgba(122, 40, 203, 0.34);
+  --neb-2: rgba(0, 207, 255, 0.16);
+  --neb-3: rgba(255, 90, 157, 0.18);
+
+  /* ---- Texto ---- */
+  --t-strong: var(--c-warm);
+  --t-body: #dcdde8;
+  --t-soft: var(--c-muted);
+  --t-faint: #8a8ea3;
+
+  /* ---- Tipografia ---- */
+  --f-display: "Cormorant Garamond", "Times New Roman", serif;
+  --f-read: "Lora", Georgia, serif;
+  --f-ui: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-script: "Great Vibes", cursive;
+
+  --fs-xs: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --fs-sm: clamp(0.82rem, 0.8rem + 0.15vw, 0.9rem);
+  --fs-base: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --fs-md: clamp(1.1rem, 1.02rem + 0.4vw, 1.3rem);
+  --fs-lg: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  --fs-xl: clamp(2rem, 1.5rem + 2.4vw, 3.4rem);
+  --fs-2xl: clamp(2.6rem, 1.7rem + 4.6vw, 5.4rem);
+  --fs-hero: clamp(2.9rem, 1.6rem + 7.4vw, 8rem);
+
+  /* ---- Espaço (4/8) ---- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 144px;
+  --gutter: clamp(16px, 5vw, 40px);
+  --section-y: clamp(72px, 12vw, 160px);
+  --measure: 66ch;
+  --wrap: 1240px;
+
+  /* ---- Forma ---- */
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-xl: 40px;
+  --r-pill: 999px;
+
+  /* ---- Vidro (3 níveis) ---- */
+  --glass-1: rgba(255, 255, 255, 0.04);
+  --glass-2: rgba(255, 255, 255, 0.07);
+  --glass-3: rgba(14, 15, 34, 0.72);
+  --glass-line: rgba(255, 255, 255, 0.1);
+  --glass-line-strong: rgba(255, 255, 255, 0.2);
+  --blur: 18px;
+
+  /* ---- Sombra ---- */
+  --sh-1: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --sh-2: 0 24px 60px -24px rgba(0, 0, 0, 0.75);
+  --sh-glow-blue: 0 0 40px -8px rgba(0, 207, 255, 0.45);
+  --sh-glow-pink: 0 0 40px -8px rgba(255, 90, 157, 0.45);
+  --sh-glow-gold: 0 0 48px -10px rgba(232, 201, 135, 0.55);
+
+  /* ---- Z-index ---- */
+  --z-sky: 0;
+  --z-content: 1;
+  --z-header: 50;
+  --z-nav: 60;
+  --z-drawer: 90;
+  --z-modal: 120;
+  --z-lightbox: 140;
+  --z-cinema: 160;
+  --z-gate: 200;
+  --z-cursor: 300;
+
+  /* ---- Movimento ---- */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --d-fast: 160ms;
+  --d-base: 360ms;
+  --d-slow: 800ms;
+  --d-cine: 1400ms;
+  --motion: 1; /* 0 = reduzido, 1 = completo (ajustado por JS / preferências) */
+
+  /* ---- Safe area ---- */
+  --sa-t: env(safe-area-inset-top, 0px);
+  --sa-b: env(safe-area-inset-bottom, 0px);
+  --sa-l: env(safe-area-inset-left, 0px);
+  --sa-r: env(safe-area-inset-right, 0px);
+  --header-h: 60px;
+  --nav-h: 68px;
+}
+
+/* Movimento reduzido: preferência do sistema OU escolha do casal */
+html[data-motion="reduced"] {
+  --motion: 0;
+  --d-base: 1ms;
+  --d-slow: 1ms;
+  --d-cine: 1ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion: 0;
+    --d-base: 1ms;
+    --d-slow: 1ms;
+    --d-cine: 1ms;
+  }
+}
