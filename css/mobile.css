@@ -61,3 +61,19 @@
 
 /* rótulos curtos só aparecem no celular */
 .lbl-s { display: none; }
+
+/* ============================================================
+   HISTÓRIA no celular/tablet (< 1100 px)
+   ============================================================ */
+.chapter__kicker { display: block; margin-bottom: 12px; font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-gold); }
+@media (min-width: 960px) { .chapter__kicker { display: none; } } /* no desktop o numeral gigante já faz esse papel */
+@media (max-width: 959px) { .chapter__num { display: none; } }
+
+/* índice dos capítulos vira uma barra fina de 6 segmentos no topo (antes eram 6 botões flutuando sobre o texto) */
+@media (max-width: 1099px) {
+  .story-index { top: var(--sa-t); left: 0; right: 0; z-index: calc(var(--z-header) + 2); padding: 0; gap: 3px; overflow: visible; justify-content: stretch; pointer-events: none; }
+  .story-index a { flex: 1; min-width: 0; height: 4px; padding: 0; border: 0; border-radius: 0; background: rgba(255, 255, 255, 0.16); font-size: 0; position: relative; pointer-events: auto; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .story-index a::before { content: ""; position: absolute; left: 0; right: 0; top: -2px; bottom: -22px; } /* área de toque maior, invisível */
+  .story-index a.is-current { background: var(--c-gold); }
+  .story-index a:not(.is-current).is-past { background: rgba(232, 201, 135, 0.5); }
+}

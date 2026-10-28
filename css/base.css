@@ -110,6 +110,8 @@ html { overflow-x: clip; }
   from { transform: translate3d(-3%, -2%, 0) scale(1); }
   to { transform: translate3d(3%, 3%, 0) scale(1.08); }
 }
+/* celular: nebulosas paradas (animar camadas gigantes pesa na bateria) */
+@media (max-width: 820px), (pointer: coarse) { .sky__layer::before, .sky__layer::after { animation: none !important; } .sky__layer { inset: -5%; } }
 /* temas de "cor do céu" — cada capítulo muda o céu */
 .sky__layer[data-sky="default"]::before { background: radial-gradient(45% 40% at 18% 22%, var(--neb-1), transparent 70%), radial-gradient(40% 36% at 82% 70%, var(--neb-2), transparent 72%); }
 .sky__layer[data-sky="default"]::after { background: radial-gradient(30% 30% at 72% 18%, var(--neb-3), transparent 70%); }

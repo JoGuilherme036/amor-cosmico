@@ -118,7 +118,7 @@
 .chapter__body { position: relative; z-index: 1; max-width: calc(var(--measure) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
 .milestone-note { font-size: var(--fs-sm); letter-spacing: 0.04em; color: var(--c-gold); text-align: center; margin-bottom: var(--s-6); font-weight: 500; }
 .prose p { font-family: var(--f-read); font-size: var(--fs-md); line-height: 1.75; color: var(--t-body); margin-bottom: 1.4em; }
-.prose p:first-of-type::first-letter { font-family: var(--f-display); font-size: 3.6em; line-height: 0.85; float: left; padding: 0.06em 0.1em 0 0; color: var(--c-gold); font-weight: 600; }
+.prose p:first-of-type::first-letter { font-family: var(--f-display); font-size: 1.85em; line-height: 1; font-weight: 600; color: var(--c-gold); }
 .w { transition: color 0.4s ease, text-shadow 0.4s ease, opacity 0.4s ease; }
 .story--narrating .w { opacity: 0.45; }
 .story--narrating .w.is-said { opacity: 1; color: #fff; }
@@ -331,6 +331,7 @@
 .starmap .st { cursor: pointer; }
 .starmap .st circle.core { transition: r 0.4s var(--ease); }
 .starmap .st:hover circle.core { r: 9; }
+.starmap .st text.num { fill: #0a0a18; font-weight: 700; dominant-baseline: central; opacity: 0.9; }
 .starmap .st text { fill: var(--t-soft); font-family: var(--f-ui); font-size: 11px; text-anchor: middle; pointer-events: none; }
 .starmap .st.is-vivido circle.core { fill: var(--c-gold); filter: drop-shadow(0 0 10px var(--c-gold)); }
 .starmap .st.is-planejando circle.core { fill: var(--c-blue); filter: drop-shadow(0 0 10px var(--c-blue)); }
@@ -350,6 +351,7 @@
 .dream__bg .ph img { filter: brightness(0.7); }
 .dream__bg--art { background: radial-gradient(60% 60% at 80% 10%, var(--art-a, rgba(122, 40, 203, 0.55)), transparent 70%), radial-gradient(50% 50% at 10% 100%, var(--art-b, rgba(255, 90, 157, 0.4)), transparent 70%), #0b0c16; }
 .dream::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 20%, rgba(5, 5, 10, 0.9)); }
+.dream__top .badge { background: rgba(8, 8, 18, 0.78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); text-shadow: none; font-size: 10.5px; letter-spacing: 0.1em; }
 .dream__top { position: absolute; left: 20px; right: 20px; top: 20px; display: flex; justify-content: space-between; align-items: center; }
 .dream__ico { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: rgba(0, 0, 0, 0.4); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--glass-line-strong); color: var(--c-gold); }
 .dream h3 { font-family: var(--f-display); font-size: var(--fs-lg); font-weight: 500; line-height: 1.1; color: var(--t-strong); }

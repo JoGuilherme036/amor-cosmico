@@ -10,7 +10,7 @@
     const F = AC.FUTURE;
     const links = F.slice(1).map((s, i) => `<line class="link" pathLength="1" x1="${F[i].x}" y1="${F[i].y * 0.56}" x2="${s.x}" y2="${s.y * 0.56}"/>`).join('');
     const stars = F.map((s, i) => `<g class="st is-${s.status}" data-i="${i}" transform="translate(${s.x} ${s.y * 0.56})" tabindex="0" role="button" aria-label="${AC.esc(s.title)} — ${AC.esc(s.label)}">
-      <circle class="pulse" r="3.4" stroke-width=".4"/><circle class="core" r="2.6"/><text y="7.4" style="font-size:2.6px">${AC.esc(s.title.length > 22 ? s.title.slice(0, 20) + '…' : s.title)}</text></g>`).join('');
+      <circle class="pulse" r="3.4" stroke-width=".4"/><circle class="core" r="2.6"/><text class="num" y="1" style="font-size:2.6px">${i + 1}</text><text class="lbl" y="7.4" style="font-size:2.6px">${AC.esc(s.short || s.title)}</text></g>`).join('');
     const field = Array.from({ length: 40 }, (_, i) => { const r = AC.seeded(i * 31 + 7); return `<circle cx="${(r() * 100).toFixed(1)}" cy="${(r() * 56).toFixed(1)}" r="${(r() * 0.35 + 0.1).toFixed(2)}" fill="#fff" opacity="${(r() * 0.6 + 0.2).toFixed(2)}"/>`; }).join('');
     host.innerHTML = `<svg viewBox="0 0 100 56" role="group" aria-label="Mapa estelar do casal">${field}${links}${stars}</svg>
       <div class="legend"><span><i style="background:var(--c-gold)"></i>Vivido</span><span><i style="background:var(--c-blue)"></i>Planejando</span><span><i style="background:var(--c-violet-soft)"></i>Sonho</span></div>`;

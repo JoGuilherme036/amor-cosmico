@@ -35,6 +35,11 @@ npm run bundle
 ```
 Depois publique (seção 7). Quem marcou "lembrar" vai precisar digitar a senha nova.
 
+### No celular
+- A **galáxia 3D de fundo só aparece no computador**. No celular o fundo é um céu leve com poucas estrelas (mais bateria, sem travadas). As alianças, a Galáxia de Memórias e o coração do final continuam.
+- No iPhone o volume do navegador não pode ser alterado por código, então lá a troca para "Chuva de Arroz" é um corte limpo (no Android e no computador há transição suave).
+- Depois de trocar de música automaticamente, o site espera 7 s antes de poder trocar de novo, para não ficar "pulando" ao rolar rápido.
+
 ## 3. Banco de dados (mural, cápsula e curtidas compartilhados)
 
 Sem banco, cada celular guarda só o que escreveu nele. Com o **Supabase** (grátis), o que um escreve aparece para o outro. Leva ~5 minutos:
@@ -54,6 +59,8 @@ Sem banco, cada celular guarda só o que escreveu nele. Com o **Supabase** (grá
 1. Jogue o arquivo em `assets/originais/`.
 2. `cd scripts` → `npm run build` → `npm run bundle`.
 3. Publique (seção 7).
+
+Para uma mídia **entrar sempre no filme**, ponha `"film": true` nela em `scripts/curadoria.json`.
 
 Legenda, marco e data ficam em `scripts/curadoria.json` (marcos: `encontro`, `namoro`, `familia`, `rotina`, `jeri`, `pedido`, `outubro`).
 
@@ -80,6 +87,7 @@ Depois de editar: `cd scripts` → `npm run bundle`. O `index.html` é **gerado*
 | `npm run serve` | abre em http://localhost:8080 |
 | `AC_SENHA="..." node qa/interact.mjs prints 390x844` | testes de aceite (cofre, música, 3D, banco simulado) |
 | `node qa/regression.mjs prints 390x844` | testes de regressão (galeria, lightbox, filme…) |
+| `AC_SENHA="..." node qa/audio.mjs normal` ou `ios` | testa só a troca de música (celular normal e iPhone simulado) |
 
 ## 7. Publicar uma atualização
 

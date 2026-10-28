@@ -81,7 +81,7 @@
       <div class="chapter__open">
         <span class="chapter__num" aria-hidden="true">${c.n}</span>
         ${media}
-        <div class="chapter__title reveal"><span class="badge">${AC.esc(c.badge)}</span><h3 id="cap-${c.n}-t">${AC.esc(c.title)}</h3></div>
+        <div class="chapter__title reveal"><span class="chapter__kicker">Capítulo ${c.n} de ${AC.CHAPTERS.length}</span><span class="badge">${AC.esc(c.badge)}</span><h3 id="cap-${c.n}-t">${AC.esc(c.title)}</h3></div>
       </div>
       ${c.rings ? ringsStage() : ''}
       <div class="chapter__body">
@@ -122,7 +122,7 @@
     AC.io(sec, (el, on) => idx.classList.toggle('is-on', on), { threshold: 0.02 });
     AC.io(caps, (el, on) => {
       if (!on) return; const n = el.dataset.chapter;
-      $$('a', idx).forEach((a) => a.classList.toggle('is-current', a.dataset.n === n));
+      $$('a', idx).forEach((a) => { a.classList.toggle('is-current', a.dataset.n === n); a.classList.toggle('is-past', +a.dataset.n < +n); });
     }, { threshold: 0.35 });
 
     narration();

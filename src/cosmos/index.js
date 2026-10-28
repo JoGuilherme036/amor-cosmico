@@ -16,9 +16,10 @@ function init() {
   const api = { ready: false, quality: Q, galaxy: null, openMemories: null };
   AC.cosmos = api;
 
-  // 1) galáxia de fundo (no lugar do céu 2D)
+  // 1) galáxia de fundo (no lugar do céu 2D) — só em telas grandes com mouse.
+  //    No celular/tablet o céu fica o 2D leve (poucas estrelas): a galáxia pesava e dava travadas.
   const star = document.getElementById('starfield');
-  try {
+  if (!Q.mobile) try {
     const cv = document.createElement('canvas'); cv.id = 'cosmos-bg'; cv.setAttribute('aria-hidden', 'true');
     star.after(cv);
     const g = createGalaxy(cv, Q); api.galaxy = g;

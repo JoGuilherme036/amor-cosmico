@@ -147,12 +147,12 @@
   "color": "rgb(152,152,152)"
  },
  {
-  "id": "v-copy-c884640a-3432-4da5-",
+  "id": "v-copy-c884640a-3432-4da5",
   "type": "video",
   "orig": "copy_C884640A-3432-4DA5-8EAA-E2AE107FB92A.MP4",
-  "thumb": "assets/video/v-copy-c884640a-3432-4da5--t.webp",
-  "file": "assets/video/v-copy-c884640a-3432-4da5-.mp4",
-  "poster": "assets/video/v-copy-c884640a-3432-4da5--poster",
+  "thumb": "assets/video/v-copy-c884640a-3432-4da5-t.webp",
+  "file": "assets/video/v-copy-c884640a-3432-4da5.mp4",
+  "poster": "assets/video/v-copy-c884640a-3432-4da5-poster",
   "duration": 23,
   "hasAudio": true,
   "width": 960,
@@ -204,11 +204,11 @@
   "color": "rgb(8,8,8)"
  },
  {
-  "id": "p-3ec12588-6f74-4e07-accc-",
+  "id": "p-3ec12588-6f74-4e07-accc",
   "type": "photo",
   "orig": "3EC12588-6F74-4E07-ACCC-D5CF0A904C10.jpg",
-  "thumb": "assets/img/p-3ec12588-6f74-4e07-accc--t.webp",
-  "base": "assets/img/p-3ec12588-6f74-4e07-accc-",
+  "thumb": "assets/img/p-3ec12588-6f74-4e07-accc-t.webp",
+  "base": "assets/img/p-3ec12588-6f74-4e07-accc",
   "widths": [
    480,
    960,
@@ -262,11 +262,11 @@
   "color": "rgb(216,200,168)"
  },
  {
-  "id": "p-d3751707-ea42-4c48-8b95-",
+  "id": "p-d3751707-ea42-4c48-8b95",
   "type": "photo",
   "orig": "D3751707-EA42-4C48-8B95-AD31CFD2D762.JPEG",
-  "thumb": "assets/img/p-d3751707-ea42-4c48-8b95--t.webp",
-  "base": "assets/img/p-d3751707-ea42-4c48-8b95-",
+  "thumb": "assets/img/p-d3751707-ea42-4c48-8b95-t.webp",
+  "base": "assets/img/p-d3751707-ea42-4c48-8b95",
   "widths": [
    480,
    960,
@@ -291,12 +291,12 @@
   "color": "rgb(8,24,8)"
  },
  {
-  "id": "v-55612ebd-8835-4fcd-ade6-",
+  "id": "v-55612ebd-8835-4fcd-ade6",
   "type": "video",
   "orig": "55612EBD-8835-4FCD-ADE6-8050E3B255E6.MP4",
-  "thumb": "assets/video/v-55612ebd-8835-4fcd-ade6--t.webp",
-  "file": "assets/video/v-55612ebd-8835-4fcd-ade6-.mp4",
-  "poster": "assets/video/v-55612ebd-8835-4fcd-ade6--poster",
+  "thumb": "assets/video/v-55612ebd-8835-4fcd-ade6-t.webp",
+  "file": "assets/video/v-55612ebd-8835-4fcd-ade6.mp4",
+  "poster": "assets/video/v-55612ebd-8835-4fcd-ade6-poster",
   "duration": 23,
   "hasAudio": true,
   "width": 720,
@@ -463,12 +463,12 @@
   "color": "rgb(8,8,8)"
  },
  {
-  "id": "v-1d28732f-86fb-4019-974c-",
+  "id": "v-1d28732f-86fb-4019-974c",
   "type": "video",
   "orig": "1D28732F-86FB-4019-974C-6E14AC023E18.MP4",
-  "thumb": "assets/video/v-1d28732f-86fb-4019-974c--t.webp",
-  "file": "assets/video/v-1d28732f-86fb-4019-974c-.mp4",
-  "poster": "assets/video/v-1d28732f-86fb-4019-974c--poster",
+  "thumb": "assets/video/v-1d28732f-86fb-4019-974c-t.webp",
+  "file": "assets/video/v-1d28732f-86fb-4019-974c.mp4",
+  "poster": "assets/video/v-1d28732f-86fb-4019-974c-poster",
   "duration": 60,
   "hasAudio": true,
   "width": 720,
@@ -544,12 +544,12 @@
   "color": "rgb(200,200,200)"
  },
  {
-  "id": "v-4a160ba4-1af6-47e6-9f11-",
+  "id": "v-4a160ba4-1af6-47e6-9f11",
   "type": "video",
   "orig": "4a160ba4-1af6-47e6-9f11-bd509f5346d6.mp4",
-  "thumb": "assets/video/v-4a160ba4-1af6-47e6-9f11--t.webp",
-  "file": "assets/video/v-4a160ba4-1af6-47e6-9f11-.mp4",
-  "poster": "assets/video/v-4a160ba4-1af6-47e6-9f11--poster",
+  "thumb": "assets/video/v-4a160ba4-1af6-47e6-9f11-t.webp",
+  "file": "assets/video/v-4a160ba4-1af6-47e6-9f11.mp4",
+  "poster": "assets/video/v-4a160ba4-1af6-47e6-9f11-poster",
   "duration": 3,
   "hasAudio": true,
   "width": 576,
@@ -600,11 +600,11 @@
   "color": "rgb(24,8,8)"
  },
  {
-  "id": "p-443e5da5-24d0-4cca-8690-",
+  "id": "p-443e5da5-24d0-4cca-8690",
   "type": "photo",
   "orig": "443E5DA5-24D0-4CCA-8690-9A93168B0165.jpg",
-  "thumb": "assets/img/p-443e5da5-24d0-4cca-8690--t.webp",
-  "base": "assets/img/p-443e5da5-24d0-4cca-8690-",
+  "thumb": "assets/img/p-443e5da5-24d0-4cca-8690-t.webp",
+  "base": "assets/img/p-443e5da5-24d0-4cca-8690",
   "widths": [
    480,
    960,
@@ -629,12 +629,12 @@
   "color": "rgb(40,40,40)"
  },
  {
-  "id": "v-083d852e-3cba-41c0-b508-",
+  "id": "v-083d852e-3cba-41c0-b508",
   "type": "video",
   "orig": "083D852E-3CBA-41C0-B508-6A08272E5FCF_AF81D948-4468-4398-A122-381763A6B4A7_F6A192B3-E9CF-419A-B625-EF1BD0901209_remux.mp4",
-  "thumb": "assets/video/v-083d852e-3cba-41c0-b508--t.webp",
-  "file": "assets/video/v-083d852e-3cba-41c0-b508-.mp4",
-  "poster": "assets/video/v-083d852e-3cba-41c0-b508--poster",
+  "thumb": "assets/video/v-083d852e-3cba-41c0-b508-t.webp",
+  "file": "assets/video/v-083d852e-3cba-41c0-b508.mp4",
+  "poster": "assets/video/v-083d852e-3cba-41c0-b508-poster",
   "duration": 13,
   "hasAudio": true,
   "width": 720,
@@ -1519,12 +1519,12 @@
   "color": "rgb(40,24,24)"
  },
  {
-  "id": "v-5b1cf9b0-d011-49c8-993a-",
+  "id": "v-5b1cf9b0-d011-49c8-993a",
   "type": "video",
   "orig": "5B1CF9B0-D011-49C8-993A-22EEC3938B35.MP4",
-  "thumb": "assets/video/v-5b1cf9b0-d011-49c8-993a--t.webp",
-  "file": "assets/video/v-5b1cf9b0-d011-49c8-993a-.mp4",
-  "poster": "assets/video/v-5b1cf9b0-d011-49c8-993a--poster",
+  "thumb": "assets/video/v-5b1cf9b0-d011-49c8-993a-t.webp",
+  "file": "assets/video/v-5b1cf9b0-d011-49c8-993a.mp4",
+  "poster": "assets/video/v-5b1cf9b0-d011-49c8-993a-poster",
   "duration": 12,
   "hasAudio": false,
   "width": 720,
@@ -1747,12 +1747,43 @@
   "color": "rgb(8,8,72)"
  },
  {
-  "id": "v-020daedc-d06e-4596-bb21-",
+  "id": "p-whatsapp-image-2026-10-2",
+  "type": "photo",
+  "orig": "WhatsApp Image 2026-10-28 at 14.31.07.jpeg",
+  "thumb": "assets/img/p-whatsapp-image-2026-10-2-t.webp",
+  "base": "assets/img/p-whatsapp-image-2026-10-2",
+  "widths": [
+   480,
+   960,
+   1600,
+   2268
+  ],
+  "width": 2268,
+  "height": 4032,
+  "date": "2026-08-15",
+  "milestone": "pedido",
+  "chapter": 5,
+  "place": "Fortaleza, CE",
+  "caption": "O Príncipe e a sua Bonequinha no show do Luan Santana • um beijo sob as luzes azuis",
+  "alt": "João Guilherme, de coroa dourada, beija Maria Cândida no show do Luan Santana, com o palco azul ao fundo",
+  "tags": [],
+  "favorite": true,
+  "suggested": true,
+  "film": true,
+  "focal": [
+   55,
+   45
+  ],
+  "hero": false,
+  "color": "rgb(8,8,8)"
+ },
+ {
+  "id": "v-020daedc-d06e-4596-bb21",
   "type": "video",
   "orig": "020daedc-d06e-4596-bb21-be8b20d87aeb.mp4",
-  "thumb": "assets/video/v-020daedc-d06e-4596-bb21--t.webp",
-  "file": "assets/video/v-020daedc-d06e-4596-bb21-.mp4",
-  "poster": "assets/video/v-020daedc-d06e-4596-bb21--poster",
+  "thumb": "assets/video/v-020daedc-d06e-4596-bb21-t.webp",
+  "file": "assets/video/v-020daedc-d06e-4596-bb21.mp4",
+  "poster": "assets/video/v-020daedc-d06e-4596-bb21-poster",
   "duration": 31,
   "hasAudio": true,
   "width": 576,
@@ -1774,12 +1805,12 @@
   "color": "rgb(8,8,72)"
  },
  {
-  "id": "v-092604e1-3d36-4d25-b935-",
+  "id": "v-092604e1-3d36-4d25-b935",
   "type": "video",
   "orig": "092604e1-3d36-4d25-b935-56bb243468a0.mp4",
-  "thumb": "assets/video/v-092604e1-3d36-4d25-b935--t.webp",
-  "file": "assets/video/v-092604e1-3d36-4d25-b935-.mp4",
-  "poster": "assets/video/v-092604e1-3d36-4d25-b935--poster",
+  "thumb": "assets/video/v-092604e1-3d36-4d25-b935-t.webp",
+  "file": "assets/video/v-092604e1-3d36-4d25-b935.mp4",
+  "poster": "assets/video/v-092604e1-3d36-4d25-b935-poster",
   "duration": 6,
   "hasAudio": true,
   "width": 576,
@@ -2210,12 +2241,12 @@
   "color": "rgb(8,8,8)"
  },
  {
-  "id": "v-copy-8a452940-b5a2-4952-",
+  "id": "v-copy-8a452940-b5a2-4952",
   "type": "video",
   "orig": "copy_8A452940-B5A2-4952-B7CC-F02F99C65C7C.MP4",
-  "thumb": "assets/video/v-copy-8a452940-b5a2-4952--t.webp",
-  "file": "assets/video/v-copy-8a452940-b5a2-4952-.mp4",
-  "poster": "assets/video/v-copy-8a452940-b5a2-4952--poster",
+  "thumb": "assets/video/v-copy-8a452940-b5a2-4952-t.webp",
+  "file": "assets/video/v-copy-8a452940-b5a2-4952.mp4",
+  "poster": "assets/video/v-copy-8a452940-b5a2-4952-poster",
   "duration": 75,
   "hasAudio": true,
   "width": 720,
@@ -2234,7 +2265,7 @@
    40
   ],
   "hero": false,
-  "color": "rgb(152,88,88)"
+  "color": "rgb(8,8,8)"
  },
  {
   "id": "v-img-4697",
@@ -2264,12 +2295,12 @@
   "color": "rgb(8,8,8)"
  },
  {
-  "id": "v-61992077-a6bb-415d-8f62-",
+  "id": "v-61992077-a6bb-415d-8f62",
   "type": "video",
   "orig": "61992077-A6BB-415D-8F62-13004966B4B5.MP4",
-  "thumb": "assets/video/v-61992077-a6bb-415d-8f62--t.webp",
-  "file": "assets/video/v-61992077-a6bb-415d-8f62-.mp4",
-  "poster": "assets/video/v-61992077-a6bb-415d-8f62--poster",
+  "thumb": "assets/video/v-61992077-a6bb-415d-8f62-t.webp",
+  "file": "assets/video/v-61992077-a6bb-415d-8f62.mp4",
+  "poster": "assets/video/v-61992077-a6bb-415d-8f62-poster",
   "duration": 17,
   "hasAudio": true,
   "width": 720,
@@ -2347,12 +2378,12 @@
   "color": "rgb(24,40,40)"
  },
  {
-  "id": "v-a0420c46-a308-4ec9-8874-",
+  "id": "v-a0420c46-a308-4ec9-8874",
   "type": "video",
   "orig": "a0420c46-a308-4ec9-8874-94b3609c9582.mp4",
-  "thumb": "assets/video/v-a0420c46-a308-4ec9-8874--t.webp",
-  "file": "assets/video/v-a0420c46-a308-4ec9-8874-.mp4",
-  "poster": "assets/video/v-a0420c46-a308-4ec9-8874--poster",
+  "thumb": "assets/video/v-a0420c46-a308-4ec9-8874-t.webp",
+  "file": "assets/video/v-a0420c46-a308-4ec9-8874.mp4",
+  "poster": "assets/video/v-a0420c46-a308-4ec9-8874-poster",
   "duration": 10,
   "hasAudio": true,
   "width": 720,
@@ -2541,11 +2572,11 @@
   "color": "rgb(8,8,8)"
  },
  {
-  "id": "p-0393351c-18d4-4122-838c-",
+  "id": "p-0393351c-18d4-4122-838c",
   "type": "photo",
   "orig": "0393351c-18d4-4122-838c-32aa2f7b15fa.jpg",
-  "thumb": "assets/img/p-0393351c-18d4-4122-838c--t.webp",
-  "base": "assets/img/p-0393351c-18d4-4122-838c-",
+  "thumb": "assets/img/p-0393351c-18d4-4122-838c-t.webp",
+  "base": "assets/img/p-0393351c-18d4-4122-838c",
   "widths": [
    480,
    960,
@@ -2571,11 +2602,11 @@
   "color": "rgb(8,8,8)"
  },
  {
-  "id": "p-37b7683a-e2c8-42c9-8e78-",
+  "id": "p-37b7683a-e2c8-42c9-8e78",
   "type": "photo",
   "orig": "37b7683a-e2c8-42c9-8e78-ae7043e676cd.jpg",
-  "thumb": "assets/img/p-37b7683a-e2c8-42c9-8e78--t.webp",
-  "base": "assets/img/p-37b7683a-e2c8-42c9-8e78-",
+  "thumb": "assets/img/p-37b7683a-e2c8-42c9-8e78-t.webp",
+  "base": "assets/img/p-37b7683a-e2c8-42c9-8e78",
   "widths": [
    480,
    960,
@@ -2601,11 +2632,11 @@
   "color": "rgb(104,72,56)"
  },
  {
-  "id": "p-579a183a-6bbf-41dc-97b0-",
+  "id": "p-579a183a-6bbf-41dc-97b0",
   "type": "photo",
   "orig": "579a183a-6bbf-41dc-97b0-95fd40477862.jpg",
-  "thumb": "assets/img/p-579a183a-6bbf-41dc-97b0--t.webp",
-  "base": "assets/img/p-579a183a-6bbf-41dc-97b0-",
+  "thumb": "assets/img/p-579a183a-6bbf-41dc-97b0-t.webp",
+  "base": "assets/img/p-579a183a-6bbf-41dc-97b0",
   "widths": [
    480,
    960,
@@ -2631,11 +2662,11 @@
   "color": "rgb(216,216,200)"
  },
  {
-  "id": "p-77763a6f-6a76-49c2-839c-",
+  "id": "p-77763a6f-6a76-49c2-839c",
   "type": "photo",
   "orig": "77763a6f-6a76-49c2-839c-3153e57b4edb.jpg",
-  "thumb": "assets/img/p-77763a6f-6a76-49c2-839c--t.webp",
-  "base": "assets/img/p-77763a6f-6a76-49c2-839c-",
+  "thumb": "assets/img/p-77763a6f-6a76-49c2-839c-t.webp",
+  "base": "assets/img/p-77763a6f-6a76-49c2-839c",
   "widths": [
    480,
    960,
@@ -2661,11 +2692,11 @@
   "color": "rgb(8,24,24)"
  },
  {
-  "id": "p-a16e746c-3ba3-4f2f-b70e-",
+  "id": "p-a16e746c-3ba3-4f2f-b70e",
   "type": "photo",
   "orig": "A16E746C-3BA3-4F2F-B70E-202C8ED62F37_3FED6899-CEC1-4C3E-9DA1-73B0FFA2C6D4.jpg",
-  "thumb": "assets/img/p-a16e746c-3ba3-4f2f-b70e--t.webp",
-  "base": "assets/img/p-a16e746c-3ba3-4f2f-b70e-",
+  "thumb": "assets/img/p-a16e746c-3ba3-4f2f-b70e-t.webp",
+  "base": "assets/img/p-a16e746c-3ba3-4f2f-b70e",
   "widths": [
    480,
    900
@@ -2716,11 +2747,95 @@
   "color": "rgb(40,40,24)"
  },
  {
-  "id": "p-1ca05162-60d4-4bfa-b326-",
+  "id": "v-whatsapp-video-202-1igdg",
+  "type": "video",
+  "orig": "WhatsApp Video 2026-10-28 at 14.31.07 (2).mp4",
+  "thumb": "assets/video/v-whatsapp-video-202-1igdg-t.webp",
+  "file": "assets/video/v-whatsapp-video-202-1igdg.mp4",
+  "poster": "assets/video/v-whatsapp-video-202-1igdg-poster",
+  "duration": 22,
+  "hasAudio": true,
+  "width": 720,
+  "height": 1280,
+  "date": "2026-10-28",
+  "milestone": "outubro",
+  "chapter": 6,
+  "place": "",
+  "caption": "Sem palavras: a emoção dela",
+  "alt": "",
+  "tags": [],
+  "favorite": true,
+  "suggested": true,
+  "film": true,
+  "focal": [
+   50,
+   40
+  ],
+  "hero": false,
+  "color": "rgb(200,200,200)"
+ },
+ {
+  "id": "v-whatsapp-video-202-miy6q",
+  "type": "video",
+  "orig": "WhatsApp Video 2026-10-28 at 14.31.07.mp4",
+  "thumb": "assets/video/v-whatsapp-video-202-miy6q-t.webp",
+  "file": "assets/video/v-whatsapp-video-202-miy6q.mp4",
+  "poster": "assets/video/v-whatsapp-video-202-miy6q-poster",
+  "duration": 24,
+  "hasAudio": true,
+  "width": 720,
+  "height": 1280,
+  "date": "2026-10-28",
+  "milestone": "outubro",
+  "chapter": 6,
+  "place": "",
+  "caption": "O sorriso que ilumina o meu dia",
+  "alt": "",
+  "tags": [],
+  "favorite": true,
+  "suggested": true,
+  "film": true,
+  "focal": [
+   50,
+   40
+  ],
+  "hero": false,
+  "color": "rgb(168,152,104)"
+ },
+ {
+  "id": "v-whatsapp-video-2026-10-2",
+  "type": "video",
+  "orig": "WhatsApp Video 2026-10-28 at 14.31.07 (1).mp4",
+  "thumb": "assets/video/v-whatsapp-video-2026-10-2-t.webp",
+  "file": "assets/video/v-whatsapp-video-2026-10-2.mp4",
+  "poster": "assets/video/v-whatsapp-video-2026-10-2-poster",
+  "duration": 17,
+  "hasAudio": true,
+  "width": 720,
+  "height": 1280,
+  "date": "2026-10-28",
+  "milestone": "outubro",
+  "chapter": 6,
+  "place": "",
+  "caption": "Um brinde ao nosso amor",
+  "alt": "",
+  "tags": [],
+  "favorite": true,
+  "suggested": true,
+  "film": true,
+  "focal": [
+   50,
+   40
+  ],
+  "hero": false,
+  "color": "rgb(24,24,56)"
+ },
+ {
+  "id": "p-1ca05162-60d4-4bfa-b326",
   "type": "photo",
   "orig": "1CA05162-60D4-4BFA-B326-373E404F08C6.png",
-  "thumb": "assets/img/p-1ca05162-60d4-4bfa-b326--t.webp",
-  "base": "assets/img/p-1ca05162-60d4-4bfa-b326-",
+  "thumb": "assets/img/p-1ca05162-60d4-4bfa-b326-t.webp",
+  "base": "assets/img/p-1ca05162-60d4-4bfa-b326",
   "widths": [
    480,
    941

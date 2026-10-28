@@ -96,7 +96,7 @@ AC.CHAPTERS = [
     ]
   },
   {
-    n: 5, sky: 'pedido', accent: '#E8C987', open: 'FullSizeRender-4.JPEG', song: 'pedido', rings: true,
+    n: 5, sky: 'pedido', accent: '#E8C987', open: 'WhatsApp Image 2026-10-28 at 14.31.07.jpeg', song: 'pedido', rings: true,
     title: 'O Pedido de Casamento em Fortaleza', badge: '15 de agosto de 2026 • Show do Luan Santana',
     milestone: '15.08.2026 • O dia em que o Príncipe pediu a sua Bonequinha em casamento no show do Luan Santana em Fortaleza.',
     quote: 'Foi um momento cheio de emoção, música, amor e a confirmação de tudo o que eu já sentia: eu quero viver a minha vida com você.',
@@ -107,7 +107,7 @@ AC.CHAPTERS = [
     blocks: [
       { after: 0, type: 'pair', polaroid: true, items: ['FullSizeRender-2.JPEG', 'FullSizeRender-7.JPEG'] },
       { after: 1, type: 'wide', item: 'IMG_4947.MP4' },
-      { after: 1, type: 'strip', items: ['FullSizeRender-6.JPEG', 'FullSizeRender-1.JPEG', 'IMG_4879.MP4', '092604e1-3d36-4d25-b935-56bb243468a0.mp4', 'FullSizeRender-5.MOV'] }
+      { after: 1, type: 'strip', items: ['FullSizeRender-6.JPEG', 'FullSizeRender-4.JPEG', 'FullSizeRender-1.JPEG', 'IMG_4879.MP4', '092604e1-3d36-4d25-b935-56bb243468a0.mp4', 'FullSizeRender-5.MOV'] }
     ]
   },
   {
@@ -121,7 +121,7 @@ AC.CHAPTERS = [
     ],
     blocks: [
       { after: 0, type: 'pair', polaroid: true, items: ['IMG_3954.JPEG', 'FullSizeRender-8.JPEG'] },
-      { after: 1, type: 'strip', items: ['FullSizeRender-10.JPEG', 'FullSizeRender-3.JPEG', 'IMG_6451.JPEG', 'IMG_1861.JPEG', '77763a6f-6a76-49c2-839c-3153e57b4edb.jpg', '579a183a-6bbf-41dc-97b0-95fd40477862.jpg'] }
+      { after: 1, type: 'strip', items: ['WhatsApp Video 2026-10-28 at 14.31.07 (2).mp4', 'WhatsApp Video 2026-10-28 at 14.31.07.mp4', 'FullSizeRender-10.JPEG', 'FullSizeRender-3.JPEG', 'IMG_6451.JPEG', 'IMG_1861.JPEG', '77763a6f-6a76-49c2-839c-3153e57b4edb.jpg', '579a183a-6bbf-41dc-97b0-95fd40477862.jpg'] }
     ]
   }
 ];
@@ -160,22 +160,22 @@ AC.TIMELINE = [
 
 /* Futuro — Mapa Estelar. `pct` é só visual (progresso). [sugestão] ajuste à vontade. */
 AC.FUTURE = [
-  { title: 'Jericoacoara & Primeiras Viagens', status: 'vivido', label: 'Sonho vivido', icon: 'i-umbrella', pct: 100, photo: 'IMG_3956.JPEG', x: 12, y: 62,
+  { title: 'Jericoacoara & Primeiras Viagens', short: 'Jericoacoara', status: 'vivido', label: 'Sonho vivido', icon: 'i-umbrella', pct: 100, photo: 'IMG_3956.JPEG', x: 12, y: 62,
     text: 'Nossa primeira viagem juntos em 28 de julho de 2026 para Jericoacoara, criando memórias inesquecíveis no Ceará.',
     more: 'Vivemos cada passeio e cada pôr do sol em Jericoacoara como o primeiro de muitos destinos que vamos conhecer de mãos dadas.' },
-  { title: 'O Pedido no Show do Luan', status: 'vivido', label: 'Sonho vivido', icon: 'i-ring', pct: 100, photo: 'FullSizeRender-6.JPEG', x: 30, y: 28,
+  { title: 'O Pedido no Show do Luan', short: 'O pedido', status: 'vivido', label: 'Sonho vivido', icon: 'i-ring', pct: 100, photo: 'FullSizeRender-6.JPEG', x: 30, y: 28,
     text: '15 de agosto de 2026, em Fortaleza: o pedido de casamento cheio de emoção e música.',
     more: 'Ao som de Luan Santana em Fortaleza, demos o passo mais emocionante da nossa história até aqui: o nosso noivado.' },
-  { title: 'O Nosso Casamento', status: 'planejando', label: 'Planejando', icon: 'i-glass', pct: 45, art: ['rgba(232,201,135,.5)', 'rgba(255,90,157,.4)'], x: 52, y: 70,
+  { title: 'O Nosso Casamento', short: 'Casamento', status: 'planejando', label: 'Planejando', icon: 'i-glass', pct: 45, art: ['rgba(232,201,135,.5)', 'rgba(255,90,157,.4)'], x: 52, y: 70,
     text: 'Celebrar a nossa união cercados de amor, oficializando no altar a escolha que fazemos todos os dias.',
     more: 'Cada detalhe do nosso casamento será a celebração de um amor verdadeiro, maduro e construído com companheirismo.' },
-  { title: 'A Nossa Casa', status: 'sonho', label: 'Nosso lar', icon: 'i-home2', pct: 15, art: ['rgba(0,207,255,.4)', 'rgba(122,40,203,.5)'], x: 70, y: 32,
+  { title: 'A Nossa Casa', short: 'Nossa casa', status: 'sonho', label: 'Nosso lar', icon: 'i-home2', pct: 15, art: ['rgba(0,207,255,.4)', 'rgba(122,40,203,.5)'], x: 70, y: 32,
     text: 'Construir o nosso próprio lar, cheio de paz, cuidado, risadas e o aconchego que encontramos um no outro.',
     more: 'Um lugar onde cada canto tenha a nossa cara, para dividirmos a rotina, o descanso e todos os nossos planos.' },
-  { title: 'Nossas Vitórias e Conquistas', status: 'planejando', label: 'Crescendo juntos', icon: 'i-award', pct: 55, art: ['rgba(185,131,255,.5)', 'rgba(0,207,255,.3)'], x: 84, y: 66,
+  { title: 'Nossas Vitórias e Conquistas', short: 'Vitórias', status: 'planejando', label: 'Crescendo juntos', icon: 'i-award', pct: 55, art: ['rgba(185,131,255,.5)', 'rgba(0,207,255,.3)'], x: 84, y: 66,
     text: 'Apoiar cada sonho, vibrar com cada conquista e caminhar lado a lado em todas as fases.',
     more: 'Nossa relação é feita de parceria: comemorar cada vitória pessoal e profissional sabendo que temos um ao outro.' },
-  { title: 'Todos os Capítulos Que Virão', status: 'sonho', label: 'Para sempre', icon: 'i-infinity', pct: 8, art: ['rgba(122,40,203,.55)', 'rgba(255,90,157,.45)'], x: 94, y: 24,
+  { title: 'Todos os Capítulos Que Virão', short: 'Para sempre', status: 'sonho', label: 'Para sempre', icon: 'i-infinity', pct: 8, art: ['rgba(122,40,203,.55)', 'rgba(255,90,157,.45)'], x: 94, y: 24,
     text: 'Porque o mais bonito de tudo é saber que isso é só o começo da nossa vida juntos.',
     more: 'Em todos os universos, continuar escolhendo um ao outro todos os dias, escrevendo nossa história com amor e verdade.' }
 ];

@@ -85,18 +85,21 @@ else {
 await ev(() => window.scrollTo(0, 400)); await sleep(500);
 for (let i = 0; i < 20 && !(await ev(() => !!(AC.cosmos && AC.cosmos.ready))); i++) await sleep(500);
 ok('3D carregou (AC.cosmos.ready)', await ev(() => !!(AC.cosmos && AC.cosmos.ready)));
-ok('galáxia 3D no fundo', await ev(() => !!document.querySelector('#cosmos-bg.is-on')));
+// desktop: galáxia 3D no fundo · celular/tablet (<= 820 px ou toque): NÃO monta a galáxia (só o céu 2D leve)
+if (W <= 820) ok('celular: sem galáxia 3D (céu 2D leve)', await ev(() => !document.querySelector('#cosmos-bg') && getComputedStyle(document.querySelector('#starfield')).display !== 'none'));
+else ok('desktop: galáxia 3D no fundo', await ev(() => !!document.querySelector('#cosmos-bg.is-on')));
 await ev(() => window.scrollTo(0, 0)); await sleep(1200); await shot('hero');
 
 // troca de música no pedido
 if (entered) {
+  const until = async (fn, ms = 16000) => { const t0 = Date.now(); while (Date.now() - t0 < ms) { if (await ev(fn)) return true; await sleep(300); } return false; };
   await ev(() => document.querySelector('#cap-5').scrollIntoView()); await sleep(600);
-  await ev(() => document.querySelector('[data-rings]').scrollIntoView({ block: 'center' })); await sleep(3200);
-  ok('pedido → "Chuva de Arroz"', await ev(() => AC.audio.track === 'pedido'));
-  ok('alianças 3D montadas', await ev(() => !!document.querySelector('[data-rings].is-3d')));
+  await ev(() => document.querySelector('[data-rings]').scrollIntoView({ block: 'center' }));
+  ok('pedido → "Chuva de Arroz"', await until(() => AC.audio.track === 'pedido'));
+  ok('alianças 3D montadas', await until(() => !!document.querySelector('[data-rings].is-3d')));
   await shot('aliancas');
-  await ev(() => window.scrollTo(0, 0)); await sleep(3200);
-  ok('fora do pedido → "Dia, Lugar e Hora"', await ev(() => AC.audio.track === 'principal'));
+  await ev(() => window.scrollTo(0, 0));
+  ok('fora do pedido → "Dia, Lugar e Hora"', await until(() => AC.audio.track === 'principal'));
 } else skip('troca de música (precisa entrar com som)');
 
 // final

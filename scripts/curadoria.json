@@ -1,113 +1,668 @@
 {
   "_leia": "Edite legendas/alt/marco aqui e rode 'npm run build' em scripts/. Campos: caption, alt, milestone (encontro|namoro|jeri|pedido|outubro|rotina|familia), chapter (1-6), date (AAAA-MM-DD), favorite, hero, hidden, live (foto + vídeo Live), place, tags, s (true = legenda sugerida, ainda não aprovada).",
-
-  "IMG_3842.JPG": { "caption": "Jericoacoara • O nosso coração à beira da lagoa", "alt": "João Guilherme e Maria Cândida dentro de uma grande moldura de coração vermelho, com a lagoa azul ao fundo", "place": "Jericoacoara, CE", "favorite": true, "hero": true, "chapter": 4, "focal": [50, 55], "s": true },
-  "IMG_3843.JPG": { "caption": "Jericoacoara • Dentro do nosso coração", "alt": "Casal abraçado dentro da moldura de coração vermelho em Jericoacoara", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3844.JPG": { "caption": "Jericoacoara • Um beijo para o coração", "alt": "João beija Maria dentro da moldura de coração vermelho", "place": "Jericoacoara, CE", "favorite": true, "s": true },
-  "IMG_3863.JPG": { "caption": "Jericoacoara • No mirante, de frente para o mar", "alt": "Casal de óculos escuros em um mirante de madeira sobre as águas de Jericoacoara", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3864.JPG": { "caption": "Jericoacoara • O olhar que diz tudo", "alt": "Maria olha para João no mirante de madeira, com a lagoa ao fundo", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3865.JPG": { "caption": "Jericoacoara • Nosso beijo no mirante sobre as águas cristalinas", "alt": "João e Maria se beijando no mirante de madeira sobre as águas cristalinas", "place": "Jericoacoara, CE", "favorite": true },
-  "IMG_3866.JPG": { "caption": "Jericoacoara • De braços abertos para a vida a dois", "alt": "Maria de braços abertos ao lado de João no mirante", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3867.JPG": { "caption": "Jericoacoara • O beijo na testa", "alt": "João beija a testa de Maria no mirante de madeira", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3868.JPG": { "caption": "Jericoacoara • Abraço de brisa e sol", "alt": "Casal abraçado no mirante com a lagoa ao fundo", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3918.JPEG": { "caption": "Girassóis, espelho e a gente", "alt": "Casal se fotografando em um espelho cercado de girassóis amarelos", "place": "Jericoacoara, CE", "live": "IMG_3918.MOV", "s": true },
-  "IMG_3929.JPEG": { "caption": "Portal do Paraíso em Jericoacoara • Nosso beijo apaixonado onde o sonho virou realidade", "alt": "João e Maria se beijando dentro do Portal do Paraíso, um grande arco de pedra no meio da vegetação", "place": "Jericoacoara, CE", "live": "IMG_3929.MOV", "favorite": true, "chapter": 4 },
-  "IMG_3954.JPEG": { "caption": "Jericoacoara • A árvore dos corações, vista de cima", "alt": "Visto de cima, o casal abraçado sobre uma plataforma com uma árvore de corações desenhada, sobre a lagoa", "place": "Jericoacoara, CE", "live": "IMG_3954.MOV", "s": true },
-  "IMG_3956.JPEG": { "caption": "Jericoacoara • No centro da nossa árvore de corações", "alt": "João carrega Maria no colo sobre a plataforma da árvore de corações", "place": "Jericoacoara, CE", "live": "IMG_3956.MOV", "favorite": true, "s": true },
-  "IMG_3972.JPEG": { "caption": "Abraçados sobre as águas cristalinas de Jericoacoara • Nosso paraíso particular", "alt": "Casal abraçado na passarela de madeira sobre as águas cristalinas, sob um céu azul", "place": "Jericoacoara, CE" },
-  "IMG_3977.JPEG": { "caption": "Jericoacoara • De mãos dadas pela passarela", "alt": "Casal sorrindo na passarela de madeira com barcos e mar ao fundo", "place": "Jericoacoara, CE", "s": true },
-  "FullSizeRender-11.JPEG": { "caption": "Nosso abrigo sob o céu azul • O beijo na testa e o sorriso da minha Bonequinha", "alt": "Maria Cândida de óculos na cabeça recebendo um beijo de João Guilherme sob uma cabana de palha", "place": "Jericoacoara, CE", "favorite": true, "hero": true, "chapter": 4 },
-  "FullSizeRender-8.JPEG": { "caption": "O carinho na praia que virou nossa foto favorita", "alt": "Maria Cândida sorri enquanto João Guilherme a beija na bochecha, na praia", "place": "Jericoacoara, CE", "favorite": true },
-  "IMG_3736.JPEG": { "caption": "Sorrisos na sombra das árvores de Jeri", "alt": "João e Maria sorrindo em uma selfie sob árvores, em Jericoacoara", "place": "Jericoacoara, CE", "live": "IMG_3736.MOV", "s": true },
-
-  "IMG_0559.JPEG": { "caption": "Selfie no espelho, coração acelerado", "alt": "Casal abraçado fazendo selfie no espelho", "s": true },
-  "IMG_0560.JPEG": { "caption": "Um beijo na testa, de frente para o espelho", "alt": "João beija a testa de Maria em uma selfie de espelho", "s": true },
-  "IMG_0564.JPEG": { "caption": "Entre um clique e outro, um beijo", "alt": "Casal se beijando diante do espelho", "s": true },
-  "IMG_0974.JPEG": { "caption": "Sorrisos em família • A alegria que contagia", "alt": "Maria, João e uma criança dando gargalhadas juntos", "milestone": "familia", "live": "IMG_0974.MOV", "s": true },
-  "IMG_0975.JPEG": { "caption": "Dengo no espelho", "alt": "Maria encostada em João em uma selfie de espelho", "milestone": "encontro", "live": "IMG_0975.MOV", "s": true },
-
-  "IMG_1084.JPEG": { "caption": "Maria e as flores • O pedido de namoro", "alt": "Maria Cândida sorrindo, segurando um buquê de flores coloridas", "milestone": "namoro", "favorite": true, "chapter": 4, "s": true },
-  "IMG_1083.JPEG": { "caption": "Mãos dadas, alianças e o coração acelerado", "alt": "Duas mãos entrelaçadas mostrando as alianças, dentro do carro", "milestone": "namoro", "live": "IMG_1083.MOV", "favorite": true, "s": true },
-  "3EC12588-6F74-4E07-ACCC-D5CF0A904C10.jpg": { "caption": "Nossas alianças • A cumplicidade, a sintonia e a certeza do nosso sim", "alt": "Casal sorrindo em selfie, mostrando as alianças nas mãos", "milestone": "namoro", "favorite": true },
-
-  "D3751707-EA42-4C48-8B95-AD31CFD2D762.JPEG": { "caption": "Um beijo no meio da nossa rotina", "alt": "Casal se beijando abraçado, João de camisa preta e Maria de blusa branca", "s": true },
-  "IMG_0758.JPEG": { "caption": "Dias leves e ensolarados na piscina ao lado de quem eu amo", "alt": "João e Maria fazendo selfie na piscina, sob o sol", "favorite": true },
-  "IMG_0759.JPEG": { "caption": "Carinho na piscina • Nosso dengo e risadas gostosas sob o sol", "alt": "João beija a bochecha de Maria, que mostra a língua para a câmera, na piscina" },
-  "IMG_0761.JPEG": { "caption": "Ela nos meus ombros, o mundo aos nossos pés", "alt": "Maria sentada nos ombros de João dentro da piscina", "s": true },
-  "IMG_0763.JPEG": { "caption": "Um mergulho a dois", "alt": "Casal abraçado dentro de uma piscina de águas claras", "s": true },
-  "IMG_1252.JPEG": { "caption": "Beijinho com cheiro de verão", "alt": "João beija a bochecha de Maria na beira da piscina", "s": true },
-  "IMG_6451.JPEG": { "caption": "Noite especial • A elegância do nosso encontro e o abraço do meu amor", "alt": "Casal elegante se beijando em um ambiente aconchegante" },
-  "443E5DA5-24D0-4CCA-8690-9A93168B0165.jpg": { "caption": "Soneca, carinho e a paz de estar juntos", "alt": "João deitado com Maria dormindo ao lado, fazendo um joinha", "s": true },
-  "IMG_1861.JPEG": { "caption": "Um abraço no meio do caminho", "alt": "Casal abraçado em frente a uma fonte em um shopping", "live": "IMG_1861.MOV", "s": true },
-  "FullSizeRender.JPEG": { "caption": "Parceiros em tudo • Treino a dois", "alt": "João e Maria posando juntos em uma academia", "s": true },
-  "FullSizeRender-9.JPEG": { "caption": "Parceiros em tudo • Nossa sintonia, cuidado e alegria até na hora do treino", "alt": "João e Maria fazendo selfie no espelho da academia" },
-  "1CA05162-60D4-4BFA-B326-373E404F08C6.png": { "caption": "Parceiros também na academia", "alt": "Maria em pé ao lado de João, sentado em um aparelho de academia", "s": true },
-  "FullSizeRender-5.JPEG": { "caption": "Passeio de carro e brincadeira de sempre", "alt": "Maria ao volante mostrando a língua e João sorrindo ao lado, dentro do carro", "s": true },
-  "FullSizeRender-3.JPEG": { "caption": "Jantar a dois e sorrisos de sobra", "alt": "Maria e João sorrindo juntos em uma selfie em um restaurante", "s": true },
-  "FullSizeRender-10.JPEG": { "caption": "Nosso jantar de sushi • O olhar doce e o sorriso mais lindo da minha Bonequinha", "alt": "Maria sentada à mesa de um restaurante, sorrindo diante de um prato" },
-  "FullSizeRender-12.JPEG": { "caption": "Em família • A prova de que o universo já conhecia a nossa história", "alt": "João, Maria e familiares posando juntos em uma lanchonete", "milestone": "familia" },
-
-  "FullSizeRender-1.JPEG": { "caption": "Fortaleza • A noite em que tudo ficou ainda mais especial", "alt": "Palco com o letreiro LUAN iluminado em azul", "place": "Fortaleza, CE", "s": true },
-  "FullSizeRender-2.JPEG": { "caption": "Pronta para o show do Luan Santana • A noite do nosso pedido de casamento", "alt": "Maria Cândida posando animada no show, com a luz azul do palco", "place": "Fortaleza, CE" },
-  "FullSizeRender-4.JPEG": { "caption": "Abraço sob as luzes azuis do show", "alt": "Casal abraçado diante do letreiro LUAN", "place": "Fortaleza, CE", "s": true },
-  "FullSizeRender-6.JPEG": { "caption": "A mão, a aliança e o sim mais esperado", "alt": "Mão de Maria Cândida exibindo a aliança, guiada pela mão de João durante o show", "place": "Fortaleza, CE", "favorite": true, "chapter": 5, "s": true },
-  "FullSizeRender-7.JPEG": { "caption": "Lado a lado no show do Luan Santana", "alt": "João e Maria de costas, com camisetas do show, diante do palco", "place": "Fortaleza, CE", "s": true },
-  "0393351c-18d4-4122-838c-32aa2f7b15fa.jpg": { "caption": "Luzes, risadas e a nossa sintonia", "alt": "João e Maria sorrindo juntos sob luzes roxas", "milestone": "outubro", "date": "2026-10-13", "s": true },
-
-  "37b7683a-e2c8-42c9-8e78-ae7043e676cd.jpg": { "caption": "O beijo que acalma", "alt": "João beija o rosto de Maria em um close afetuoso", "milestone": "outubro", "date": "2026-10-13", "s": true },
-  "579a183a-6bbf-41dc-97b0-95fd40477862.jpg": { "caption": "Sorriso de quem encontrou o seu lugar", "alt": "Casal sorrindo juntinho em uma selfie", "milestone": "outubro", "date": "2026-10-13", "s": true },
-  "77763a6f-6a76-49c2-839c-3153e57b4edb.jpg": { "caption": "Sintonia na noite • Luzes, festa e o melhor biquinho do mundo", "alt": "Maria e João em selfie sob luzes verdes, ela fazendo biquinho", "milestone": "outubro", "date": "2026-10-13" },
-  "A16E746C-3BA3-4F2F-B70E-202C8ED62F37_3FED6899-CEC1-4C3E-9DA1-73B0FFA2C6D4.jpg": { "caption": "Pertinho, como sempre", "alt": "Maria fazendo biquinho encostada em João", "milestone": "outubro", "date": "2026-10-13", "s": true },
-
-  "020daedc-d06e-4596-bb21-be8b20d87aeb.mp4": { "caption": "Momentos inesquecíveis • Cada segundo ao seu lado é pura magia e amor", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE" },
-  "092604e1-3d36-4d25-b935-56bb243468a0.mp4": { "caption": "Cantando juntos na mesma sintonia • Noite inesquecível", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "favorite": true },
-  "4a160ba4-1af6-47e6-9f11-bd509f5346d6.mp4": { "caption": "Sempre encontro o meu lugar de paz no seu abraço", "milestone": "rotina", "date": "2026-06-20", "favorite": true },
-  "55612EBD-8835-4FCD-ADE6-8050E3B255E6.MP4": { "caption": "Nossa rotina sem filtro: carinho e paz no seu colo", "milestone": "rotina", "date": "2026-06-05" },
-  "1D28732F-86FB-4019-974C-6E14AC023E18.MP4": { "caption": "Noite de piscina e abraço apertado", "milestone": "rotina", "date": "2026-06-07", "s": true },
-  "083D852E-3CBA-41C0-B508-6A08272E5FCF_AF81D948-4468-4398-A122-381763A6B4A7_F6A192B3-E9CF-419A-B625-EF1BD0901209_remux.mp4": { "caption": "Dia comum, coração cheio", "milestone": "rotina", "date": "2026-07-10", "s": true },
-  "3523f08f586444e995357c90c66c5f61.MP4": { "caption": "Caretas e risadas, do jeitinho dele", "milestone": "outubro", "date": "2026-10-13", "s": true },
-  "5B1CF9B0-D011-49C8-993A-22EEC3938B35.MP4": { "caption": "Selfie de carro: o nosso cantinho de conversa", "milestone": "rotina", "date": "2026-08-02", "s": true },
-  "61992077-A6BB-415D-8F62-13004966B4B5.MP4": { "caption": "Uma pausa para brindar o dia", "milestone": "rotina", "date": "2026-09-05", "s": true },
-  "a0420c46-a308-4ec9-8874-94b3609c9582.mp4": { "caption": "Dengo, beijinho e carinho no rosto", "milestone": "rotina", "date": "2026-09-12", "s": true },
-  "copy_8A452940-B5A2-4952-B7CC-F02F99C65C7C.MP4": { "caption": "Um capítulo inteiro da nossa rotina", "milestone": "rotina", "date": "2026-08-24", "s": true },
-  "copy_C884640A-3432-4DA5-8EAA-E2AE107FB92A.MP4": { "caption": "Dia de videogame e dengo no sofá", "milestone": "encontro", "date": "2026-05-24", "s": true },
-  "IMG_0856.MP4": { "caption": "Bonequinha em dia de sol, mandando um tchauzinho", "milestone": "rotina", "date": "2026-06-15", "s": true },
-  "IMG_4697.MP4": { "caption": "Papo de carro e sorriso fácil", "milestone": "rotina", "date": "2026-09-01", "s": true },
-  "IMG_5848.MP4": { "caption": "Dançando juntos em plena festa", "milestone": "rotina", "date": "2026-09-20", "s": true },
-  "IMG_5916.MOV": { "caption": "Minha dedicação favorita • Flagrada estudando com o sorriso mais doce", "milestone": "rotina", "date": "2026-09-19" },
-  "IMG_6180.MP4": { "caption": "Mergulho de abraço na piscina", "milestone": "rotina", "date": "2026-06-14", "s": true },
-  "IMG_6413.MP4": { "caption": "Noite de carro, sorrisos e paz", "milestone": "outubro", "date": "2026-10-06", "s": true },
-  "FullSizeRender-1.MOV": { "caption": "Fortaleza • Maria vibrando no show", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "FullSizeRender-2.MOV": { "caption": "Jantar e um brinde ao nosso amor", "milestone": "rotina", "date": "2026-09-07", "s": true },
-  "FullSizeRender-3.MOV": { "caption": "O abraço sob as luzes do palco", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "FullSizeRender-4.MOV": { "caption": "Passeio de carro e brincadeira de sempre", "milestone": "rotina", "date": "2026-08-10", "s": true },
-  "FullSizeRender-5.MOV": { "caption": "A aliança brilhando na noite do pedido", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "favorite": true, "s": true },
-  "FullSizeRender-6.MOV": { "caption": "De costas para o mundo, de frente para o nosso futuro", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "FullSizeRender-7.MOV": { "caption": "Jericoacoara • Beijinho e sorriso de lado", "milestone": "jeri", "date": "2026-07-25", "place": "Jericoacoara, CE", "s": true },
-  "FullSizeRender-8.MOV": { "caption": "Jericoacoara • O carinho na praia", "milestone": "jeri", "date": "2026-07-25", "place": "Jericoacoara, CE", "s": true },
-  "FullSizeRender-9.MOV": { "caption": "Sorrisos reunidos em família", "milestone": "familia", "date": "2026-09-27" },
-  "FullSizeRender.MOV": { "caption": "Fortaleza • As luzes azuis do nosso pedido", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "IMG_3737.MP4": { "caption": "Jericoacoara • Nossos sorrisos, beijos e dengo sob a cabana na praia", "milestone": "jeri", "date": "2026-07-25", "place": "Jericoacoara, CE", "favorite": true },
-  "IMG_3775.MP4": { "caption": "Jericoacoara • Sol no rosto e a melhor companhia", "milestone": "jeri", "date": "2026-07-25", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3812.MOV": { "caption": "Jericoacoara • Beijinho sob o sol e a nossa energia inconfundível", "milestone": "jeri", "date": "2026-07-25", "place": "Jericoacoara, CE" },
-  "IMG_3823.MP4": { "caption": "Jericoacoara • Fim de tarde na areia", "milestone": "jeri", "date": "2026-07-28", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3837.MOV": { "caption": "Pôr do sol em Jericoacoara • A luz dourada no mar e a alegria da minha Bonequinha", "milestone": "jeri", "date": "2026-07-25", "place": "Jericoacoara, CE", "favorite": true, "chapter": 4 },
-  "IMG_3901.MOV": { "caption": "Beleza radiante • O encanto, a elegância e o brilho do meu amor", "milestone": "jeri", "date": "2026-07-26", "place": "Jericoacoara, CE" },
-  "IMG_3909.MOV": { "caption": "Jericoacoara • Caminhando pelas ruas de areia", "milestone": "jeri", "date": "2026-07-26", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3979.MOV": { "caption": "Jericoacoara • Vista de tirar o fôlego", "milestone": "jeri", "date": "2026-07-26", "place": "Jericoacoara, CE", "s": true },
-  "IMG_3997.MP4": { "caption": "Jericoacoara • Águas mornas e cara de felicidade", "milestone": "jeri", "date": "2026-07-27", "place": "Jericoacoara, CE", "s": true },
-  "IMG_4879.MP4": { "caption": "Pronta para o show do Luan Santana em Fortaleza • A noite do nosso pedido de casamento", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "favorite": true },
-  "IMG_4919.MP4": { "caption": "Fortaleza • Maria na luz azul do show", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "IMG_4947.MP4": { "caption": "No show juntos • Ela nos meus ombros cantando e vibrando com a alma", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "favorite": true },
-  "IMG_4949.MP4": { "caption": "Fortaleza • O palco, a multidão e a nossa noite", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "A001_08152229_D133.MP4": { "caption": "Fortaleza • Ao vivo na noite do pedido (1)", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "A001_08152317_D152.MP4": { "caption": "Fortaleza • Ao vivo na noite do pedido (2)", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "A001_08152321_D155.MP4": { "caption": "Fortaleza • Ao vivo na noite do pedido (3)", "milestone": "pedido", "date": "2026-08-15", "place": "Fortaleza, CE", "s": true },
-  "A001_08160005_D169.MP4": { "caption": "Fortaleza • Ao vivo na noite do pedido (4)", "milestone": "pedido", "date": "2026-08-16", "place": "Fortaleza, CE", "s": true },
-
-  "A001_08242001_D250.MP4": { "hidden": true },
-  "IMG_3015.MP4": { "hidden": true },
-  "IMG_6513.MP4": { "hidden": true },
-  "IMG_3918.MOV": {}, "IMG_3929.MOV": {}, "IMG_3954.MOV": {}, "IMG_3956.MOV": {}, "IMG_3736.MOV": {},
-  "IMG_0974.MOV": {}, "IMG_0975.MOV": {}, "IMG_1083.MOV": {}, "IMG_1861.MOV": {}
+  "IMG_3842.JPG": {
+    "caption": "Jericoacoara • O nosso coração à beira da lagoa",
+    "alt": "João Guilherme e Maria Cândida dentro de uma grande moldura de coração vermelho, com a lagoa azul ao fundo",
+    "place": "Jericoacoara, CE",
+    "favorite": true,
+    "hero": true,
+    "chapter": 4,
+    "focal": [
+      50,
+      55
+    ],
+    "s": true
+  },
+  "IMG_3843.JPG": {
+    "caption": "Jericoacoara • Dentro do nosso coração",
+    "alt": "Casal abraçado dentro da moldura de coração vermelho em Jericoacoara",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3844.JPG": {
+    "caption": "Jericoacoara • Um beijo para o coração",
+    "alt": "João beija Maria dentro da moldura de coração vermelho",
+    "place": "Jericoacoara, CE",
+    "favorite": true,
+    "s": true
+  },
+  "IMG_3863.JPG": {
+    "caption": "Jericoacoara • No mirante, de frente para o mar",
+    "alt": "Casal de óculos escuros em um mirante de madeira sobre as águas de Jericoacoara",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3864.JPG": {
+    "caption": "Jericoacoara • O olhar que diz tudo",
+    "alt": "Maria olha para João no mirante de madeira, com a lagoa ao fundo",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3865.JPG": {
+    "caption": "Jericoacoara • Nosso beijo no mirante sobre as águas cristalinas",
+    "alt": "João e Maria se beijando no mirante de madeira sobre as águas cristalinas",
+    "place": "Jericoacoara, CE",
+    "favorite": true
+  },
+  "IMG_3866.JPG": {
+    "caption": "Jericoacoara • De braços abertos para a vida a dois",
+    "alt": "Maria de braços abertos ao lado de João no mirante",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3867.JPG": {
+    "caption": "Jericoacoara • O beijo na testa",
+    "alt": "João beija a testa de Maria no mirante de madeira",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3868.JPG": {
+    "caption": "Jericoacoara • Abraço de brisa e sol",
+    "alt": "Casal abraçado no mirante com a lagoa ao fundo",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3918.JPEG": {
+    "caption": "Girassóis, espelho e a gente",
+    "alt": "Casal se fotografando em um espelho cercado de girassóis amarelos",
+    "place": "Jericoacoara, CE",
+    "live": "IMG_3918.MOV",
+    "s": true
+  },
+  "IMG_3929.JPEG": {
+    "caption": "Portal do Paraíso em Jericoacoara • Nosso beijo apaixonado onde o sonho virou realidade",
+    "alt": "João e Maria se beijando dentro do Portal do Paraíso, um grande arco de pedra no meio da vegetação",
+    "place": "Jericoacoara, CE",
+    "live": "IMG_3929.MOV",
+    "favorite": true,
+    "chapter": 4
+  },
+  "IMG_3954.JPEG": {
+    "caption": "Jericoacoara • A árvore dos corações, vista de cima",
+    "alt": "Visto de cima, o casal abraçado sobre uma plataforma com uma árvore de corações desenhada, sobre a lagoa",
+    "place": "Jericoacoara, CE",
+    "live": "IMG_3954.MOV",
+    "s": true
+  },
+  "IMG_3956.JPEG": {
+    "caption": "Jericoacoara • No centro da nossa árvore de corações",
+    "alt": "João carrega Maria no colo sobre a plataforma da árvore de corações",
+    "place": "Jericoacoara, CE",
+    "live": "IMG_3956.MOV",
+    "favorite": true,
+    "s": true
+  },
+  "IMG_3972.JPEG": {
+    "caption": "Abraçados sobre as águas cristalinas de Jericoacoara • Nosso paraíso particular",
+    "alt": "Casal abraçado na passarela de madeira sobre as águas cristalinas, sob um céu azul",
+    "place": "Jericoacoara, CE"
+  },
+  "IMG_3977.JPEG": {
+    "caption": "Jericoacoara • De mãos dadas pela passarela",
+    "alt": "Casal sorrindo na passarela de madeira com barcos e mar ao fundo",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "FullSizeRender-11.JPEG": {
+    "caption": "Nosso abrigo sob o céu azul • O beijo na testa e o sorriso da minha Bonequinha",
+    "alt": "Maria Cândida de óculos na cabeça recebendo um beijo de João Guilherme sob uma cabana de palha",
+    "place": "Jericoacoara, CE",
+    "favorite": true,
+    "hero": true,
+    "chapter": 4
+  },
+  "FullSizeRender-8.JPEG": {
+    "caption": "O carinho na praia que virou nossa foto favorita",
+    "alt": "Maria Cândida sorri enquanto João Guilherme a beija na bochecha, na praia",
+    "place": "Jericoacoara, CE",
+    "favorite": true
+  },
+  "IMG_3736.JPEG": {
+    "caption": "Sorrisos na sombra das árvores de Jeri",
+    "alt": "João e Maria sorrindo em uma selfie sob árvores, em Jericoacoara",
+    "place": "Jericoacoara, CE",
+    "live": "IMG_3736.MOV",
+    "s": true
+  },
+  "IMG_0559.JPEG": {
+    "caption": "Selfie no espelho, coração acelerado",
+    "alt": "Casal abraçado fazendo selfie no espelho",
+    "s": true
+  },
+  "IMG_0560.JPEG": {
+    "caption": "Um beijo na testa, de frente para o espelho",
+    "alt": "João beija a testa de Maria em uma selfie de espelho",
+    "s": true
+  },
+  "IMG_0564.JPEG": {
+    "caption": "Entre um clique e outro, um beijo",
+    "alt": "Casal se beijando diante do espelho",
+    "s": true
+  },
+  "IMG_0974.JPEG": {
+    "caption": "Sorrisos em família • A alegria que contagia",
+    "alt": "Maria, João e uma criança dando gargalhadas juntos",
+    "milestone": "familia",
+    "live": "IMG_0974.MOV",
+    "s": true
+  },
+  "IMG_0975.JPEG": {
+    "caption": "Dengo no espelho",
+    "alt": "Maria encostada em João em uma selfie de espelho",
+    "milestone": "encontro",
+    "live": "IMG_0975.MOV",
+    "s": true
+  },
+  "IMG_1084.JPEG": {
+    "caption": "Maria e as flores • O pedido de namoro",
+    "alt": "Maria Cândida sorrindo, segurando um buquê de flores coloridas",
+    "milestone": "namoro",
+    "favorite": true,
+    "chapter": 4,
+    "s": true
+  },
+  "IMG_1083.JPEG": {
+    "caption": "Mãos dadas, alianças e o coração acelerado",
+    "alt": "Duas mãos entrelaçadas mostrando as alianças, dentro do carro",
+    "milestone": "namoro",
+    "live": "IMG_1083.MOV",
+    "favorite": true,
+    "s": true
+  },
+  "3EC12588-6F74-4E07-ACCC-D5CF0A904C10.jpg": {
+    "caption": "Nossas alianças • A cumplicidade, a sintonia e a certeza do nosso sim",
+    "alt": "Casal sorrindo em selfie, mostrando as alianças nas mãos",
+    "milestone": "namoro",
+    "favorite": true
+  },
+  "D3751707-EA42-4C48-8B95-AD31CFD2D762.JPEG": {
+    "caption": "Um beijo no meio da nossa rotina",
+    "alt": "Casal se beijando abraçado, João de camisa preta e Maria de blusa branca",
+    "s": true
+  },
+  "IMG_0758.JPEG": {
+    "caption": "Dias leves e ensolarados na piscina ao lado de quem eu amo",
+    "alt": "João e Maria fazendo selfie na piscina, sob o sol",
+    "favorite": true
+  },
+  "IMG_0759.JPEG": {
+    "caption": "Carinho na piscina • Nosso dengo e risadas gostosas sob o sol",
+    "alt": "João beija a bochecha de Maria, que mostra a língua para a câmera, na piscina"
+  },
+  "IMG_0761.JPEG": {
+    "caption": "Ela nos meus ombros, o mundo aos nossos pés",
+    "alt": "Maria sentada nos ombros de João dentro da piscina",
+    "s": true
+  },
+  "IMG_0763.JPEG": {
+    "caption": "Um mergulho a dois",
+    "alt": "Casal abraçado dentro de uma piscina de águas claras",
+    "s": true
+  },
+  "IMG_1252.JPEG": {
+    "caption": "Beijinho com cheiro de verão",
+    "alt": "João beija a bochecha de Maria na beira da piscina",
+    "s": true
+  },
+  "IMG_6451.JPEG": {
+    "caption": "Noite especial • A elegância do nosso encontro e o abraço do meu amor",
+    "alt": "Casal elegante se beijando em um ambiente aconchegante"
+  },
+  "443E5DA5-24D0-4CCA-8690-9A93168B0165.jpg": {
+    "caption": "Soneca, carinho e a paz de estar juntos",
+    "alt": "João deitado com Maria dormindo ao lado, fazendo um joinha",
+    "s": true
+  },
+  "IMG_1861.JPEG": {
+    "caption": "Um abraço no meio do caminho",
+    "alt": "Casal abraçado em frente a uma fonte em um shopping",
+    "live": "IMG_1861.MOV",
+    "s": true
+  },
+  "FullSizeRender.JPEG": {
+    "caption": "Parceiros em tudo • Treino a dois",
+    "alt": "João e Maria posando juntos em uma academia",
+    "s": true
+  },
+  "FullSizeRender-9.JPEG": {
+    "caption": "Parceiros em tudo • Nossa sintonia, cuidado e alegria até na hora do treino",
+    "alt": "João e Maria fazendo selfie no espelho da academia"
+  },
+  "1CA05162-60D4-4BFA-B326-373E404F08C6.png": {
+    "caption": "Parceiros também na academia",
+    "alt": "Maria em pé ao lado de João, sentado em um aparelho de academia",
+    "s": true
+  },
+  "FullSizeRender-5.JPEG": {
+    "caption": "Passeio de carro e brincadeira de sempre",
+    "alt": "Maria ao volante mostrando a língua e João sorrindo ao lado, dentro do carro",
+    "s": true
+  },
+  "FullSizeRender-3.JPEG": {
+    "caption": "Jantar a dois e sorrisos de sobra",
+    "alt": "Maria e João sorrindo juntos em uma selfie em um restaurante",
+    "s": true
+  },
+  "FullSizeRender-10.JPEG": {
+    "caption": "Nosso jantar de sushi • O olhar doce e o sorriso mais lindo da minha Bonequinha",
+    "alt": "Maria sentada à mesa de um restaurante, sorrindo diante de um prato"
+  },
+  "FullSizeRender-12.JPEG": {
+    "caption": "Em família • A prova de que o universo já conhecia a nossa história",
+    "alt": "João, Maria e familiares posando juntos em uma lanchonete",
+    "milestone": "familia"
+  },
+  "FullSizeRender-1.JPEG": {
+    "caption": "Fortaleza • A noite em que tudo ficou ainda mais especial",
+    "alt": "Palco com o letreiro LUAN iluminado em azul",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "FullSizeRender-2.JPEG": {
+    "caption": "Pronta para o show do Luan Santana • A noite do nosso pedido de casamento",
+    "alt": "Maria Cândida posando animada no show, com a luz azul do palco",
+    "place": "Fortaleza, CE"
+  },
+  "FullSizeRender-4.JPEG": {
+    "caption": "Abraço sob as luzes azuis do show",
+    "alt": "Casal abraçado diante do letreiro LUAN",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "FullSizeRender-6.JPEG": {
+    "caption": "A mão, a aliança e o sim mais esperado",
+    "alt": "Mão de Maria Cândida exibindo a aliança, guiada pela mão de João durante o show",
+    "place": "Fortaleza, CE",
+    "favorite": true,
+    "chapter": 5,
+    "s": true
+  },
+  "FullSizeRender-7.JPEG": {
+    "caption": "Lado a lado no show do Luan Santana",
+    "alt": "João e Maria de costas, com camisetas do show, diante do palco",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "0393351c-18d4-4122-838c-32aa2f7b15fa.jpg": {
+    "caption": "Luzes, risadas e a nossa sintonia",
+    "alt": "João e Maria sorrindo juntos sob luzes roxas",
+    "milestone": "outubro",
+    "date": "2026-10-13",
+    "s": true
+  },
+  "37b7683a-e2c8-42c9-8e78-ae7043e676cd.jpg": {
+    "caption": "O beijo que acalma",
+    "alt": "João beija o rosto de Maria em um close afetuoso",
+    "milestone": "outubro",
+    "date": "2026-10-13",
+    "s": true
+  },
+  "579a183a-6bbf-41dc-97b0-95fd40477862.jpg": {
+    "caption": "Sorriso de quem encontrou o seu lugar",
+    "alt": "Casal sorrindo juntinho em uma selfie",
+    "milestone": "outubro",
+    "date": "2026-10-13",
+    "s": true
+  },
+  "77763a6f-6a76-49c2-839c-3153e57b4edb.jpg": {
+    "caption": "Sintonia na noite • Luzes, festa e o melhor biquinho do mundo",
+    "alt": "Maria e João em selfie sob luzes verdes, ela fazendo biquinho",
+    "milestone": "outubro",
+    "date": "2026-10-13"
+  },
+  "A16E746C-3BA3-4F2F-B70E-202C8ED62F37_3FED6899-CEC1-4C3E-9DA1-73B0FFA2C6D4.jpg": {
+    "caption": "Pertinho, como sempre",
+    "alt": "Maria fazendo biquinho encostada em João",
+    "milestone": "outubro",
+    "date": "2026-10-13",
+    "s": true
+  },
+  "020daedc-d06e-4596-bb21-be8b20d87aeb.mp4": {
+    "caption": "Momentos inesquecíveis • Cada segundo ao seu lado é pura magia e amor",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE"
+  },
+  "092604e1-3d36-4d25-b935-56bb243468a0.mp4": {
+    "caption": "Cantando juntos na mesma sintonia • Noite inesquecível",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "favorite": true
+  },
+  "4a160ba4-1af6-47e6-9f11-bd509f5346d6.mp4": {
+    "caption": "Sempre encontro o meu lugar de paz no seu abraço",
+    "milestone": "rotina",
+    "date": "2026-06-20",
+    "favorite": true
+  },
+  "55612EBD-8835-4FCD-ADE6-8050E3B255E6.MP4": {
+    "caption": "Nossa rotina sem filtro: carinho e paz no seu colo",
+    "milestone": "rotina",
+    "date": "2026-06-05"
+  },
+  "1D28732F-86FB-4019-974C-6E14AC023E18.MP4": {
+    "caption": "Noite de piscina e abraço apertado",
+    "milestone": "rotina",
+    "date": "2026-06-07",
+    "s": true
+  },
+  "083D852E-3CBA-41C0-B508-6A08272E5FCF_AF81D948-4468-4398-A122-381763A6B4A7_F6A192B3-E9CF-419A-B625-EF1BD0901209_remux.mp4": {
+    "caption": "Dia comum, coração cheio",
+    "milestone": "rotina",
+    "date": "2026-07-10",
+    "s": true
+  },
+  "3523f08f586444e995357c90c66c5f61.MP4": {
+    "caption": "Caretas e risadas, do jeitinho dele",
+    "milestone": "outubro",
+    "date": "2026-10-13",
+    "s": true
+  },
+  "5B1CF9B0-D011-49C8-993A-22EEC3938B35.MP4": {
+    "caption": "Selfie de carro: o nosso cantinho de conversa",
+    "milestone": "rotina",
+    "date": "2026-08-02",
+    "s": true
+  },
+  "61992077-A6BB-415D-8F62-13004966B4B5.MP4": {
+    "caption": "Uma pausa para brindar o dia",
+    "milestone": "rotina",
+    "date": "2026-09-05",
+    "s": true
+  },
+  "a0420c46-a308-4ec9-8874-94b3609c9582.mp4": {
+    "caption": "Dengo, beijinho e carinho no rosto",
+    "milestone": "rotina",
+    "date": "2026-09-12",
+    "s": true
+  },
+  "copy_8A452940-B5A2-4952-B7CC-F02F99C65C7C.MP4": {
+    "caption": "Um capítulo inteiro da nossa rotina",
+    "milestone": "rotina",
+    "date": "2026-08-24",
+    "s": true
+  },
+  "copy_C884640A-3432-4DA5-8EAA-E2AE107FB92A.MP4": {
+    "caption": "Dia de videogame e dengo no sofá",
+    "milestone": "encontro",
+    "date": "2026-05-24",
+    "s": true
+  },
+  "IMG_0856.MP4": {
+    "caption": "Bonequinha em dia de sol, mandando um tchauzinho",
+    "milestone": "rotina",
+    "date": "2026-06-15",
+    "s": true
+  },
+  "IMG_4697.MP4": {
+    "caption": "Papo de carro e sorriso fácil",
+    "milestone": "rotina",
+    "date": "2026-09-01",
+    "s": true
+  },
+  "IMG_5848.MP4": {
+    "caption": "Dançando juntos em plena festa",
+    "milestone": "rotina",
+    "date": "2026-09-20",
+    "s": true
+  },
+  "IMG_5916.MOV": {
+    "caption": "Minha dedicação favorita • Flagrada estudando com o sorriso mais doce",
+    "milestone": "rotina",
+    "date": "2026-09-19"
+  },
+  "IMG_6180.MP4": {
+    "caption": "Mergulho de abraço na piscina",
+    "milestone": "rotina",
+    "date": "2026-06-14",
+    "s": true
+  },
+  "IMG_6413.MP4": {
+    "caption": "Noite de carro, sorrisos e paz",
+    "milestone": "outubro",
+    "date": "2026-10-06",
+    "s": true
+  },
+  "FullSizeRender-1.MOV": {
+    "caption": "Fortaleza • Maria vibrando no show",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "FullSizeRender-2.MOV": {
+    "caption": "Jantar e um brinde ao nosso amor",
+    "milestone": "rotina",
+    "date": "2026-09-07",
+    "s": true
+  },
+  "FullSizeRender-3.MOV": {
+    "caption": "O abraço sob as luzes do palco",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "FullSizeRender-4.MOV": {
+    "caption": "Passeio de carro e brincadeira de sempre",
+    "milestone": "rotina",
+    "date": "2026-08-10",
+    "s": true
+  },
+  "FullSizeRender-5.MOV": {
+    "caption": "A aliança brilhando na noite do pedido",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "favorite": true,
+    "s": true
+  },
+  "FullSizeRender-6.MOV": {
+    "caption": "De costas para o mundo, de frente para o nosso futuro",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "FullSizeRender-7.MOV": {
+    "caption": "Jericoacoara • Beijinho e sorriso de lado",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "FullSizeRender-8.MOV": {
+    "caption": "Jericoacoara • O carinho na praia",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "FullSizeRender-9.MOV": {
+    "caption": "Sorrisos reunidos em família",
+    "milestone": "familia",
+    "date": "2026-09-27"
+  },
+  "FullSizeRender.MOV": {
+    "caption": "Fortaleza • As luzes azuis do nosso pedido",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "IMG_3737.MP4": {
+    "caption": "Jericoacoara • Nossos sorrisos, beijos e dengo sob a cabana na praia",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "favorite": true
+  },
+  "IMG_3775.MP4": {
+    "caption": "Jericoacoara • Sol no rosto e a melhor companhia",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3812.MOV": {
+    "caption": "Jericoacoara • Beijinho sob o sol e a nossa energia inconfundível",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE"
+  },
+  "IMG_3823.MP4": {
+    "caption": "Jericoacoara • Fim de tarde na areia",
+    "milestone": "jeri",
+    "date": "2026-07-28",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3837.MOV": {
+    "caption": "Pôr do sol em Jericoacoara • A luz dourada no mar e a alegria da minha Bonequinha",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "favorite": true,
+    "chapter": 4
+  },
+  "IMG_3901.MOV": {
+    "caption": "Beleza radiante • O encanto, a elegância e o brilho do meu amor",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE"
+  },
+  "IMG_3909.MOV": {
+    "caption": "Jericoacoara • Caminhando pelas ruas de areia",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3979.MOV": {
+    "caption": "Jericoacoara • Vista de tirar o fôlego",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3997.MP4": {
+    "caption": "Jericoacoara • Águas mornas e cara de felicidade",
+    "milestone": "jeri",
+    "date": "2026-07-27",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_4879.MP4": {
+    "caption": "Pronta para o show do Luan Santana em Fortaleza • A noite do nosso pedido de casamento",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "favorite": true
+  },
+  "IMG_4919.MP4": {
+    "caption": "Fortaleza • Maria na luz azul do show",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "IMG_4947.MP4": {
+    "caption": "No show juntos • Ela nos meus ombros cantando e vibrando com a alma",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "favorite": true
+  },
+  "IMG_4949.MP4": {
+    "caption": "Fortaleza • O palco, a multidão e a nossa noite",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "A001_08152229_D133.MP4": {
+    "caption": "Fortaleza • Ao vivo na noite do pedido (1)",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "A001_08152317_D152.MP4": {
+    "caption": "Fortaleza • Ao vivo na noite do pedido (2)",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "A001_08152321_D155.MP4": {
+    "caption": "Fortaleza • Ao vivo na noite do pedido (3)",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "A001_08160005_D169.MP4": {
+    "caption": "Fortaleza • Ao vivo na noite do pedido (4)",
+    "milestone": "pedido",
+    "date": "2026-08-16",
+    "place": "Fortaleza, CE",
+    "s": true
+  },
+  "A001_08242001_D250.MP4": {
+    "hidden": true
+  },
+  "IMG_3015.MP4": {
+    "hidden": true
+  },
+  "IMG_6513.MP4": {
+    "hidden": true
+  },
+  "IMG_3918.MOV": {},
+  "IMG_3929.MOV": {},
+  "IMG_3954.MOV": {},
+  "IMG_3956.MOV": {},
+  "IMG_3736.MOV": {},
+  "IMG_0974.MOV": {},
+  "IMG_0975.MOV": {},
+  "IMG_1083.MOV": {},
+  "IMG_1861.MOV": {},
+  "WhatsApp Image 2026-10-28 at 14.31.07.jpeg": {
+    "caption": "O Príncipe e a sua Bonequinha no show do Luan Santana • um beijo sob as luzes azuis",
+    "alt": "João Guilherme, de coroa dourada, beija Maria Cândida no show do Luan Santana, com o palco azul ao fundo",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "favorite": true,
+    "film": true,
+    "focal": [
+      55,
+      45
+    ],
+    "s": true
+  },
+  "WhatsApp Video 2026-10-28 at 14.31.07 (1).mp4": {
+    "caption": "Um brinde ao nosso amor",
+    "milestone": "outubro",
+    "date": "2026-10-28",
+    "film": true,
+    "favorite": true,
+    "s": true
+  },
+  "WhatsApp Video 2026-10-28 at 14.31.07 (2).mp4": {
+    "caption": "Sem palavras: a emoção dela",
+    "milestone": "outubro",
+    "date": "2026-10-28",
+    "film": true,
+    "favorite": true,
+    "s": true
+  },
+  "WhatsApp Video 2026-10-28 at 14.31.07.mp4": {
+    "caption": "O sorriso que ilumina o meu dia",
+    "milestone": "outubro",
+    "date": "2026-10-28",
+    "film": true,
+    "favorite": true,
+    "s": true
+  }
 }

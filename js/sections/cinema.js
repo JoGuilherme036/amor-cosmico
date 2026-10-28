@@ -58,7 +58,10 @@
       pool = pool.slice().sort((a, b) => score(b) - score(a));
       const vids = pool.filter((m) => m.type === 'video').slice(0, Math.min(2, Math.ceil(c.n / 3)));
       const pics = pool.filter((m) => m.type === 'photo').slice(0, c.n - vids.length);
-      const picks = [...pics, ...vids].slice(0, c.n).sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+      // mídias marcadas com "film": true em curadoria.json entram SEMPRE no filme (e o capítulo cresce para caber)
+      const must = pool.filter((m) => m.film);
+      const base = [...pics, ...vids].filter((m) => !m.film).slice(0, Math.max(0, c.n - must.length));
+      const picks = [...must, ...base].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
       out.push({ type: 'title', date: c.date, title: c.title, sub: c.sub, dur: TITLE_MS, song: c.song });
       picks.forEach((m) => out.push({ type: 'media', m, dur: m.type === 'video' ? VIDEO_MS : PHOTO_MS, ms: c.date, song: c.song }));
     });
@@ -138,5 +141,5 @@
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
 
-  AC.cinema = { open, close, get isOpen() { return openFlag; } };
+  AC.cinema = { open, close, plan, get isOpen() { return openFlag; } };
 })();

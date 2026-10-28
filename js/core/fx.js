@@ -13,7 +13,10 @@
     let w = 0, h = 0, dpr = 1, stars = [], scrollY = 0, warp = 0, warpTarget = 0, shoot = null;
     const LAYERS = [{ s: 0.4, p: 0.02, a: 0.55 }, { s: 0.8, p: 0.05, a: 0.75 }, { s: 1.4, p: 0.1, a: 1 }];
 
+    // celular: só "algumas estrelas" — leve para a bateria e sem travar
+    const phone = matchMedia('(max-width: 820px)').matches || matchMedia('(pointer: coarse)').matches;
     function count() {
+      if (phone) return AC.prefs.starDensity === 'high' ? 110 : AC.prefs.starDensity === 'low' ? 40 : 70;
       const base = Math.round((w * h) / 9000);
       const d = { low: 0.45, medium: 0.8, high: 1.3 }[AC.prefs.starDensity] || 0.8;
       let n = base * d;
@@ -37,7 +40,7 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       build();
     }
-    let skip = 0; const lowFps = AC.weak();
+    let skip = 0; const lowFps = AC.weak() || phone;
     function frame(t, dt) {
       if (lowFps && (skip ^= 1)) return; // aparelhos fracos: 30 quadros por segundo bastam para o céu
       warp += (warpTarget - warp) * 0.06;

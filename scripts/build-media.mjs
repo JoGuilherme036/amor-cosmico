@@ -29,7 +29,17 @@ fs.mkdirSync(VID, { recursive: true });
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 
 const cura = fs.existsSync(CURA) ? JSON.parse(fs.readFileSync(CURA, 'utf8')) : {};
-const slug = (f) => path.basename(f, path.extname(f)).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 24);
+const usedIds = new Map();
+// id curto e ESTÁVEL; se dois arquivos truncarem igual (ex.: "WhatsApp Video … (1)" e "(2)"), ganha um sufixo curto do nome completo
+const slug = (f) => {
+  const base = path.basename(f, path.extname(f)).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  let id = base.slice(0, 24).replace(/-$/, '');
+  const kind = VIDEO_EXT.includes(path.extname(f).toLowerCase()) ? 'v' : 'p'; // foto e vídeo com o mesmo nome têm prefixos diferentes
+  const owner = usedIds.get(kind + id);
+  if (owner && owner !== f) id = id.slice(0, 18).replace(/-$/, '') + '-' + base.split('').reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7).toString(36).slice(0, 5);
+  usedIds.set(kind + id, f);
+  return id;
+};
 const exists = (p) => fs.existsSync(p) && fs.statSync(p).size > 0;
 
 // Datas de EXIF vêm "sem fuso"; tratamos como horário de Brasília (UTC-3) a partir do ISO em Z.
@@ -165,7 +175,7 @@ for (const f of [...photos.filter((p) => !cura[p]?.hidden), ...standalone]) {
     ...(it.type === 'photo' ? { base: it.base, widths: it.widths } : { file: it.file, poster: it.poster, duration: it.duration, hasAudio: it.hasAudio }),
     ...(it.live ? { live: it.live } : {}),
     width: it.width, height: it.height, date: date || null, milestone, chapter: cu.chapter ?? CHAPTER[milestone] ?? 2,
-    place: cu.place || '', caption: cu.caption || '', alt: cu.alt || '', tags: cu.tags || [], favorite: !!cu.favorite, suggested: !!cu.s,
+    place: cu.place || '', caption: cu.caption || '', alt: cu.alt || '', tags: cu.tags || [], favorite: !!cu.favorite, suggested: !!cu.s, ...(cu.film ? { film: true } : {}),
     focal: cu.focal || [50, it.type === 'photo' ? 40 : 40], hero: !!cu.hero, color: it.color, lqip: it.lqip,
   });
 }

@@ -7,11 +7,11 @@ const AC = window.AC;
 export function quality() {
   const mobile = matchMedia('(max-width: 820px)').matches || matchMedia('(pointer: coarse)').matches;
   const weak = AC.weak();
-  const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.6 : 1.75);
+  const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 1.75);
   return {
     mobile, weak, dpr,
     galaxy: weak ? 5000 : mobile ? 9000 : 18000,
-    finale: weak ? 2600 : mobile ? 4200 : 9000,
+    finale: weak ? 1800 : mobile ? 2800 : 9000,
     hearts: mobile ? 36 : 70
   };
 }

@@ -24,6 +24,10 @@
     return 'data:audio/wav;base64,' + btoa(String.fromCharCode(...b));
   })();
 
+  // iPhone/iPad ignoram element.volume (fica sempre 1): lá não existe crossfade — a troca é um corte limpo
+  const VOL_OK = (() => { try { const a = new Audio(); a.volume = 0.5; return a.volume === 0.5; } catch (_) { return false; } })();
+  let gen = 0; // "geração" da operação atual: operações antigas (async) que chegam atrasadas se abortam
+
   const T = {};
   NAMES.forEach((name) => {
     const el = new Audio(); el.preload = 'none'; el.loop = true; el.volume = 0;
@@ -36,8 +40,9 @@
   const pos = Object.assign({}, AC.store.read(K.time, {}));
 
   const fade = (el, to, ms = 600, done) => {
-    const from = el.volume, t0 = performance.now();
     cancelAnimationFrame(el._f);
+    if (!VOL_OK) { if (to === 0 && done) done(); return; } // sem controle de volume: só executa o "depois"
+    const from = el.volume, t0 = performance.now();
     const step = (t) => {
       const k = Math.min(1, (t - t0) / ms); el.volume = AC.clamp(from + (to - from) * k, 0, 1);
       if (k < 1) el._f = requestAnimationFrame(step); else if (done) done();
@@ -82,10 +87,14 @@
       if (AC.vault.unlocked && AC.vault.hasTrack(t.name)) { try { src = await AC.vault.trackUrl(t.name); } catch (_) { src = null; } }
       if (!src) src = t.local; // duplo clique / servidor local com os MP3
       return new Promise((res) => {
-        const ok = () => { cleanup(); t.ready = true; const p = pos[t.name]; if (p > 2 && p < (t.el.duration || 0) - 8) { try { t.el.currentTime = p; } catch (_) {} } AC.emit('music:meta', { duration: t.el.duration, track: t.name }); res(true); };
-        const bad = () => { cleanup(); t.failed = true; t.loading = null; res(false); };
-        const cleanup = () => { t.el.removeEventListener('loadedmetadata', ok); t.el.removeEventListener('error', bad); };
-        t.el.addEventListener('loadedmetadata', ok, { once: true }); t.el.addEventListener('error', bad, { once: true });
+        let done = false;
+        const finish = (good) => { if (done) return; done = true; t.el.removeEventListener('canplay', onOk); t.el.removeEventListener('error', onBad); clearTimeout(tm); if (!good) { t.failed = true; t.loading = null; } else t.ready = true; res(good); };
+        const onOk = () => finish(true), onBad = () => finish(false);
+        t.el.addEventListener('canplay', onOk, { once: true }); t.el.addEventListener('error', onBad, { once: true });
+        // posição salva + duração: quando os metadados chegarem (se chegarem)
+        t.el.addEventListener('loadedmetadata', () => { const p = pos[t.name]; if (p > 2 && p < (t.el.duration || 0) - 8) { try { t.el.currentTime = p; } catch (_) {} } AC.emit('music:meta', { duration: t.el.duration, track: t.name }); }, { once: true });
+        // iOS só baixa de verdade ao dar play(): não espere por "canplay" mais que ~0,7 s
+        const tm = setTimeout(() => finish(true), 700);
         t.el.preload = 'auto'; t.el.src = src; t.el.load();
       });
     })();
@@ -108,14 +117,27 @@
     startSynth();
   }
 
-  async function startTrack(t, fromStart) {
+  // só a faixa atual pode estar tocando — chamado depois de qualquer troca/pausa para garantir isso
+  function settle() {
+    NAMES.forEach((n) => { const el = T[n].el; if (el.paused) return; if (!S.playing || n !== S.track) { cancelAnimationFrame(el._f); el.pause(); } });
+  }
+
+  async function startTrack(t, fromStart, g) {
+    if (t.unlocking) await t.unlocking; // o "destravar" do iOS termina ANTES de a faixa real começar (senão ele a pausaria)
     const ok = await load(t);
+    if (g !== gen) return false; // chegou atrasada: outra troca/pausa já aconteceu
     if (!ok) { useSynth(); return false; }
     connectAnalyser(t);
     if (fromStart && !t.played) { try { t.el.currentTime = 0; } catch (_) {} }
-    t.el.volume = 0;
-    try { await t.el.play(); t.played = true; fade(t.el, targetVol(), 1400); return true; }
-    catch (e) { if (e && e.name === 'NotAllowedError') AC.toast('Toque em ▶ para ouvir a nossa música 🎶'); return false; }
+    if (VOL_OK) t.el.volume = 0;
+    try {
+      await t.el.play();
+      if (g !== gen) { t.el.pause(); return false; }
+      t.played = true; fade(t.el, targetVol(), 1400); return true;
+    } catch (e) {
+      if (e && e.name === 'NotAllowedError') AC.toast('Toque em ▶ para ouvir a nossa música 🎶');
+      return false;
+    }
   }
 
   AC.audio = {
@@ -125,33 +147,38 @@
     unlockGesture() {
       AC.ctx();
       if (unlocked) return; unlocked = true;
-      NAMES.forEach((n) => { const el = T[n].el; if (el.src) return; el.src = SILENT; const p = el.play(); if (p) p.then(() => el.pause()).catch(() => {}); });
+      NAMES.forEach((n) => { const t = T[n], el = t.el; if (el.src) return; el.src = SILENT; const p = el.play(); t.unlocking = p ? p.then(() => el.pause()).catch(() => {}).then(() => { t.unlocking = null; }) : null; });
       narr.load();
     },
     async playMusic() {
-      AC.ctx();
+      AC.ctx(); const g = ++gen;
       setState(true); // otimista: a interface responde na hora
-      const ok = await startTrack(cur(), S.track === 'pedido');
+      const ok = await startTrack(cur(), S.track === 'pedido', g);
+      if (g !== gen) return;
       if (!ok && !synth) setState(false);
+      settle();
       // a outra faixa já vai baixando em segundo plano
       NAMES.filter((n) => n !== S.track).forEach((n) => { if (AC.vault.unlocked) AC.vault.prefetch(n); });
     },
     pauseMusic() {
+      gen++;
       if (synth) stopSynth();
-      NAMES.forEach((n) => { const el = T[n].el; if (!el.paused) fade(el, 0, 500, () => { if (!S.playing) el.pause(); }); });
+      NAMES.forEach((n) => { const el = T[n].el; if (!el.paused) { if (VOL_OK) fade(el, 0, 500, () => { if (!S.playing) el.pause(); }); else el.pause(); } });
       setState(false);
     },
     toggleMusic() { return S.playing ? this.pauseMusic() : this.playMusic(); },
-    // troca de faixa com crossfade (auto = pelas zonas da página; manual = player)
+    // troca de faixa (auto = pelas zonas da página; manual = player). Com volume: crossfade; no iOS: corte limpo.
     async switchTo(name, { manual = false } = {}) {
       if (!T[name]) return;
       if (name === S.track) { if (manual) { AC.emit('music:track', { track: name, title: T[name].title, manual }); if (!S.playing) this.playMusic(); } return; }
-      const prev = cur(); S.track = name;
+      const prev = cur(); S.track = name; const g = ++gen;
       AC.emit('music:track', { track: name, title: T[name].title, manual });
       if (!S.playing) { if (manual) this.playMusic(); return; }
       if (synth) return; // sem MP3: o fundo sintetizado segue
-      fade(prev.el, 0, 1600, () => { if (S.track !== prev.name) prev.el.pause(); });
-      await startTrack(T[name], name === 'pedido');
+      if (VOL_OK) fade(prev.el, 0, 1600, () => { if (S.track !== prev.name || !S.playing) prev.el.pause(); });
+      else prev.el.pause();
+      await startTrack(T[name], name === 'pedido', g);
+      if (g === gen) settle();
     },
     setZone(name) { S.zone = name; return this.switchTo(name); },
     setVolume(v) {
@@ -201,20 +228,29 @@
       zones.forEach((z) => { const r = z.getBoundingClientRect(); cover += Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0)); });
       return cover / innerHeight >= 0.38 ? 'pedido' : 'principal';
     };
-    let timer = 0, lastState = null, lock = null;
+    let timer = 0, pending = null, lastState = null, lock = null, lastSwitch = 0;
+    const DWELL = 1100, COOLDOWN = 7000; // precisa ficar ~1 s na zona; e depois de trocar, espera 7 s antes de poder trocar de novo (sem vai-e-vem)
+    const cancel = () => { clearTimeout(timer); timer = 0; pending = null; };
     const evaluate = () => {
       const want = stateNow();
       if (lock !== null) { if (want === lock) return; lock = null; } // a escolha manual vale até a próxima mudança real de zona
-      if (want === lastState) return;
-      clearTimeout(timer);
+      if (want === lastState) { cancel(); return; }
+      if (pending === want) return; // já tem um cronômetro para esse destino: não reinicia (reavaliações frequentes não podem atrasar a troca)
+      cancel(); pending = want;
+      const wait = Math.max(DWELL, lastSwitch + COOLDOWN - performance.now());
       timer = setTimeout(() => {
-        if (lock !== null || stateNow() !== want) return; // confere de novo antes de trocar
-        lastState = want; if (!AC.cinema || !AC.cinema.isOpen) AC.audio.setZone(want);
-      }, 900);
+        pending = null;
+        if (lock !== null || stateNow() !== want) { evaluate(); return; } // mudou no meio do caminho: reavalia
+        lastState = want;
+        if (AC.cinema && AC.cinema.isOpen) return;
+        if (want !== AC.audio.track) lastSwitch = performance.now(); // a espera só vale quando a faixa MUDA de verdade (o estado inicial não conta)
+        AC.audio.setZone(want);
+      }, wait);
     };
     const io = new IntersectionObserver(evaluate, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1] });
     zones.forEach((z) => io.observe(z));
-    AC.on('music:track', (d) => { if (d.manual) { clearTimeout(timer); lock = stateNow(); lastState = d.track; } });
-    AC.on('zone:recheck', () => { lastState = null; evaluate(); });
+    AC.on('music:track', (d) => { if (d.manual) { cancel(); lock = stateNow(); lastState = d.track; lastSwitch = performance.now(); } });
+    AC.on('zone:recheck', () => { lastState = null; lastSwitch = 0; evaluate(); });
+    addEventListener('scroll', AC.debounce(evaluate, 250), { passive: true }); // garante reavaliar quando a rolagem para (o observer sozinho pode perder um salto)
   };
 })();
