@@ -107,8 +107,8 @@
     splitTitle();
     const cfg = AC.CONFIG.hero;
     const orbit = AC.getMany(cfg.orbit); AC.afterLoad(() => buildOrbit(orbit), 350); // anel de fotos entra logo após o retrato principal
+    const m = AC.get(cfg.main); if (m) $('#hero-badge').textContent = badgeText(m); // antes do rótulo acessível, que copia este texto
     heroRotation(AC.getMany(cfg.rotation));
-    const m = AC.get(cfg.main); if (m) $('#hero-badge').textContent = badgeText(m);
     clock(); phrases(); parallax(); warp();
     $('#cta-cinema').addEventListener('click', () => AC.cinema.open());
   };

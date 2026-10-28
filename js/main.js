@@ -220,8 +220,6 @@
   function boot() {
     AC.applyPrefs();
     dividers();
-    // blur-up (LQIP) chega depois da 1ª pintura
-    AC.afterLoad(() => { const s = document.createElement('script'); s.src = 'js/data/lqip.js' + (window.AC_BUILD ? '?v=' + window.AC_BUILD : ''); document.head.appendChild(s); }, 0);
     // Primeiro o que aparece na tela (portão, nav, hero); o resto entra em fatias para não travar o 1º desenho.
     // o 3D só carrega quando (a) a página terminou de montar e (b) o portão foi aberto — e num momento ocioso
     let gateOpen = false, built = false;
@@ -248,6 +246,8 @@
         g.addEventListener('pointerdown', go, { once: true }); g.addEventListener('input', go, { once: true }); g.addEventListener('keydown', go, { once: true });
         AC.on('gate:open', go);
       });
+      // blur-up (LQIP) só serve às seções: chega junto com elas
+      { const s = document.createElement('script'); s.src = 'js/data/lqip.js' + (window.AC_BUILD ? '?v=' + window.AC_BUILD : ''); document.head.appendChild(s); }
       for (const [name, fn] of later) { safe(name, fn); await yieldNow(); }
       safe('studio', () => AC.studio.load());
       safe('revelação', () => AC.reveal(document));
