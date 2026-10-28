@@ -150,7 +150,7 @@
     if (window.VAULT) { code.hidden = false; rememberWrap.hidden = false; code.placeholder = need ? AC.CONFIG.gate.hint : 'Senha (opcional)'; }
     // a música (cifrada, ~6 MB) começa a baixar quando tocam no campo de senha — ou logo depois da página carregar.
     // Não baixa junto com a primeira pintura, para a tela de entrada aparecer rápido no 4G.
-    if (need) { const pre = () => AC.vault.prefetch('principal'); code.addEventListener('focus', pre, { once: true }); code.addEventListener('input', pre, { once: true }); }
+    if (need) { const pre = () => AC.vault.prefetch('principal'); code.addEventListener('pointerdown', pre, { once: true }); code.addEventListener('input', pre, { once: true }); /* (não no focus: o portão foca o campo sozinho) */ }
     // aparelho já autorizado? entra só com um toque
     AC.vault.restore().then((ok) => { if (ok) { code.hidden = true; rememberWrap.hidden = true; err.textContent = 'Bem-vindos de volta 🤍'; AC.afterLoad(() => AC.vault.prefetch('principal'), 1200); } });
     return new Promise((res) => {
