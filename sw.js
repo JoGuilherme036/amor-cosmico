@@ -2,7 +2,7 @@
    Camadas: (1) casca do site = pré-cache; (2) imagens/fontes/scripts = guardados ao serem vistos;
    (3) vídeos e músicas = só rede (arquivos grandes, com "range").
    A versão (V) é trocada automaticamente pelo scripts/bundle.mjs a cada publicação. */
-const V = 'amor-cosmico-9bd22a7867';
+const V = 'amor-cosmico-057b682274';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'build/site.css', 'build/app.js', 'assets/fx/grain.png', 'assets/icons/icon-192.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(V).then((c) => c.addAll(SHELL.map((u) => new Request(u, { cache: 'reload' })))).catch(() => {}).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== V).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });

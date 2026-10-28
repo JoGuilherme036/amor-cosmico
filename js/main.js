@@ -239,7 +239,15 @@
     ];
     const yieldNow = () => new Promise((r) => setTimeout(r, 0));
     (async () => {
-      await new Promise((res) => AC.afterLoad(res, 700)); // só depois que o retrato principal já apareceu
+      // Com portão: monta as seções quando alguém interage com ele (toca/digita) ou quando ele abre —
+      // atrás do portão ninguém as vê, então não faz sentido gastar CPU antes. Sem portão: logo após o carregamento.
+      await new Promise((res) => {
+        const g = document.getElementById('gate');
+        if (!g) { AC.afterLoad(res, 700); return; }
+        let done = false; const go = () => { if (!done) { done = true; res(); } };
+        g.addEventListener('pointerdown', go, { once: true }); g.addEventListener('input', go, { once: true }); g.addEventListener('keydown', go, { once: true });
+        AC.on('gate:open', go);
+      });
       for (const [name, fn] of later) { safe(name, fn); await yieldNow(); }
       safe('studio', () => AC.studio.load());
       safe('revelação', () => AC.reveal(document));
