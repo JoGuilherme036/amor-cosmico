@@ -30,9 +30,9 @@ ok('lightbox avança', await ev(() => /^2 \//.test(document.querySelector('.lb__
 await p.keyboard.press('Escape'); await sleep(600);
 ok('lightbox fecha', await ev(() => !document.querySelector('.lb').classList.contains('is-on')));
 await ev(() => document.querySelector('#g-milestones [data-ms=jeri]').click()); await sleep(600);
-ok('filtro Jericoacoara (29)', await ev(() => document.querySelector('#g-count').textContent.startsWith('29')));
+ok('filtro Jericoacoara (contagem confere com o manifesto)', await ev(() => document.querySelector('#g-count').textContent.startsWith(String(AC.MEDIA.filter((m) => m.milestone === 'jeri').length))));
 await ev(() => { const i = document.querySelector('#g-search'); i.value = 'portal'; i.dispatchEvent(new Event('input')); }); await sleep(800);
-ok('busca "portal"', await ev(() => { const n = document.querySelectorAll('#masonry .tile').length; return n >= 1 && n < 5; }));
+ok('busca "portal"', await ev(() => { const n = document.querySelectorAll('#masonry .tile').length; return n >= 1 && n < 8; }));
 await ev(() => { const i = document.querySelector('#g-search'); i.value = ''; i.dispatchEvent(new Event('input')); document.querySelector('#g-milestones [data-ms=all]').click(); }); await sleep(400);
 await ev(() => window.scrollTo(0, 0)); await sleep(300);
 await ev(() => document.querySelector('#cta-cinema').click()); await sleep(5000); await shot('cinema');

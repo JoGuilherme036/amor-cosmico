@@ -664,5 +664,284 @@
     "film": true,
     "favorite": true,
     "s": true
+  },
+  "FullSizeRender-12-b.JPEG": {
+    "caption": "Selfie na praia de Jericoacoara • sol, sorriso e a melhor companhia",
+    "alt": "João e Maria sorrindo em selfie na praia, ele de óculos escuros, com palhoças ao fundo",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "favorite": true,
+    "s": true
+  },
+  "IMG_3917.JPEG": {
+    "caption": "Girassóis, espelho e a gente",
+    "alt": "João e Maria fazendo selfie em um espelho cercado de girassóis amarelos sob um teto de palha",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "live": "IMG_3917.MOV",
+    "s": true
+  },
+  "IMG_3930.JPEG": {
+    "caption": "Portal do Paraíso • a gente dentro do portal",
+    "alt": "João e Maria abraçados dentro do grande arco de pedra do Portal do Paraíso",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "live": "IMG_3930.MOV",
+    "favorite": true,
+    "s": true
+  },
+  "IMG_3931.JPEG": {
+    "caption": "Portal do Paraíso • mais um abraço",
+    "alt": "Casal abraçado no centro do Portal do Paraíso, cercado de vegetação",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3946.JPEG": {
+    "caption": "Jericoacoara • A árvore de corações, vista de cima",
+    "alt": "Casal sobre a plataforma da árvore de corações, sobre a lagoa azul",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3946.MOV",
+    "favorite": true
+  },
+  "IMG_3947.JPEG": {
+    "caption": "Jericoacoara • No centro da árvore de corações",
+    "alt": "João e Maria no meio da plataforma da árvore de corações",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3947.MOV"
+  },
+  "IMG_3948.JPEG": {
+    "caption": "Jericoacoara • De mãos dadas sobre a lagoa",
+    "alt": "Casal de mãos dadas sobre a árvore de corações, com barcos ao fundo",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3948.MOV"
+  },
+  "IMG_3949.JPEG": {
+    "caption": "Jericoacoara • Pertinho, sobre a lagoa",
+    "alt": "João e Maria bem juntinhos na árvore de corações",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3949.MOV"
+  },
+  "IMG_3950.JPEG": {
+    "caption": "Jericoacoara • Abraço sobre as águas cristalinas",
+    "alt": "Casal abraçado sobre a árvore de corações desenhada no deque",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3951.JPEG": {
+    "caption": "Jericoacoara • Só nós dois no meio da lagoa",
+    "alt": "Casal sobre a plataforma de corações, com a lagoa verde e azul ao redor",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3951.MOV"
+  },
+  "IMG_3952.JPEG": {
+    "caption": "Jericoacoara • Ele me levantou e o mundo girou",
+    "alt": "João levanta Maria no colo sobre a árvore de corações",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3952.MOV"
+  },
+  "IMG_3953.JPEG": {
+    "caption": "Jericoacoara • O giro, o riso e a lagoa",
+    "alt": "João gira Maria no colo sobre a plataforma de corações",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3953.MOV"
+  },
+  "IMG_3955.JPEG": {
+    "caption": "Jericoacoara • Nosso momento mais leve em Jeri",
+    "alt": "Maria no colo de João sobre a árvore de corações, vista de cima",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true,
+    "live": "IMG_3955.MOV",
+    "favorite": true
+  },
+  "IMG_3973.JPEG": {
+    "caption": "Jericoacoara • abraçados na passarela, de frente para o mar",
+    "alt": "João abraça Maria por trás em uma passarela de madeira com a lagoa ao fundo",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3974.JPEG": {
+    "caption": "Jericoacoara • o olhar que diz tudo",
+    "alt": "Casal abraçado na passarela, olhando para a lagoa sob um céu muito azul",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3975.JPEG": {
+    "caption": "Jericoacoara • sorriso de vestido branco",
+    "alt": "Maria de vestido branco sorrindo ao lado de João na passarela de madeira",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3976.JPEG": {
+    "caption": "Jericoacoara • juntinhos sob o céu azul",
+    "alt": "João abraça Maria na passarela, com barcos e a lagoa ao fundo",
+    "milestone": "jeri",
+    "date": "2026-07-26",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "FullSizeRender-6-b.JPEG": {
+    "caption": "Parceiros também no treino",
+    "alt": "Maria e João posando juntos em uma academia",
+    "milestone": "rotina",
+    "date": "2026-08-10",
+    "s": true
+  },
+  "IMG_3833.MOV": {
+    "caption": "Pôr do sol em Jericoacoara • o dia terminando em ouro",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "favorite": true,
+    "s": true
+  },
+  "A001_07252203_D061.MP4": {
+    "caption": "Jericoacoara • música ao vivo na noite de Jeri",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "copy_3FAAB561-12D2-4AC2-A909-1407D4944998.MP4": {
+    "caption": "Jericoacoara • mergulho de selfie nas águas mornas",
+    "milestone": "jeri",
+    "date": "2026-07-28",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "FullSizeRender-9-b.MOV": {
+    "caption": "Jericoacoara • sorrisos na praia",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3778.MP4": {
+    "caption": "Jericoacoara • passeando pelas ruas de areia",
+    "milestone": "jeri",
+    "date": "2026-07-25",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "IMG_3999.MP4": {
+    "caption": "Jericoacoara • rindo na lagoa",
+    "milestone": "jeri",
+    "date": "2026-07-27",
+    "place": "Jericoacoara, CE",
+    "s": true
+  },
+  "A001_08150938_D125.MP4": {
+    "caption": "15.08 • o dia do nosso sim começou de mãos dadas na praia",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "film": true,
+    "favorite": true,
+    "s": true
+  },
+  "FullSizeRender-10.MOV": {
+    "caption": "Fortaleza • o beijo sob as luzes azuis do show",
+    "milestone": "pedido",
+    "date": "2026-08-15",
+    "place": "Fortaleza, CE",
+    "film": true,
+    "favorite": true,
+    "s": true
+  },
+  "IMG_1547.MP4": {
+    "caption": "Dia dos Namorados • abrindo os presentes, um de cada vez (vídeo completo)",
+    "milestone": "rotina",
+    "date": "2026-06-12",
+    "favorite": true,
+    "s": true
+  },
+  "IMG_2235.MP4": {
+    "caption": "O reencontro • o abraço no portão",
+    "milestone": "rotina",
+    "date": "2026-07-01",
+    "s": true
+  },
+  "97C60B58-9C36-440D-8ED8-9DA501192022.MP4": {
+    "caption": "Bom dia, meu amor",
+    "milestone": "rotina",
+    "date": "2026-07-07",
+    "s": true
+  },
+  "d6e6e5492edf4a00b8b80012119053a8.MP4": {
+    "caption": "Acordando pertinho de você",
+    "milestone": "rotina",
+    "date": "2026-07-13",
+    "s": true
+  },
+  "A3FAFBF0-4C8E-43F7-BE98-7EC7AF21F566.MP4": {
+    "caption": "Um recado de perto",
+    "milestone": "rotina",
+    "date": "2026-07-19",
+    "s": true
+  },
+  "IMG_5137.MP4": {
+    "caption": "Prontas para sair, de roupão e sorriso",
+    "milestone": "rotina",
+    "date": "2026-08-22",
+    "s": true
+  },
+  "IMG_5211.MP4": {
+    "caption": "Emoção no carro • risadas e lágrimas de felicidade",
+    "milestone": "rotina",
+    "date": "",
+    "s": true
+  },
+  "IMG_5918.MP4": {
+    "caption": "Sobremesa e conversa boa",
+    "milestone": "rotina",
+    "date": "2026-09-19",
+    "s": true
+  },
+  "IMG_6436.MP4": {
+    "caption": "Mais um dia ao seu lado",
+    "milestone": "outubro",
+    "date": "",
+    "s": true
+  },
+  "ABC6BF02-60F6-465C-97F9-740D8693FB10_0847933B-C329-4B57-9EC2-AA24173E23AA_BF0C1520-2330-4BF7-93D2-0DB0124BB51C_remux.mp4": {
+    "caption": "Um oi de pertinho",
+    "milestone": "rotina",
+    "date": "",
+    "s": true
   }
 }

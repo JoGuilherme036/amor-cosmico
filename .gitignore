@@ -21,3 +21,8 @@ qa-prints/
 *.log
 .DS_Store
 Thumbs.db
+
+# temporários de importação
+.tmp-*
+.dedupe.json
+.renomeados.json

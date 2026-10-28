@@ -1,6 +1,6 @@
 # 💫 Amor Cósmico — João Guilherme & Maria Cândida
 
-Álbum interativo do casal: história em 6 capítulos, linha do tempo, galeria com **97 memórias (52 fotos + 45 vídeos)**, cenas em **3D** (galáxia, alianças, Galáxia de Memórias, iniciais e coração de estrelas), trilha que muda para **"Chuva de Arroz"** no pedido, narração, raspadinha, mural de promessas, cápsula do tempo e um **filme** automático.
+Álbum interativo do casal: história em 6 capítulos, linha do tempo, galeria com **137 memórias (71 fotos + 66 vídeos, 19 com Live Photo)**, cenas em **3D** (galáxia, alianças, Galáxia de Memórias, iniciais e coração de estrelas), trilha que muda para **"Chuva de Arroz"** no pedido, narração, raspadinha, mural de promessas, cápsula do tempo e um **filme** automático.
 
 **Site publicado:** https://joguilherme036.github.io/amor-cosmico/
 **Senha do portão:** você sabe qual é 🤍 (ela não está escrita em nenhum arquivo do projeto)
@@ -59,6 +59,8 @@ Sem banco, cada celular guarda só o que escreveu nele. Com o **Supabase** (grá
 1. Jogue o arquivo em `assets/originais/`.
 2. `cd scripts` → `npm run build` → `npm run bundle`.
 3. Publique (seção 7).
+
+**Mídia repetida:** para conferir um lote novo contra o que já existe (mesmo arquivo ou a mesma cena regravada), rode `node dedupe.mjs <pasta-do-lote>` em `scripts/` antes de copiar. **Vídeos entram inteiros** (sem corte); os longos ganham compressão maior para não pesar.
 
 Para uma mídia **entrar sempre no filme**, ponha `"film": true` nela em `scripts/curadoria.json`.
 

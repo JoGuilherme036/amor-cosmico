@@ -19,8 +19,9 @@ const OUT = path.join(ROOT, 'js/data/media.js');
 const CURA = path.join(ROOT, 'scripts/curadoria.json');
 const FORCE = process.argv.includes('--force');
 const WIDTHS = [480, 960, 1600, 2400];
-const MAX_VIDEO_SECONDS = 75; // vídeos longos (shows, etc.) são cortados aqui para o site não ficar pesado
-const LONG_VIDEO = 30; // acima disso usa compressão mais forte
+// Vídeos entram INTEIROS (sem corte). Para não pesar, a taxa de bits cai conforme a duração:
+//   ≤ 30 s: qualidade alta · 30–120 s: média · > 120 s: orçamento de tamanho (≤ ~70 MB por arquivo; o GitHub recusa arquivos > 100 MB)
+const MAX_FILE_MB = 70;
 const PHOTO_EXT = ['.jpg', '.jpeg', '.png'];
 const VIDEO_EXT = ['.mp4', '.mov'];
 
@@ -117,12 +118,17 @@ async function doVideo(f) {
   const out = path.join(VID, id + '.mp4');
   const posterJpg = path.join(VID, id + '-poster.jpg');
   const posterWebp = path.join(VID, id + '-poster.webp');
-  const long = pr.dur > MAX_VIDEO_SECONDS, heavy = pr.dur > LONG_VIDEO;
-  const scale = pr.w >= pr.h ? 'scale=-2:min(720\\,ih)' : 'scale=min(720\\,iw):-2';
+  const longClip = pr.dur > 120, mid = pr.dur > 30;
+  // orçamento para vídeos longos: kbps de vídeo = (MB * 8000 / duração) − áudio
+  const budgetK = Math.max(450, Math.floor((MAX_FILE_MB * 8000) / pr.dur) - 64);
+  const vk = longClip ? Math.min(2000, budgetK) : mid ? 2000 : 3000;
+  const crf = longClip ? '31' : mid ? '29' : '27';
+  const portrait = pr.h > pr.w, side = pr.dur > 300 ? 540 : 720; // >5 min: 540p mantém a nitidez com poucos kbps
+  const scale = pr.w >= pr.h ? `scale=-2:min(${side}\\,ih)` : `scale=min(${side}\\,iw):-2`; // a barra invertida protege a vírgula no filtro do ffmpeg
   if (FORCE || !exists(out)) {
-    const args = ['-i', src, ...(long ? ['-t', String(MAX_VIDEO_SECONDS)] : []), '-vf', scale + ',fps=30,format=yuv420p',
-      '-c:v', 'libx264', '-preset', 'veryfast', '-crf', heavy ? '29' : '27', '-maxrate', heavy ? '2M' : '3M', '-bufsize', heavy ? '4M' : '6M', '-profile:v', 'high', '-movflags', '+faststart',
-      ...(pr.audio ? ['-c:a', 'aac', '-b:a', '96k', '-ac', '2'] : ['-an']), out + '.part.mp4'];
+    const args = ['-i', src, '-vf', scale + ',fps=30,format=yuv420p',
+      '-c:v', 'libx264', '-preset', longClip ? 'fast' : 'veryfast', '-crf', crf, '-maxrate', vk + 'k', '-bufsize', vk * 2 + 'k', '-profile:v', 'high', '-movflags', '+faststart',
+      ...(pr.audio ? ['-c:a', 'aac', '-b:a', '64k', '-ac', '2'] : ['-an']), out + '.part.mp4'];
     await ffmpeg(args);
     fs.renameSync(out + '.part.mp4', out); // só vira "pronto" se o ffmpeg terminou
   }
@@ -145,7 +151,7 @@ async function doVideo(f) {
   const c = st.dominant;
   const m = await sharp(posterJpg).metadata();
   const created = pr.created ? brt(pr.created) : null;
-  items.set(f, { id, type: 'video', orig: f, thumb: `assets/video/${id}-t.webp`, file: `assets/video/${id}.mp4`, poster: `assets/video/${id}-poster`, width: m.width, height: m.height, duration: Math.round(Math.min(pr.dur, MAX_VIDEO_SECONDS)), hasAudio: pr.audio, date: created, color: `rgb(${c.r},${c.g},${c.b})`, lqip: 'data:image/webp;base64,' + tiny.toString('base64') });
+  items.set(f, { id, type: 'video', orig: f, thumb: `assets/video/${id}-t.webp`, file: `assets/video/${id}.mp4`, poster: `assets/video/${id}-poster`, width: m.width, height: m.height, duration: Math.round(pr.dur), hasAudio: pr.audio, date: created, color: `rgb(${c.r},${c.g},${c.b})`, lqip: 'data:image/webp;base64,' + tiny.toString('base64') });
 }
 
 console.log(`Fotos: ${photos.length} · Vídeos: ${videos.length}`);
@@ -168,7 +174,7 @@ for (const f of [...photos.filter((p) => !cura[p]?.hidden), ...standalone]) {
   const cu = cura[f] || {};
   const live = liveOf.get(f);
   if (live) it.live = live.file;
-  const date = cu.date || it.date;
+  const date = cu.date === '' ? null : (cu.date || it.date); // "date": "" = sem data (evita mostrar a data de exportação)
   const milestone = cu.milestone || milestoneFor(date);
   list.push({
     id: it.id, type: it.type, orig: it.orig, thumb: it.thumb,

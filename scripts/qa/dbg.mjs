@@ -4,6 +4,6 @@ const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css
 const srv = http.createServer((req, res) => { const p = decodeURIComponent(req.url.split('?')[0]); const f = path.join(ROOT, p === '/' ? 'index.html' : p); if (!fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); } res.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(res); }).listen(0);
 const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args: ['--no-sandbox'] });
 const p = await b.newPage(); await p.setViewport({ width: 390, height: 844 });
-await p.goto(`http://localhost:${srv.address().port}/index.html?portao=0`, { waitUntil: 'networkidle2' }); await new Promise((r) => setTimeout(r, 2500));
-console.log(await p.evaluate(`(()=>{${fs.readFileSync(process.argv[2], 'utf8')}})()`));
+await p.goto(`http://localhost:${srv.address().port}/index.html?portao=0`, { waitUntil: 'load', timeout: 60000 }); await new Promise((r) => setTimeout(r, 2500));
+console.log(await p.evaluate(`(async()=>{${fs.readFileSync(process.argv[2], "utf8")}})()`));
 await b.close(); srv.close();
