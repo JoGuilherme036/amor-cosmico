@@ -43,6 +43,9 @@
       header.classList.toggle('is-scrolled', y > 20);
       header.classList.toggle('is-hidden', y > lastY + 6 && y > 320 && !document.body.classList.contains('is-locked'));
       if (y < lastY - 6) header.classList.remove('is-hidden');
+      // mini player: some ao rolar para baixo, volta ao rolar para cima (ou quando a rolagem para)
+      const mini = document.getElementById('mini');
+      if (mini) { const down = y > lastY + 4 && y > 200; if (down) mini.classList.add('is-away'); else if (y < lastY - 4) mini.classList.remove('is-away'); clearTimeout(onScroll._t); onScroll._t = setTimeout(() => mini.classList.remove('is-away'), 1400); }
       lastY = y; bar.style.transform = `scaleX(${max > 0 ? (y / max).toFixed(4) : 0})`;
     };
     window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive: true }); onScroll();
