@@ -107,7 +107,7 @@ AC.CHAPTERS = [
     blocks: [
       { after: 0, type: 'pair', polaroid: true, items: ['FullSizeRender-2.JPEG', 'FullSizeRender-7.JPEG'] },
       { after: 1, type: 'wide', item: 'IMG_4947.MP4' },
-      { after: 1, type: 'strip', items: ['FullSizeRender-6.JPEG', 'FullSizeRender-4.JPEG', 'FullSizeRender-1.JPEG', 'IMG_4879.MP4', '092604e1-3d36-4d25-b935-56bb243468a0.mp4', 'FullSizeRender-5.MOV'] }
+      { after: 1, type: 'strip', items: ['FullSizeRender-6.JPEG', 'FullSizeRender-4.JPEG', 'FullSizeRender-1.JPEG', 'IMG_4879.MP4', 'FullSizeRender-5.MOV'] }
     ]
   },
   {
