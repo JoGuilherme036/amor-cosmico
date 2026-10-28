@@ -142,6 +142,21 @@
     document.addEventListener('keydown', (e) => { pos = e.key === seq[pos] ? pos + 1 : (e.key === seq[0] ? 1 : 0); if (pos === seq.length) { pos = 0; AC.starRain(); AC.toast('Mensagem secreta: eu te escolheria em todos os universos. 🤍', 6000); } });
   }
 
+  /* ---------- retomar de onde parou (se o navegador do celular recarregar a página sozinho) ---------- */
+  const SCROLL_KEY = 'amor_cosmico_scroll_v1';
+  const savedScroll = () => { try { const s = JSON.parse(sessionStorage.getItem(SCROLL_KEY) || 'null'); if (s && Date.now() - s.t < 30 * 60 * 1000 && s.y > 600) return s.y; } catch (_) {} return 0; };
+  const RESUME_Y = savedScroll(); // lido ANTES de qualquer rolagem sobrescrever o valor
+  function trackScroll() {
+    let t = 0;
+    addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(() => { try { sessionStorage.setItem(SCROLL_KEY, JSON.stringify({ y: Math.round(scrollY), t: Date.now() })); } catch (_) {} }, 400); }, { passive: true });
+  }
+  function resumeScroll() {
+    if (!RESUME_Y) return;
+    const jump = () => { if (scrollY < 120) window.scrollTo(0, RESUME_Y); };
+    jump(); setTimeout(jump, 700); setTimeout(jump, 1800);
+    AC.toast('Retomamos de onde você parou 🤍', 3200);
+  }
+
   /* ---------- portão de entrada (senha do casal no link publicado) ---------- */
   function gate() {
     const g = $('#gate'), form = $('#gate-form'), code = $('#gate-code'), err = $('#gate-err'), openBtn = $('#gate-open');
@@ -155,7 +170,8 @@
     // Não baixa junto com a primeira pintura, para a tela de entrada aparecer rápido no 4G.
     if (need) { const pre = () => AC.vault.prefetch('principal'); code.addEventListener('pointerdown', pre, { once: true }); code.addEventListener('input', pre, { once: true }); /* (não no focus: o portão foca o campo sozinho) */ }
     // aparelho já autorizado? entra só com um toque
-    AC.vault.restore().then((ok) => { if (ok) { code.hidden = true; rememberWrap.hidden = true; err.textContent = 'Bem-vindos de volta 🤍'; AC.afterLoad(() => AC.vault.prefetch('principal'), 1200); } });
+    const restored = AC.vault.restore();
+    restored.then((ok) => { if (ok) { code.hidden = true; rememberWrap.hidden = true; err.textContent = 'Bem-vindos de volta 🤍'; AC.afterLoad(() => AC.vault.prefetch('principal'), 1200); } });
     return new Promise((res) => {
       let busy = false;
       const enter = (withSound) => {
@@ -181,6 +197,8 @@
         enter(withSound);
       };
       form.addEventListener('submit', (e) => { e.preventDefault(); attempt(true); });
+      // página recarregada sozinha no meio da leitura: entra direto (sem som) e volta ao ponto onde estava
+      if (RESUME_Y) { if (!need) setTimeout(() => attempt(false), 200); else restored.then((ok) => { if (ok) attempt(false); }); }
       $('#gate-silent').addEventListener('click', () => attempt(false));
       setTimeout(() => (need && !code.hidden ? code : openBtn).focus({ preventScroll: true }), 300);
     });
@@ -262,6 +280,7 @@
       built = true; maybeCosmos();
       document.documentElement.dataset.ready = '1';
       AC.emit('ready');
+      resumeScroll(); trackScroll();
     })();
     pwa();
   }

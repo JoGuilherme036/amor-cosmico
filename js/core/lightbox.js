@@ -85,7 +85,7 @@
   /* ---------- slide atual ---------- */
   const lbSrc = (m) => {
     if (m.src) return m.src;
-    const need = Math.min(window.innerWidth * Math.min(window.devicePixelRatio || 1, 2.5), 2400);
+    const need = Math.min(window.innerWidth * Math.min(window.devicePixelRatio || 1, 2), 1600); // 2x basta: 3x só gastaria memória do iPhone
     const w = m.widths.find((x) => x >= need) || m.widths[m.widths.length - 1];
     return `${m.base}-${w}.webp`;
   };
@@ -122,9 +122,9 @@
       liveBtn.onclick = () => playLive(m);
       stage.appendChild(liveBtn);
     }
-    $$('.lb__thumb', thumbsEl).forEach((t, k) => { const on = k === idx; t.classList.toggle('is-current', on); t.setAttribute('aria-selected', on); if (on) t.scrollIntoView({ inline: 'center', block: 'nearest', behavior: first || AC.reduced() ? 'auto' : 'smooth' }); });
+    $$('.lb__thumb', thumbsEl).forEach((t, k) => { const on = k === idx; t.classList.toggle('is-current', on); t.setAttribute('aria-selected', on); if (on) centerThumb(t, first); });
     // pré-carrega vizinhas
-    [1, -1, 2].forEach((d) => { const n = items[(idx + d + items.length) % items.length]; if (n && n.type === 'photo') { const i = new Image(); i.src = lbSrc(n); } });
+    [1, -1].forEach((d) => { const n = items[(idx + d + items.length) % items.length]; if (n && n.type === 'photo') { const i = new Image(); i.src = lbSrc(n); } });
     if (slideOn) armSlide(m);
   }
   function playLive(m) {
@@ -153,6 +153,8 @@
   }
   AC.on('db:ready', async () => { try { AC.hearts = await AC.db.heartCounts(); if (openFlag) paintCap(items[idx]); } catch (_) {} });
 
+  // centraliza a miniatura SÓ dentro da faixa (scrollIntoView dentro de um elemento fixo rola a página inteira no Safari do iPhone)
+  function centerThumb(t, instant) { const box = thumbsEl; if (!box) return; box.scrollTo({ left: t.offsetLeft - box.clientWidth / 2 + t.clientWidth / 2, behavior: instant || AC.reduced() ? 'auto' : 'smooth' }); }
   function go(d) { if (!openFlag) return; idx = (idx + d + items.length) % items.length; show(d); }
   function buildThumbs() {
     thumbsEl.innerHTML = items.map((m, k) => `<button type="button" class="lb__thumb" role="tab" aria-label="Ir para ${k + 1}" data-i="${k}"><div class="ph ph--static" style="--ph:${m.color || '#14152a'}"><img src="${AC.tileSrc(m)}" alt="" loading="lazy" decoding="async" style="opacity:1;position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div></button>`).join('');

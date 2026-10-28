@@ -18,7 +18,7 @@
     const list = pick(t.match); t._list = list;
     const thumbs = list.map((m, i) => `
       <button type="button" class="tl-thumb ${i === 0 ? 'tl-thumb--lead' : ''}" data-i="${i}" aria-label="Abrir: ${AC.esc(m.caption)}">
-        ${AC.ph(m, { sizes: i === 0 ? '290px' : '170px', ratio: false })}
+        ${AC.ph(m, { sizes: i === 0 ? '200px' : '115px', ratio: false })}
         ${m.type === 'video' ? `<span class="play-badge">${AC.icon('i-play')}${AC.fmtTime(m.duration)}</span>` : ''}
       </button>`).join('');
     const media = list.length ? `

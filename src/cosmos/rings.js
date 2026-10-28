@@ -21,7 +21,7 @@ function diamondGeometry(s) {
 
 export function mountRings(stage, Q) {
   const canvas = stage.querySelector('.rings3d__canvas');
-  const renderer = makeRenderer(canvas, { antialias: true, dpr: Math.min(window.devicePixelRatio || 1, 2) });
+  const renderer = makeRenderer(canvas, { antialias: !Q.mobile, dpr: Math.min(window.devicePixelRatio || 1, Q.mobile ? 1.5 : 2) }); // celular: sem antialias e menos pixels (memória)
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 60); camera.position.set(0, -0.45, 7.2); // câmera um pouco abaixo: as alianças sobem e não encostam na legenda

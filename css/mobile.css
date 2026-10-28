@@ -162,3 +162,11 @@
   .story-hud, .toasts { bottom: calc(62px + var(--sa-b)); }
   .footer { padding-bottom: calc(90px + var(--sa-b)); }
 }
+
+/* Altura FIXA nas partes que mudam de texto (troca de música, frases): se encolhessem acima do que a pessoa está lendo,
+   o navegador "puxaria" a página e daria um pulo de rolagem. */
+.player__title { min-height: 2.05em; display: flex; align-items: flex-end; }
+.player__artist { min-height: 3em; }
+.player { overflow-anchor: none; }
+.hero__phrase { overflow-anchor: none; }
+.tracks .track__t { min-height: 2.6em; }

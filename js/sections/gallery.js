@@ -33,7 +33,7 @@
   function fill(el) {
     const m = AC.get(el.dataset.id); if (!m || el.dataset.ready) return; el.dataset.ready = '1';
     const vid = m.type === 'video' && (m.duration || 0) <= 12 && !m.src ? `<video data-src="${m.file}" muted loop playsinline preload="none" aria-hidden="true"></video>` : '';
-    const ph = AC.ph(m, { sizes: '(min-width:1000px) 25vw, (min-width:640px) 33vw, 50vw', ratio: false });
+    const ph = AC.ph(m, { sizes: '(min-width:1000px) 25vw, (min-width:640px) 22vw, 125px', ratio: false });
     const body = vid ? ph.replace(/<\/div>$/, vid + '</div>') : ph;
     const badge = m.type === 'video' ? `<span class="play-badge">${AC.icon('i-play')}${m.duration ? AC.fmtTime(m.duration) : ''}</span>` : m.live ? `<span class="play-badge play-badge--live">LIVE</span>` : '';
     const meta = [AC.dispShort(m), m.place ? m.place.split(',')[0] : ''].filter(Boolean).join(' • ');
@@ -44,16 +44,31 @@
     const v = el.querySelector('video[data-src]'); if (v) AC.autoVideo(v);
   }
 
+  // Descarrega o conteúdo de tiles que ficaram longe da tela (libera imagens decodificadas e vídeos).
+  // O esqueleto (caixa com proporção + blur-up) permanece, então o layout não muda.
+  function unfill(el) {
+    if (!el.dataset.ready) return;
+    const v = el.querySelector('video'); if (v) { clearTimeout(v._u); if (v._io) v._io.disconnect(); v.pause(); v.removeAttribute('src'); v.load(); }
+    el.innerHTML = ''; delete el.dataset.ready;
+  }
+  let vio = null;
+  function watch(els) {
+    if (!('IntersectionObserver' in window)) { els.forEach((e) => { fill(e); e.classList.add('is-in'); }); return; }
+    if (!vio) vio = new IntersectionObserver((entries) => entries.forEach((en) => { if (en.isIntersecting) { fill(en.target); en.target.classList.add('is-in'); } else unfill(en.target); }), { rootMargin: '800px 0px 800px 0px' });
+    els.forEach((e) => vio.observe(e));
+  }
+
   function renderMore() {
     if (shown >= view.length) return;
     const from = shown, chunk = view.slice(from, from + BATCH); shown += chunk.length;
     const tpl = document.createElement('div'); tpl.innerHTML = chunk.map((m, i) => skeleton(m, i)).join('');
     const els = Array.from(tpl.children); els.forEach((e) => host.appendChild(e));
-    AC.io(els, (el, on) => { if (on) { fill(el); el.classList.add('is-in'); } }, { once: true, threshold: 0, margin: '600px 0px 600px 0px' });
+    watch(els);
   }
 
   function render() {
     view = compute(); shown = 0;
+    if (vio) { vio.disconnect(); vio = null; }
     host.innerHTML = ''; $('#g-empty').hidden = view.length > 0;
     const p = view.filter((m) => m.type === 'photo').length, v = view.length - p;
     $('#g-count').textContent = view.length ? `${view.length} memórias • ${p} fotos • ${v} vídeos` : '';

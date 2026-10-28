@@ -142,15 +142,21 @@
   let currentAuto = null;
   AC.autoVideo = (video, { max = 40 } = {}) => {
     if (AC.lite()) return;
-    AC.io(video.closest('.ph, .frame') || video, (el, on) => {
+    video._io = AC.io(video.closest('.ph, .frame') || video, (el, on) => {
       if (on) {
+        clearTimeout(video._u);
         if (currentAuto && currentAuto !== video) currentAuto.pause();
         if (video.dataset.src && !video.src) video.src = video.dataset.src;
         video.muted = true; video.loop = true; video.playsInline = true;
         const p = video.play(); if (p && p.catch) p.catch(() => {});
         currentAuto = video;
         video.closest('.ph')?.classList.add('is-playing');
-      } else { video.pause(); }
+      } else {
+        video.pause();
+        // iPhone: decodificador de vídeo parado também gasta memória → solta o arquivo depois de alguns segundos fora da tela
+        clearTimeout(video._u);
+        if (video.dataset.src) video._u = setTimeout(() => { video.removeAttribute('src'); video.load(); const ph = video.closest('.ph'); if (ph) ph.classList.remove('is-playing'); }, 4000);
+      }
     }, { threshold: 0.6 });
   };
 

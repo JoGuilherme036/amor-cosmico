@@ -23,7 +23,14 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: clip; /* clip (e não hidden): não cria contêiner de rolagem, então position: sticky funciona */
 }
-body.is-locked { overflow: hidden; }
+/* Travar a rolagem do fundo com overflow:hidden no <body> faz o Safari do iPhone pular a página para o topo.
+   No computador mantemos; no toque, as camadas (lightbox, gavetas, filme…) usam touch-action e overscroll-behavior. */
+@media (hover: hover) and (pointer: fine) { body.is-locked { overflow: hidden; } }
+@media (hover: none), (pointer: coarse) {
+  body.is-locked { overscroll-behavior: none; }
+  .lb, .cine, .sw, .mg, .gate, .scrim, .modal { touch-action: none; }
+  .modal__panel, .drawer { touch-action: pan-y; overscroll-behavior: contain; }
+}
 img, picture, video, canvas, svg { display: block; max-width: 100%; }
 img, video { height: auto; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }

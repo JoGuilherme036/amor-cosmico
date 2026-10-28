@@ -71,7 +71,7 @@
 
   function slideFor(m) {
     const el = document.createElement('div'); el.className = 'cine__slide';
-    const src = m.type === 'video' ? m.poster + '.jpg' : (m.src || `${m.base}-${m.widths.find((w) => w >= Math.min(innerWidth * (devicePixelRatio || 1), 1600)) || m.widths[m.widths.length - 1]}.webp`);
+    const src = m.type === 'video' ? m.poster + '.jpg' : (m.src || `${m.base}-${m.widths.find((w) => w >= Math.min(innerWidth * Math.min(devicePixelRatio || 1, 2), 1600)) || m.widths[m.widths.length - 1]}.webp`);
     const bg = document.createElement('div'); bg.className = 'cine__bg'; bg.innerHTML = `<img alt="" src="${m.thumb || src}">`; el.appendChild(bg);
     let media;
     if (m.type === 'video') { media = document.createElement('video'); media.muted = true; media.playsInline = true; media.preload = 'auto'; media.poster = src; media.src = m.file; media.className = 'cine__media'; }

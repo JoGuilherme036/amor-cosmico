@@ -1,0 +1,15 @@
+// Mede o "peso" de imagens decodificadas e vídeos carregados ao rolar a página inteira (proxy da memória do iPhone)
+import puppeteer from 'puppeteer-core'; import http from 'http'; import fs from 'fs'; import path from 'path'; import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..'); const page = process.argv[2] || 'index.html';
+const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.avif': 'image/avif', '.jpg': 'image/jpeg', '.png': 'image/png', '.mp4': 'video/mp4', '.woff2': 'font/woff2' };
+const srv = http.createServer((req, res) => { const p = decodeURIComponent(req.url.split('?')[0]); const f = path.join(ROOT, p === '/' ? 'index.html' : p); if (!fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); } const st = fs.statSync(f), ext = path.extname(f), range = req.headers.range; if (range) { const [a, b] = range.replace('bytes=', '').split('-'); const s = +a, e = b ? +b : st.size - 1; res.writeHead(206, { 'Content-Type': MIME[ext] || 'application/octet-stream', 'Content-Range': `bytes ${s}-${e}/${st.size}`, 'Accept-Ranges': 'bytes', 'Content-Length': e - s + 1 }); fs.createReadStream(f, { start: s, end: e }).pipe(res); } else { res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream', 'Content-Length': st.size, 'Accept-Ranges': 'bytes' }); fs.createReadStream(f).pipe(res); } }).listen(0);
+const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args: ['--no-sandbox'] });
+const p = await b.newPage(); await p.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 3 }); // iPhone: 3x
+await p.goto(`http://localhost:${srv.address().port}/${page}?portao=0`, { waitUntil: 'load', timeout: 60000 }); await new Promise((r) => setTimeout(r, 3500));
+await p.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+const snap = () => p.evaluate(() => { let px = 0, n = 0; document.querySelectorAll('img').forEach((i) => { if (i.complete && i.naturalWidth) { px += i.naturalWidth * i.naturalHeight; n++; } }); const vids = [...document.querySelectorAll('video')].filter((v) => v.getAttribute('src') || v.src); return { mb: Math.round(px * 4 / 1e6), imgs: n, vids: vids.length, y: Math.round(scrollY) }; });
+const total = await p.evaluate(() => document.documentElement.scrollHeight); let peak = { mb: 0 }, last;
+for (let y = 0; y < total; y += 500) { await p.evaluate((y) => window.scrollTo(0, y), y); await new Promise((r) => setTimeout(r, 120)); last = await snap(); if (last.mb > peak.mb) peak = last; }
+await new Promise((r) => setTimeout(r, 1500)); last = await snap(); if (last.mb > peak.mb) peak = last;
+console.log(`página ${page}: altura ${total}px · pico de imagens decodificadas ≈ ${peak.mb} MB (${peak.imgs} imagens, ${peak.vids} vídeos com src) em y=${peak.y} · no final ≈ ${last.mb} MB`);
+await b.close(); srv.close();
