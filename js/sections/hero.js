@@ -51,7 +51,9 @@
       setTimeout(() => old.forEach((o) => o.remove()), 1400);
       badge.textContent = badgeText(m); label();
     };
-    setInterval(() => { if (!document.hidden && !AC.lightbox.isOpen) swap((cur + 1) % rot.length); }, 7500);
+    // só começa a trocar depois que o portão abre (atrás dele ninguém vê — e não atrapalha o carregamento)
+    const startRot = () => setInterval(() => { if (!document.hidden && !AC.lightbox.isOpen) swap((cur + 1) % rot.length); }, 7500);
+    if (document.getElementById('gate')) AC.on('gate:open', startRot); else startRot();
   }
 
   function clock() {

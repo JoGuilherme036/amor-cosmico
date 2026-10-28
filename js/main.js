@@ -150,9 +150,9 @@
     if (window.VAULT) { code.hidden = false; rememberWrap.hidden = false; code.placeholder = need ? AC.CONFIG.gate.hint : 'Senha (opcional)'; }
     // a música (cifrada, ~6 MB) começa a baixar quando tocam no campo de senha — ou logo depois da página carregar.
     // Não baixa junto com a primeira pintura, para a tela de entrada aparecer rápido no 4G.
-    if (need) { const pre = () => AC.vault.prefetch('principal'); code.addEventListener('focus', pre, { once: true }); AC.afterLoad(pre, 2500); }
+    if (need) { const pre = () => AC.vault.prefetch('principal'); code.addEventListener('focus', pre, { once: true }); code.addEventListener('input', pre, { once: true }); }
     // aparelho já autorizado? entra só com um toque
-    AC.vault.restore().then((ok) => { if (ok) { code.hidden = true; rememberWrap.hidden = true; err.textContent = 'Bem-vindos de volta 🤍'; } });
+    AC.vault.restore().then((ok) => { if (ok) { code.hidden = true; rememberWrap.hidden = true; err.textContent = 'Bem-vindos de volta 🤍'; AC.afterLoad(() => AC.vault.prefetch('principal'), 1200); } });
     return new Promise((res) => {
       let busy = false;
       const enter = (withSound) => {
@@ -226,7 +226,7 @@
     // o 3D só carrega quando (a) a página terminou de montar e (b) o portão foi aberto — e num momento ocioso
     let gateOpen = false, built = false;
     const maybeCosmos = () => { if (gateOpen && built) (window.requestIdleCallback || ((f) => setTimeout(f, 300)))(() => safe('3D', loadCosmos), { timeout: 2500 }); };
-    safe('portão', () => gate().then(() => { AC.startShooters(); gateOpen = true; maybeCosmos(); }));
+    safe('portão', () => gate().then(() => { AC.startShooters(); gateOpen = true; AC.emit('gate:open'); maybeCosmos(); }));
     safe('nav', nav);
     safe('hero', AC.initHero);
     safe('gavetas', prefsUi);
