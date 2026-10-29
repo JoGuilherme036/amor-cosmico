@@ -20,7 +20,8 @@ function rpc(fn, body) {
   if (fn === 'capsule_count') return [200, DB.capsule.length];
   if (fn === 'hearts_add') { DB.hearts.push(body.p_media); return [204, null]; }
   if (fn === 'heart_counts') { const m = {}; DB.hearts.forEach((h) => (m[h] = (m[h] || 0) + 1)); return [200, Object.entries(m).map(([media_id, total]) => ({ media_id, total }))]; }
-  return [404, { message: 'função desconhecida' }];
+  if (fn === 'photos_list') return [200, []]; if (fn === 'photos_ids') return [200, []];
+  return [404, { message: 'função desconhecida: ' + fn }];
 }
 const srv = http.createServer((req, res) => {
   const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS' };
@@ -81,8 +82,9 @@ else {
   if (mode !== 'file') ok('cofre: música decifrada (Blob)', await ev(() => (AC.audio.tracks.principal.el.src || '').startsWith('blob:')));
 }
 
-// 3D
-await ev(() => window.scrollTo(0, 400)); await sleep(500);
+// 3D (desktop: carrega logo; celular: só ao chegar perto das alianças/final)
+if (W <= 820) { ok('celular: 3D ainda NÃO carregou no início (poupa dados)', await ev(() => !(AC.cosmos && AC.cosmos.ready))); await ev(() => document.querySelector('[data-rings]').scrollIntoView({ block: 'center' })); await sleep(800); }
+else { await ev(() => window.scrollTo(0, 400)); await sleep(500); }
 for (let i = 0; i < 20 && !(await ev(() => !!(AC.cosmos && AC.cosmos.ready))); i++) await sleep(500);
 ok('3D carregou (AC.cosmos.ready)', await ev(() => !!(AC.cosmos && AC.cosmos.ready)));
 // desktop: galáxia 3D no fundo · celular/tablet (<= 820 px ou toque): NÃO monta a galáxia (só o céu 2D leve)
@@ -111,7 +113,7 @@ await shot('final-coracao');
 
 // galáxia de memórias
 await ev(() => document.querySelector('#galeria').scrollIntoView()); await sleep(800);
-await ev(() => document.querySelector('#g-starwall').click()); await sleep(2500); await shot('memorias');
+await ev(() => document.querySelector('#g-starwall').click()); await sleep(3500); await shot('memorias');
 const memOk = mode !== 'file' ? await ev(() => !!document.querySelector('.mg.is-on')) : await ev(() => !!document.querySelector('.sw.is-on'));
 ok(mode !== 'file' ? 'Galáxia de Memórias 3D abre' : 'Parede de Estrelas 2D abre (file://)', memOk);
 await p.keyboard.press('Escape'); await sleep(700);

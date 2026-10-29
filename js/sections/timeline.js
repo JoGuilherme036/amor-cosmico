@@ -56,11 +56,12 @@
     // nós acendem; espinha se preenche
     $$('.tl-item', host).forEach((it, i) => it.style.setProperty('--rd', '0ms'));
     AC.io($$('.tl-item', host), (el, on) => el.classList.toggle("is-lit", on), { threshold: 0.3 });
+    const fill = host.querySelector('.timeline__fill');
     let tick = false;
     const upd = () => {
       tick = false; const r = host.getBoundingClientRect(), vh = innerHeight;
       const p = AC.clamp((vh * 0.6 - r.top) / (r.height), 0, 1);
-      host.style.setProperty('--progress', p.toFixed(4));
+      fill.style.transform = `scaleY(${p.toFixed(4)})`; // direto no elemento: uma variável CSS no container seria herdada por todas as miniaturas
     };
     window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
     upd();

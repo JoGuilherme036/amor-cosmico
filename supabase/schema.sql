@@ -89,8 +89,56 @@ create or replace function public.heart_counts(p_token text) returns table (medi
 language plpgsql stable security definer set search_path = public as $$
 begin perform public.ac_guard(p_token); return query select h.media_id, count(*) from public.hearts h group by h.media_id; end $$;
 
+-- ---------- fotos enviadas por vocês dois (guardadas no banco, em base64) ----------
+-- A foto já chega redimensionada (≤ 1600 px, ~400 KB) e uma miniatura de ~30 KB. A lista traz só as miniaturas;
+-- a foto inteira é buscada sob demanda (photos_get) quando alguém abre a imagem.
+create table if not exists public.photos (
+  id          bigint generated always as identity primary key,
+  author      text not null check (char_length(author) between 1 and 40),
+  caption     text not null default '' check (char_length(caption) <= 200),
+  mime        text not null default 'image/jpeg' check (mime in ('image/jpeg', 'image/webp', 'image/png')),
+  w           int  not null default 0,
+  h           int  not null default 0,
+  thumb       text not null check (char_length(thumb) <= 150000),
+  data        text not null check (char_length(data) <= 1600000),
+  created_at  timestamptz not null default now()
+);
+alter table public.photos enable row level security;
+revoke all on public.photos from anon, authenticated;
+
+create or replace function public.photos_add(p_token text, p_author text, p_caption text, p_mime text, p_w int, p_h int, p_thumb text, p_data text) returns bigint
+language plpgsql security definer set search_path = public as $$
+declare r bigint;
+begin perform public.ac_guard(p_token);
+  insert into public.photos (author, caption, mime, w, h, thumb, data)
+  values (left(trim(p_author), 40), left(coalesce(trim(p_caption), ''), 200), p_mime, greatest(p_w, 0), greatest(p_h, 0), p_thumb, p_data) returning id into r;
+  return r; end $$;
+
+-- lista só as NOVAS (id > p_after), sem a foto inteira
+create or replace function public.photos_list(p_token text, p_after bigint default 0)
+returns table (id bigint, author text, caption text, mime text, w int, h int, thumb text, created_at timestamptz)
+language plpgsql stable security definer set search_path = public as $$
+begin perform public.ac_guard(p_token);
+  return query select p.id, p.author, p.caption, p.mime, p.w, p.h, p.thumb, p.created_at from public.photos p where p.id > p_after order by p.id limit 60; end $$;
+
+-- só os números de id (barato): serve para o site saber quais fotos foram apagadas
+create or replace function public.photos_ids(p_token text) returns setof bigint
+language plpgsql stable security definer set search_path = public as $$
+begin perform public.ac_guard(p_token); return query select p.id from public.photos p order by p.id; end $$;
+
+create or replace function public.photos_get(p_token text, p_id bigint) returns text
+language plpgsql stable security definer set search_path = public as $$
+declare r text;
+begin perform public.ac_guard(p_token); select p.data into r from public.photos p where p.id = p_id; return r; end $$;
+
+create or replace function public.photos_delete(p_token text, p_id bigint) returns void
+language plpgsql security definer set search_path = public as $$
+begin perform public.ac_guard(p_token); delete from public.photos where id = p_id; end $$;
+
 -- só as funções ficam expostas
 revoke execute on all functions in schema public from public;
 grant execute on function public.vows_list(text), public.vows_add(text, text, text), public.vows_delete(text, bigint),
   public.capsule_add(text, text, text), public.capsule_count(text), public.capsule_list(text),
-  public.hearts_add(text, text), public.heart_counts(text) to anon;
+  public.hearts_add(text, text), public.heart_counts(text),
+  public.photos_add(text, text, text, text, int, int, text, text), public.photos_list(text, bigint), public.photos_ids(text),
+  public.photos_get(text, bigint), public.photos_delete(text, bigint) to anon;

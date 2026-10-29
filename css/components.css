@@ -39,7 +39,7 @@
   transition: all var(--d-base) var(--ease); white-space: nowrap;
 }
 .chip:hover { color: var(--t-strong); border-color: var(--glass-line-strong); }
-.chip[aria-pressed="true"] { color: #1a1208; background: var(--c-gold); border-color: var(--c-gold); font-weight: 600; }
+.chip[aria-pressed="true"], .chip[aria-checked="true"] { color: #1a1208; background: var(--c-gold); border-color: var(--c-gold); font-weight: 600; }
 .chip .n { opacity: 0.7; font-size: 0.8em; }
 .chip[aria-pressed="true"] .n { opacity: 0.9; }
 

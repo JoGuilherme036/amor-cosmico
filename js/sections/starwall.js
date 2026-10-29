@@ -55,4 +55,12 @@
     if (untrap) untrap(); if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
   AC.starwall = { open, close };
+  // Galáxia de Memórias: 3D (Three.js) se disponível; senão a Parede de Estrelas 2D. No celular o 3D só baixa na hora do toque.
+  AC.galaxy = (items) => {
+    const c = AC.cosmos;
+    if (c && c.openMemories) { try { c.openMemories(items); return; } catch (_) { /* cai para o 2D */ } }
+    if (AC.isFile || !AC.loadCosmos) { open(items); return; }
+    AC.toast('Preparando a galáxia…', 2200);
+    AC.loadCosmos().then(() => { const c2 = AC.cosmos; if (c2 && c2.openMemories) { try { c2.openMemories(items); return; } catch (_) {} } open(items); }).catch(() => open(items));
+  };
 })();

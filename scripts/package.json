@@ -12,7 +12,8 @@
     "qa": "node qa/interact.mjs ../qa-prints 390x844",
     "encrypt": "node encrypt-audio.mjs",
     "cosmos": "node build-cosmos.mjs",
-    "bundle": "node bundle.mjs"
+    "bundle": "node bundle.mjs",
+    "sql": "node make-sql.mjs"
   },
   "dependencies": {
     "esbuild": "^0.28.2",

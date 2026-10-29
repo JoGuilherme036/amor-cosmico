@@ -36,23 +36,32 @@ npm run bundle
 Depois publique (seção 7). Quem marcou "lembrar" vai precisar digitar a senha nova.
 
 ### No celular
+- Feito e testado também no **WebKit** (o motor do Safari/iPhone): o cartão do universo vira certo, a rolagem não pula e o envio de fotos funciona.
+- Para poupar bateria e memória no celular: sem desfoque de fundo, sem Ken Burns, sem brilho animado e o 3D só baixa quando a pessoa chega perto das alianças/final.
 - A **galáxia 3D de fundo só aparece no computador**. No celular o fundo é um céu leve com poucas estrelas (mais bateria, sem travadas). As alianças, a Galáxia de Memórias e o coração do final continuam.
 - No iPhone o volume do navegador não pode ser alterado por código, então lá a troca para "Chuva de Arroz" é um corte limpo (no Android e no computador há transição suave).
 - Depois de trocar de música automaticamente, o site espera 7 s antes de poder trocar de novo, para não ficar "pulando" ao rolar rápido.
 
-## 3. Banco de dados (mural, cápsula e curtidas compartilhados)
+## 3. Banco de dados e fotos enviadas pela Maria
 
-Sem banco, cada celular guarda só o que escreveu nele. Com o **Supabase** (grátis), o que um escreve aparece para o outro. Leva ~5 minutos:
+Com o **Supabase** (grátis) o que um escreve ou envia aparece para o outro: **mural de promessas, cápsula do tempo, curtidas e as fotos novas**. Sem ele, cada celular guarda só o que fez nele (e as fotos enviadas ficam só no aparelho de quem enviou).
 
-1. Crie uma conta em **supabase.com** → *New project* (região São Paulo).
-2. No projeto: **SQL Editor** → cole todo o conteúdo de **`supabase/schema.local.sql`** (gerado no seu PC pelo `npm run encrypt`, **não está no GitHub**, porque contém a "impressão digital" da senha) → **Run**.
-3. **Project Settings → API**: copie a *Project URL* e a chave **anon public** para `js/config.js`:
+### Ligar o banco (uns 5 minutos, uma vez só)
+1. Crie uma conta em **supabase.com** → *New project* (região South America / São Paulo; anote a senha do banco, mas ela não é a do site).
+2. Gere o SQL com a **senha do portão**: `cd scripts` → `npm run sql -- --senha "a senha do portão"`. Ele confere a senha e cria `supabase/schema.local.sql` (esse arquivo **não vai para o GitHub**).
+3. No Supabase: **SQL Editor** → cole todo o conteúdo de `supabase/schema.local.sql` → **Run**. (Pode rodar de novo quando houver novidades: ele é seguro para repetir.)
+4. **Project Settings → API**: copie a *Project URL* e a chave **anon public** para `js/config.js`:
    ```js
    db: { url: 'https://xxxx.supabase.co', anonKey: 'eyJ...' },
    ```
-4. `cd scripts` → `npm run bundle` → publique.
+   (a chave *anon* é pública por desenho: sozinha ela não lê nem grava nada — tudo exige a senha.)
+5. `cd scripts` → `npm run bundle` → publique (seção 7). Pronto.
 
-**Segurança:** as tabelas ficam fechadas. O site só fala com o banco por funções que exigem o "token da sala", derivado da senha no navegador. Quem não tem a senha não lê nem escreve nada. A cápsula do tempo só pode ser lida a partir de **15.08.2027**, e as mensagens dela não podem ser apagadas.
+### Como a Maria envia fotos
+Na **Galeria**, cartão **“Nossas fotos novas” → Enviar fotos** (também em *Preferências*). Ela escolhe **João** ou **Maria** (fica lembrado no aparelho), escolhe as fotos e pronto: cada foto é reduzida no próprio celular (de ~5 MB para ~200 KB) e guardada no banco. Aparece na hora para ela e, em até ~25 segundos (ou ao reabrir o site), para o João, no filtro **“Enviadas por nós”**. Dentro da imagem há o botão de lixeira (toque duas vezes) — apagar vale para os dois.
+- **Vídeos** ficam só no aparelho de quem enviou (grandes demais para o plano grátis). Para um vídeo entrar de vez, use a pasta `assets/originais` (seção 4).
+- Plano grátis: 500 MB de banco ≈ **1.500+ fotos**.
+- **Segurança:** as tabelas ficam fechadas; só quem tem a senha do portão lê ou grava. A cápsula só abre em 15.08.2027.
 
 ## 4. Adicionar uma foto ou vídeo novo (3 passos)
 
@@ -83,12 +92,16 @@ Depois de editar: `cd scripts` → `npm run bundle`. O `index.html` é **gerado*
 |---|---|
 | `npm install` | instala as ferramentas (uma vez; precisa do Node.js LTS) |
 | `npm run build` | otimiza fotos/vídeos de `assets/originais` |
-| `npm run encrypt -- --senha "..."` | criptografa as músicas e gera o SQL do banco |
+| `npm run encrypt -- --senha "..."` | criptografa as músicas (gera **novo** cofre — quem marcou “lembrar” terá de digitar a senha de novo) |
+| `npm run sql -- --senha "..."` | só gera o SQL do banco, sem mexer nas músicas nem no cofre |
 | `npm run cosmos` | empacota as cenas 3D (Three.js) |
 | `npm run bundle` | gera `index.html` + `build/` (CSS/JS minificados) |
 | `npm run serve` | abre em http://localhost:8080 |
 | `AC_SENHA="..." node qa/interact.mjs prints 390x844` | testes de aceite (cofre, música, 3D, banco simulado) |
 | `node qa/regression.mjs prints 390x844` | testes de regressão (galeria, lightbox, filme…) |
+| `AC_SENHA="..." node qa/photos.mjs` | testa o envio de fotos ponta a ponta (Maria envia → João vê → apaga), com um banco de mentira |
+| `AC_SENHA="..." node qa/scrollkeep.mjs http 390 844` | a rolagem não pode pular ao abrir imagens/modais; testa também a retomada após recarregar |
+| `node qa/memory.mjs index.html` | mede a memória das imagens ao rolar a página inteira (iPhone) |
 | `AC_SENHA="..." node qa/audio.mjs normal` ou `ios` | testa só a troca de música (celular normal e iPhone simulado) |
 
 ## 7. Publicar uma atualização

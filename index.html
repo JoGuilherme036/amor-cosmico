@@ -22,7 +22,16 @@
 <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 <link rel="preload" as="image" type="image/avif" href="assets/img/p-img-3842-480.avif" imagesrcset="assets/img/p-img-3842-480.avif 480w, assets/img/p-img-3842-960.avif 960w, assets/img/p-img-3842-1600.avif 1600w" imagesizes="(min-width:900px) 34vw, 62vw" fetchpriority="high">
 <link rel="preload" href="assets/fonts/CormorantGaramond-500-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="build/site.css?v=250025a3fe">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="build/site.css?v=5bf65dce12">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -104,7 +113,7 @@
   </div>
   <div class="drawer__group"><h3>Minhas memórias</h3>
     <p style="color:var(--t-soft);font-size:var(--fs-sm);margin-bottom:12px">Adicione fotos ou vídeos novos só neste aparelho. Para entrarem de vez no site, jogue na pasta <b>assets/originais</b> e rode o script (veja o LEIA-ME).</p>
-    <label class="btn btn--sm" style="cursor:pointer"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plus"/></svg>Adicionar memórias<input type="file" id="studio-input" accept="image/*,video/*" multiple hidden></label>
+    <button type="button" class="btn btn--sm" id="btn-upload-prefs"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plus"/></svg>Enviar fotos e vídeos</button><input type="file" id="studio-input" accept="image/*,video/*" multiple hidden>
     <div id="studio-list" style="margin-top:14px;display:grid;gap:8px"></div>
   </div>
 </aside>
@@ -234,6 +243,11 @@
       <h2 class="display">Galeria</h2>
       <p class="lead" id="gallery-lead">Fotos e vídeos de cada momento.</p>
     </header>
+    <div class="upload-card reveal" id="upload-card">
+      <div class="upload-card__ico" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><use href="#i-camera"/></svg></div>
+      <div class="upload-card__txt"><b>Nossas fotos novas</b><small id="upload-note">A Maria e o João podem enviar fotos aqui — elas aparecem para os dois.</small></div>
+      <button type="button" class="btn btn--primary" id="btn-upload"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plus"/></svg>Enviar fotos</button>
+    </div>
     <div class="gallery-tools" id="gallery-tools">
       <div class="chips" id="g-milestones" role="group" aria-label="Filtrar por marco"></div>
       <div class="gallery-tools__row">
@@ -408,6 +422,23 @@
   </div>
 </div>
 
+<div class="modal" id="upload-modal" role="dialog" aria-modal="true" aria-labelledby="upload-title" aria-hidden="true">
+  <div class="modal__panel upload">
+    <button type="button" class="btn btn--icon btn--ghost modal__close" data-close-upload aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button>
+    <span class="badge">Memórias novas</span>
+    <h3 id="upload-title">Enviar fotos</h3>
+    <p class="upload__lead" id="upload-lead">Escolha as fotos e elas entram na galeria.</p>
+    <div class="upload__who" role="radiogroup" aria-label="Quem está enviando?">
+      <button type="button" class="chip" role="radio" data-who="João" aria-checked="false">João</button>
+      <button type="button" class="chip" role="radio" data-who="Maria" aria-checked="false">Maria</button>
+    </div>
+    <div class="field"><label for="upload-caption">Legenda (opcional)</label><input class="input" id="upload-caption" maxlength="120" placeholder="Ex.: nosso passeio de domingo"></div>
+    <label class="btn btn--primary upload__pick" id="upload-pick" aria-disabled="true"><svg class="ico" viewBox="0 0 24 24"><use href="#i-image"/></svg>Escolher fotos<input type="file" id="upload-input" accept="image/*,video/*" multiple hidden></label>
+    <ul class="upload__list" id="upload-list" aria-live="polite"></ul>
+    <p class="upload__foot" id="upload-foot"></p>
+  </div>
+</div>
+
 <div class="mini" id="mini" hidden>
   <button type="button" class="mini__play" id="mini-play" aria-label="Tocar a música"><svg class="ico ico--fill" viewBox="0 0 24 24"><use href="#i-play"/></svg></button>
   <div class="mini__txt"><b id="mini-title">Dia, Lugar e Hora</b><small id="mini-note">a nossa trilha</small></div>
@@ -463,6 +494,32 @@
   </defs>
 </svg>
 
-<script src="build/app.js?v=250025a3fe"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="build/app.js?v=5bf65dce12"></script>
 </body>
 </html>

@@ -170,3 +170,48 @@
 .player { overflow-anchor: none; }
 .hero__phrase { overflow-anchor: none; }
 .tracks .track__t { min-height: 2.6em; }
+
+/* ============================================================
+   v4 — iPhone/Safari: cartão que vira + desempenho em telas de toque
+   ============================================================ */
+
+/* Virar o cartão: o Safari ignora backface-visibility quando há filtros/camadas dentro, então o controle de
+   qual face aparece é por VISIBILIDADE (trocada no meio da rotação). Funciona em qualquer navegador. */
+.ucard__face { transition: visibility 0s linear 0.5s; }
+.ucard__face--front { visibility: visible; }
+.ucard__face--back { visibility: hidden; }
+.ucard.is-flipped .ucard__face--front { visibility: hidden; }
+.ucard.is-flipped .ucard__face--back { visibility: visible; }
+
+@media (hover: none), (pointer: coarse) {
+  /* 1) Sem desfoque de fundo (backdrop-filter recalcula a cada quadro de rolagem e esquenta o iPhone) — fundos um pouco mais opacos no lugar */
+  *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .btn { --b-bg: rgba(30, 30, 62, 0.78); }
+  .btn--primary { --b-bg: transparent; }
+  .btn--ghost { --b-bg: rgba(20, 20, 44, 0.5); }
+  .glass, .frame--glass { background: rgba(20, 20, 46, 0.72); }
+  .float-cap, .toast, .hero__badge { background: rgba(8, 8, 18, 0.88); }
+  .header.is-scrolled { background: rgba(5, 5, 10, 0.94); }
+  .bottom-nav { background: rgba(10, 10, 24, 0.95); }
+  .drawer { background: rgba(14, 15, 34, 0.98); }
+  .modal { background: rgba(2, 2, 8, 0.93); }
+  .mini { background: rgba(16, 12, 36, 0.96); }
+  .story-hud { background: rgba(14, 15, 34, 0.96); }
+  .story-index a { background: rgba(8, 8, 20, 0.9); }
+  .scrim { background: rgba(2, 2, 8, 0.72); }
+  .dream__top .badge, .dream__ico { background: rgba(8, 8, 18, 0.85); }
+
+  /* 2) Nada de animação infinita em imagens grandes (Ken Burns) nem filtros de desfoque no título */
+  .hero__frame .ph img, .chapter__media .ph img, .chapter__media .ph video, .scratch__photo img { animation: none !important; transform: none; }
+  .hero__title .ch { filter: none; animation-name: charInLite; }
+  @keyframes charInLite { to { opacity: 1; transform: none; } }
+  .orbit__halo { filter: none; animation: none; opacity: 0.8; }
+  .grain { display: none !important; }
+  .ph::after { display: none; } /* o brilho animado de "carregando" rodava em ~100 miniaturas ao mesmo tempo */
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+  .marquee__track { animation-duration: 120s; }
+
+  /* 3) Camadas de fundo: só a ativa existe (as outras 5 ocupavam memória de GPU o tempo todo) */
+  .sky__layer { transition: opacity 1.6s ease, visibility 0s linear 1.6s; visibility: hidden; will-change: auto; }
+  .sky__layer.is-on { visibility: visible; transition-delay: 0s; }
+}

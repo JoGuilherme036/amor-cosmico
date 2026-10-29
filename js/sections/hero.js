@@ -83,12 +83,13 @@
   }
 
   function parallax() {
-    const frame = $('#hero-frame'), halo = $('.orbit__halo'); let tick = false;
+    const frame = $('#hero-frame'), halo = $('.orbit__halo'); let tick = false, lastY = -1;
     const onScroll = () => {
       if (tick) return; tick = true;
       requestAnimationFrame(() => {
         tick = false; if (AC.reduced()) { frame.style.setProperty('--py', '0px'); return; }
         const y = Math.min(window.scrollY, window.innerHeight);
+        if (y === lastY) return; lastY = y; // passou da 1ª tela: nada mais para atualizar
         frame.style.setProperty('--py', (y * 0.1).toFixed(1) + 'px');
         if (halo) halo.style.transform = `translate3d(0,${(y * 0.04).toFixed(1)}px,0)`;
       });

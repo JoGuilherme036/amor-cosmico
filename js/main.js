@@ -127,9 +127,10 @@
       if (e.target.closest('#btn-more')) { drawer('more'); return; }
       if (e.target.closest('[data-close-drawer]')) { closeDrawer(); return; }
       const a = e.target.closest('[data-act]');
-      if (a) { closeDrawer(true); const act = a.dataset.act; if (act === 'cinema') AC.cinema.open(); else if (act === 'starwall') AC.starwall.open(AC.MEDIA); else if (act === 'share') AC.share(); else if (act === 'prefs') drawer('prefs'); }
+      if (a) { closeDrawer(true); const act = a.dataset.act; if (act === 'cinema') AC.cinema.open(); else if (act === 'starwall') AC.galaxy(AC.MEDIA); else if (act === 'share') AC.share(); else if (act === 'prefs') drawer('prefs'); }
     });
     $('#scrim').addEventListener('click', () => closeDrawer());
+    AC.on('drawers:close', () => closeDrawer(true));
     // toque tátil curtinho na barra inferior (celular)
     $('#bottom-nav').addEventListener('click', (e) => { if (e.target.closest('a, button') && navigator.vibrate) navigator.vibrate(6); });
     $('#cta-story').addEventListener('click', () => { if (!AC.audio.state.playing && AC.prefs.soundOnEntry) AC.audio.playMusic(); });
@@ -223,13 +224,27 @@
     paint();
   }
 
-  /* ---------- 3D (Three.js) — carrega depois de tudo, só onde faz sentido ---------- */
+  /* ---------- 3D (Three.js) — carrega só quando faz sentido ----------
+     • computador: depois do portão, em momento ocioso (a galáxia de fundo precisa);
+     • celular: só quando a pessoa chega perto das alianças/do final, ou toca em "Galáxia" (poupa 150 KB de download e o parse de 570 KB de JS). */
+  let cosmosP = null;
+  function ensureCosmos() {
+    if (cosmosP) return cosmosP;
+    cosmosP = new Promise((res) => {
+      const gl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (_) { return false; } })();
+      if (!gl || AC.lite()) { document.documentElement.dataset.cosmos = 'off'; res(false); return; }
+      const s = document.createElement('script'); s.src = 'js/vendor/cosmos.js' + (window.AC_BUILD ? '?v=' + window.AC_BUILD : ''); s.async = true;
+      s.onload = () => res(true); s.onerror = () => { document.documentElement.dataset.cosmos = 'off'; res(false); };
+      document.head.appendChild(s);
+    });
+    return cosmosP;
+  }
+  AC.loadCosmos = ensureCosmos;
   function loadCosmos() {
-    const gl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (_) { return false; } })();
-    if (!gl || AC.lite()) { document.documentElement.dataset.cosmos = 'off'; return; }
-    const s = document.createElement('script'); s.src = 'js/vendor/cosmos.js' + (window.AC_BUILD ? '?v=' + window.AC_BUILD : ''); s.async = true;
-    s.onerror = () => { document.documentElement.dataset.cosmos = 'off'; };
-    document.head.appendChild(s);
+    const phone = matchMedia('(max-width: 820px)').matches || matchMedia('(pointer: coarse)').matches;
+    if (!phone || !('IntersectionObserver' in window)) { ensureCosmos(); return; }
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); ensureCosmos(); } }, { rootMargin: '2600px 0px' });
+    $$('[data-rings], #finale3d').forEach((el) => io.observe(el));
   }
 
   /* ---------- PWA ---------- */
@@ -254,7 +269,7 @@
     safe('mini player', mini);
     const later = [
       ['universo', AC.initUniverse], ['história', AC.initStory], ['linha do tempo', AC.initTimeline], ['números', AC.initNumbers],
-      ['galeria', AC.initGallery], ['música', AC.initMusic], ['surpresa', AC.initScratch], ['futuro', AC.initFuture], ['encerramento', AC.initFinale]
+      ['galeria', AC.initGallery], ['envio de fotos', AC.initUpload], ['música', AC.initMusic], ['surpresa', AC.initScratch], ['futuro', AC.initFuture], ['encerramento', AC.initFinale]
     ];
     const yieldNow = () => new Promise((r) => setTimeout(r, 0));
     (async () => {

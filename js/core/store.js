@@ -65,7 +65,7 @@
       const isVid = r.kind === 'video';
       AC.MEDIA.push({
         id: r.id, orig: r.name, type: isVid ? 'video' : 'photo', src: url, file: url, poster: null, width: r.w || 3, height: r.h || 4,
-        date: r.date, milestone: 'rotina', chapter: 6, place: '', caption: r.caption || r.name.replace(/\.[^.]+$/, ''), alt: r.caption || r.name,
+        date: r.date, milestone: 'enviadas', chapter: 6, place: '', caption: r.caption || r.name.replace(/\.[^.]+$/, ''), alt: r.caption || r.name,
         tags: ['minhas'], favorite: false, focal: [50, 40], color: '#1a1440', lqip: '', mine: true, duration: r.duration
       });
     },

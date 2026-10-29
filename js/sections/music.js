@@ -65,7 +65,6 @@
       }
       beat += ((bass / 6) - beat) * 0.2;
       vinyl.style.boxShadow = `0 30px 70px -20px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08),0 0 ${50 + beat * 120}px ${-20 + beat * 18}px rgba(255,90,157,${0.4 + beat * 0.6})`;
-      document.documentElement.style.setProperty('--beat', beat.toFixed(3));
     };
     AC.io($('#player'), (el, on) => { if (on && !vis) { vis = true; AC.raf.add(draw); } else if (!on && vis) { vis = false; AC.raf.remove(draw); } }, { threshold: 0.05 });
   };

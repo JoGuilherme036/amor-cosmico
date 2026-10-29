@@ -13,13 +13,15 @@
     const grid = $('#universe-cards'); if (!grid) return;
     grid.innerHTML = AC.UNIVERSE.map((c) => {
       const m = AC.get(c.photo);
-      const bg = (cls) => `<div class="ucard__bg">${m ? AC.ph(m, { sizes: '(min-width:960px) 34vw, 92vw', ratio: false, cls }) : AC.placeholder()}</div><div class="ucard__shade"></div>`;
+      // frente: só a miniatura (3 KB) esticada = desfoque natural, sem filter nem imagem pesada; o verso carrega a foto nítida só no 1º toque
+      const front = `<div class="ucard__bg">${m ? `<img src="${AC.tileSrc(m)}" alt="" decoding="async" loading="lazy">` : AC.placeholder()}</div><div class="ucard__shade"></div>`;
+      const back = `<div class="ucard__bg" data-back></div><div class="ucard__shade"></div>`;
       return `
       <article class="ucard reveal" style="--accent:${c.accent}" tabindex="0" role="button" aria-pressed="false" aria-label="${AC.esc(c.title)}. Toque para virar o cartão.">
         <div class="ucard__inner">
-          <div class="ucard__face ucard__face--front">${bg('')}${constellation(c)}
+          <div class="ucard__face ucard__face--front">${front}${constellation(c)}
             <span class="ucard__sub">${AC.esc(c.subtitle)}</span><h3>${AC.esc(c.title)}</h3><p>${AC.esc(c.short)}</p><span class="ucard__hint">Toque para virar</span></div>
-          <div class="ucard__face ucard__face--back">${bg('')}
+          <div class="ucard__face ucard__face--back" aria-hidden="true">${back}
             <span class="ucard__sub">${AC.esc(c.title)}</span><p>${AC.esc(c.full)}</p><span class="ucard__hint">Toque para voltar</span></div>
         </div>
       </article>`;
@@ -28,7 +30,12 @@
 
     $$('.ucard', grid).forEach((card, i) => {
       card.style.setProperty('--rd', i * 120 + 'ms');
-      const flip = () => { const on = card.classList.toggle('is-flipped'); card.setAttribute('aria-pressed', on); AC.sfx('soft'); };
+      const c = AC.UNIVERSE[i], m = AC.get(c.photo), backEl = card.querySelector('[data-back]');
+      const flip = () => {
+        const on = card.classList.toggle('is-flipped'); card.setAttribute('aria-pressed', on); AC.sfx('soft');
+        card.querySelector('.ucard__face--front').setAttribute('aria-hidden', on); card.querySelector('.ucard__face--back').setAttribute('aria-hidden', !on);
+        if (on && m && !backEl.dataset.ready) { backEl.dataset.ready = '1'; backEl.innerHTML = AC.ph(m, { sizes: '(min-width:960px) 34vw, 92vw', ratio: false }); AC.hydrate(backEl); }
+      };
       card.addEventListener('click', flip);
       card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
       AC.tilt(card);

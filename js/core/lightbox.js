@@ -8,7 +8,7 @@
   const AC = window.AC;
   const { $, $$ } = AC;
 
-  let root, stage, slide, thumbsEl, capEl, countEl, favBtn, slideBtn, progEl, liveBtn, untrap;
+  let delBtn, delArm = false, root, stage, slide, thumbsEl, capEl, countEl, favBtn, slideBtn, progEl, liveBtn, untrap;
   let items = [], idx = 0, openFlag = false, lastFocus = null, slideTimer = 0, slideOn = false, pushed = false;
   const Z = { s: 1, x: 0, y: 0 };
   const ptrs = new Map();
@@ -22,6 +22,7 @@
     <span class="lb__count" aria-live="polite"></span>
     <div class="lb__tools">
       <button type="button" class="btn btn--icon btn--ghost" data-a="fav" aria-pressed="false" aria-label="Favoritar">${AC.icon('i-heart')}</button>
+      <button type="button" class="btn btn--icon btn--ghost" data-a="del" aria-label="Apagar esta foto" hidden>${AC.icon('i-trash')}</button>
       <button type="button" class="btn btn--icon btn--ghost" data-a="dl" aria-label="Baixar">${AC.icon('i-download')}</button>
       <button type="button" class="btn btn--icon btn--ghost" data-a="share" aria-label="Compartilhar">${AC.icon('i-share')}</button>
       <button type="button" class="btn btn--icon btn--ghost" data-a="slide" aria-pressed="false" aria-label="Slideshow">${AC.icon('i-play')}</button>
@@ -33,7 +34,7 @@
 </div>`);
     document.body.appendChild(root);
     stage = $('.lb__stage', root); thumbsEl = $('.lb__thumbs', root); capEl = $('.lb__cap', root); countEl = $('.lb__count', root);
-    favBtn = $('[data-a=fav]', root); slideBtn = $('[data-a=slide]', root); progEl = $('.lb__progress i', root);
+    delBtn = $('[data-a=del]', root); favBtn = $('[data-a=fav]', root); slideBtn = $('[data-a=slide]', root); progEl = $('.lb__progress i', root);
     const prev = AC.html(`<button type="button" class="btn btn--icon lb__nav lb__nav--prev" aria-label="Anterior">${AC.icon('i-chev-l')}</button>`);
     const next = AC.html(`<button type="button" class="btn btn--icon lb__nav lb__nav--next" aria-label="Próxima">${AC.icon('i-chev-r')}</button>`);
     stage.append(prev, next);
@@ -44,6 +45,7 @@
       const a = b.dataset.a, m = items[idx];
       if (a === 'close') close();
       else if (a === 'fav') { const on = AC.toggleFav(m.id); favBtn.setAttribute('aria-pressed', on); AC.sfx('soft'); }
+      else if (a === 'del') removeCurrent(b, m);
       else if (a === 'dl') AC.download(m);
       else if (a === 'share') AC.share({ title: m.caption || 'Amor Cósmico', text: m.caption || '' });
       else if (a === 'slide') toggleSlideshow();
@@ -100,6 +102,8 @@
       return v;
     }
     const im = new Image(); im.className = 'lb__media'; im.alt = m.alt || m.caption || ''; im.decoding = 'async'; im.draggable = false; im.src = lbSrc(m);
+    // foto enviada: mostra a miniatura na hora e troca pela foto inteira (baixada do banco) assim que chegar
+    if (m.remote && !m.full) AC.photos.full(m).then((u) => { if (u) im.src = u; }).catch(() => AC.toast('Não consegui carregar a foto inteira agora.'));
     return im;
   }
   function show(dir, first) {
@@ -115,6 +119,7 @@
     if (m.type === 'video') { el.muted = false; const p = el.play(); if (p && p.catch) p.catch(() => { el.muted = true; el.play().catch(() => {}); }); }
     countEl.textContent = `${idx + 1} / ${items.length}`;
     favBtn.setAttribute('aria-pressed', AC.isFav(m.id));
+    delBtn.hidden = !(m.remote || m.mine); delBtn.classList.remove('is-confirm'); delArm = false;
     paintCap(m);
     if (liveBtn) { liveBtn.remove(); liveBtn = null; }
     if (m.live) {
@@ -155,6 +160,16 @@
 
   // centraliza a miniatura SÓ dentro da faixa (scrollIntoView dentro de um elemento fixo rola a página inteira no Safari do iPhone)
   function centerThumb(t, instant) { const box = thumbsEl; if (!box) return; box.scrollTo({ left: t.offsetLeft - box.clientWidth / 2 + t.clientWidth / 2, behavior: instant || AC.reduced() ? 'auto' : 'smooth' }); }
+  // apagar: 1º toque pede confirmação (sem alert), 2º toque apaga (do banco ou deste aparelho)
+  function removeCurrent(btn, m) {
+    if (!delArm) { delArm = true; btn.classList.add('is-confirm'); btn.setAttribute('aria-label', 'Toque de novo para apagar'); AC.toast('Toque de novo para apagar esta foto', 3000); setTimeout(() => { delArm = false; btn.classList.remove('is-confirm'); btn.setAttribute('aria-label', 'Apagar esta foto'); }, 3500); return; }
+    delArm = false; btn.classList.remove('is-confirm');
+    (m.remote ? AC.photos.remove(m) : AC.studio.remove(m.id)).then(() => {
+      const k = items.indexOf(m); if (k >= 0) items.splice(k, 1);
+      if (!items.length) { close(); AC.toast('Foto apagada'); return; }
+      idx = Math.min(idx, items.length - 1); buildThumbs(); show(0, true); AC.toast('Foto apagada');
+    }).catch(() => AC.toast('Não consegui apagar agora. Tente de novo.'));
+  }
   function go(d) { if (!openFlag) return; idx = (idx + d + items.length) % items.length; show(d); }
   function buildThumbs() {
     thumbsEl.innerHTML = items.map((m, k) => `<button type="button" class="lb__thumb" role="tab" aria-label="Ir para ${k + 1}" data-i="${k}"><div class="ph ph--static" style="--ph:${m.color || '#14152a'}"><img src="${AC.tileSrc(m)}" alt="" loading="lazy" decoding="async" style="opacity:1;position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div></button>`).join('');

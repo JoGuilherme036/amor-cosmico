@@ -48,6 +48,12 @@
     capsuleList: () => rpc('capsule_list'),
     heart: (mediaId) => write('hearts_add', { p_media: mediaId }).catch(() => {}),
     async heartCounts() { const rows = await rpc('heart_counts'); const m = {}; (rows || []).forEach((r) => { m[r.media_id] = Number(r.total); }); return m; },
+    // fotos enviadas por vocês (sem fila offline: são grandes demais para o localStorage)
+    listPhotos: (after = 0) => rpc('photos_list', { p_after: after }),
+    photoIds: () => rpc('photos_ids'),
+    getPhoto: (id) => rpc('photos_get', { p_id: id }),
+    addPhoto: (o) => rpc('photos_add', { p_author: o.author, p_caption: o.caption || '', p_mime: o.mime, p_w: o.w, p_h: o.h, p_thumb: o.thumb, p_data: o.data }),
+    deletePhoto: (id) => rpc('photos_delete', { p_id: id }),
     flush
   };
 

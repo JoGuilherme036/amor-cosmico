@@ -68,11 +68,12 @@
 .ucard.is-flipped .ucard__inner { transform: rotateY(180deg); }
 .ucard__face { position: absolute; inset: 0; border-radius: var(--r-lg); overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid var(--glass-line-strong); box-shadow: var(--sh-2); display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; background: #0b0c16; }
 .ucard__bg { position: absolute; inset: 0; }
-.ucard__bg .ph { position: absolute; inset: 0; }
-.ucard__face--front .ucard__bg img { filter: blur(7px) brightness(0.55) saturate(1.2); transform: scale(1.12); }
+.ucard__bg .ph, .ucard__bg > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ucard__face--front .ucard__bg > img { transform: scale(1.12); } /* miniatura 112 px esticada = desfoque natural, sem filter (filter quebra o 3D no iPhone) */
 .ucard__face--back { transform: rotateY(180deg); }
-.ucard__face--back .ucard__bg img { filter: brightness(0.8); }
 .ucard__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 5, 10, 0.1) 20%, rgba(5, 5, 10, 0.92)); }
+.ucard__face--front .ucard__shade { background: linear-gradient(180deg, rgba(5, 5, 10, 0.5) 10%, rgba(5, 5, 10, 0.94)); }
+.ucard__face--back .ucard__shade { background: linear-gradient(180deg, rgba(5, 5, 10, 0.25) 10%, rgba(5, 5, 10, 0.93)); }
 .ucard__face > *:not(.ucard__bg):not(.ucard__shade) { position: relative; z-index: 2; }
 .ucard__sub { font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
 .ucard h3 { font-family: var(--f-display); font-size: var(--fs-xl); font-weight: 500; line-height: 1; color: var(--t-strong); margin: 10px 0 12px; }

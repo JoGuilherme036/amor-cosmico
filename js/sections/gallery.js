@@ -21,6 +21,7 @@
       (S.month === 'all' || (m.date || '').startsWith(S.month)) &&
       (!q || hay(m).includes(q)));
     list = list.slice().sort((a, b) => (a.date || '9').localeCompare(b.date || '9') || a.id.localeCompare(b.id));
+    if (S.ms === 'enviadas') list.sort((a, b) => (b.rid || 0) - (a.rid || 0)); // as mais novas primeiro
     if (S.shuffle) { if (!order) order = AC.seeded(Date.now() % 9973); const r = AC.seeded(Date.now() % 9973); list.sort(() => r() - 0.5); }
     return list;
   }
@@ -106,7 +107,7 @@
     $('#g-month').addEventListener('change', (e) => { S.month = e.target.value; render(); });
     $('#g-search').addEventListener('input', AC.debounce((e) => { S.q = e.target.value; render(); }, 220));
     $('#g-shuffle').addEventListener('click', (e) => { S.shuffle = !S.shuffle; e.currentTarget.classList.toggle('is-active', S.shuffle); e.currentTarget.querySelector('.lbl').textContent = S.shuffle ? 'Ordem do tempo' : 'Embaralhar universo'; e.currentTarget.querySelector('.lbl-s').textContent = S.shuffle ? 'Ordem' : 'Embaralhar'; AC.sfx('sparkle'); render(); });
-    $('#g-starwall').addEventListener('click', () => AC.starwall.open(view.length ? view : AC.MEDIA));
+    $('#g-starwall').addEventListener('click', () => AC.galaxy(view.length ? view : AC.MEDIA));
     $('#g-slideshow').addEventListener('click', () => { if (view.length) AC.lightbox.open(view, 0, { slideshow: true }); });
 
     host.addEventListener('click', (e) => {
@@ -123,5 +124,6 @@
       if (S.fav) render();
     });
     AC.on('media:changed', () => { chips(); render(); });
+    AC.on('gallery:show-sent', () => { S.ms = 'enviadas'; S.type = 'all'; S.fav = false; S.q = ''; chips(); render(); });
   };
 })();

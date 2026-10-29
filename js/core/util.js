@@ -70,7 +70,7 @@
   AC.getMany = (arr) => arr.map(AC.get).filter(Boolean);
   AC.MILESTONES = [
     { id: 'encontro', label: 'O começo' }, { id: 'namoro', label: 'Namoro' }, { id: 'familia', label: 'Famílias' },
-    { id: 'rotina', label: 'Nossa rotina' }, { id: 'jeri', label: 'Jericoacoara' }, { id: 'pedido', label: 'O pedido' }, { id: 'outubro', label: 'Outubro' }
+    { id: 'rotina', label: 'Nossa rotina' }, { id: 'jeri', label: 'Jericoacoara' }, { id: 'pedido', label: 'O pedido' }, { id: 'outubro', label: 'Outubro' }, { id: 'enviadas', label: 'Enviadas por nós' }
   ];
 
   const srcset = (m, ext) => m.widths.map((w) => `${m.base}-${w}.${ext} ${w}w`).join(', ');

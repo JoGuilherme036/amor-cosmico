@@ -41,12 +41,9 @@ function init() {
   if (fin) lazy(fin, mountFinale, 'final');
 
   // 4) Galáxia de Memórias (só http/https — veja memories.js)
-  if (!AC.isFile && AC.starwall) {
-    try {
-      const mem = createMemories(Q); api.openMemories = mem.open;
-      const flat = AC.starwall.open;
-      AC.starwall.open = (items) => { try { mem.open(items); } catch (e) { warn('galáxia de memórias', e); flat(items); } };
-    } catch (e) { warn('galáxia de memórias', e); }
+  if (!AC.isFile) {
+    try { api.openMemories = createMemories(Q).open; } // quem chama é AC.galaxy (js/sections/starwall.js), que cai para a Parede 2D se isto falhar
+    catch (e) { warn('galáxia de memórias', e); }
   }
 
   api.ready = true;
