@@ -73,7 +73,7 @@
 .ucard__face--back { transform: rotateY(180deg); }
 .ucard__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 5, 10, 0.1) 20%, rgba(5, 5, 10, 0.92)); }
 .ucard__face--front .ucard__shade { background: linear-gradient(180deg, rgba(5, 5, 10, 0.5) 10%, rgba(5, 5, 10, 0.94)); }
-.ucard__face--back .ucard__shade { background: linear-gradient(180deg, rgba(5, 5, 10, 0.25) 10%, rgba(5, 5, 10, 0.93)); }
+.ucard__face--back .ucard__shade { background: linear-gradient(180deg, rgba(5, 5, 10, 0.66) 0%, rgba(5, 5, 10, 0.88) 55%, rgba(5, 5, 10, 0.94)); }
 .ucard__face > *:not(.ucard__bg):not(.ucard__shade) { position: relative; z-index: 2; }
 .ucard__sub { font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
 .ucard h3 { font-family: var(--f-display); font-size: var(--fs-xl); font-weight: 500; line-height: 1; color: var(--t-strong); margin: 10px 0 12px; }

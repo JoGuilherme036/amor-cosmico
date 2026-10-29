@@ -185,7 +185,7 @@
 
 @media (hover: none), (pointer: coarse) {
   /* 1) Sem desfoque de fundo (backdrop-filter recalcula a cada quadro de rolagem e esquenta o iPhone) — fundos um pouco mais opacos no lugar */
-  *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .btn, .glass, .frame--glass, .float-cap, .header.is-scrolled, .bottom-nav, .scrim, .drawer, .modal, .toast, .mini, .hero__badge, .story-hud, .story-index a, .dream__top .badge, .dream__ico { -webkit-backdrop-filter: none; backdrop-filter: none; } /* lista exata (gerada do CSS): o seletor universal * custava ~300 ms de estilo no celular */
   .btn { --b-bg: rgba(30, 30, 62, 0.78); }
   .btn--primary { --b-bg: transparent; }
   .btn--ghost { --b-bg: rgba(20, 20, 44, 0.5); }
